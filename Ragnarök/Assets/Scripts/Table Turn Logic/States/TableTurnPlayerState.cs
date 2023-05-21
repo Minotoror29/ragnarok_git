@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundPlayerState : State
+public class TableTurnPlayerState : State
 {
-    private RoundManager _roundManager;
+    private TableTurnManager _tableTurnManager;
     private Player _player;
 
-    public RoundPlayerState(RoundManager roundManager, Player player)
+    public TableTurnPlayerState(TableTurnManager tableTurnManager, Player player)
     {
-        _roundManager = roundManager;
+        _tableTurnManager = tableTurnManager;
         _player = player;
     }
 
     public override void Enter()
     {
-        _player.StartTurn();
+        _player.StartPlayerTurn();
     }
 
     public override void Exit()
     {
-        _player.EndTurn();
+        _player.EndPlayerTurn();
     }
 
     public override void UpdateLogic()

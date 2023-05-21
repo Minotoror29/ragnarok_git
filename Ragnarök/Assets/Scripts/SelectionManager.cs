@@ -10,16 +10,6 @@ public class SelectionManager : MonoBehaviour
 
     private ISelectable _currentSelection;
 
-    private void Start()
-    {
-        Initialize();
-    }
-
-    private void Update()
-    {
-        UpdateLogic();
-    }
-
     public void Initialize()
     {
         _playerControls = new PlayerControls();
@@ -56,5 +46,11 @@ public class SelectionManager : MonoBehaviour
         if (_currentSelection == null) return;
 
         _currentSelection.Select();
+    }
+
+    public void Disable()
+    {
+        _playerControls.InGame.Disable();
+        _playerControls.InGame.LeftClick.performed -= ctx => Select();
     }
 }

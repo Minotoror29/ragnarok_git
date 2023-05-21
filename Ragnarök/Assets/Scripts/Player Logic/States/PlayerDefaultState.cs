@@ -10,16 +10,16 @@ public class PlayerDefaultState : PlayerState
 
     public override void Enter()
     {
-        
+        _player.EnableSelection();
     }
 
     public override void Exit()
     {
-        
+        _player.DisableSelection();
     }
 
     public override void UpdateLogic()
     {
-        
+        _player.UpdateSelection();
     }
 }

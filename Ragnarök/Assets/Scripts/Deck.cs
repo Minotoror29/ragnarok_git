@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour, ISelectable
 {
-    [SerializeField] private RoundManager roundManager;
+    [SerializeField] private TableTurnManager tableTurnManager;
 
     public void Select()
     {
@@ -13,6 +13,6 @@ public class Deck : MonoBehaviour, ISelectable
 
     private void DrawCard()
     {
-        roundManager.DrawCard();
+        tableTurnManager.DrawCard();
     }
 }
