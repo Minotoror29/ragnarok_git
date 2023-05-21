@@ -9,6 +9,7 @@ public class TableTurnManager : MonoBehaviour
     private RoundManager _roundManager;
 
     [SerializeField] private Canvas cardCanvas;
+    [SerializeField] private CardDisplay cardDisplay;
     private Clock _clock;
 
     [SerializeField] private List<Player> players;
@@ -23,12 +24,14 @@ public class TableTurnManager : MonoBehaviour
 
         foreach (Player player in players)
         {
-            player.Initialize(this, selectionManager, cardCanvas);
+            player.Initialize(this, selectionManager, cardCanvas, cardDisplay);
         }
     }
 
     public void UpdateLogic()
     {
+        _stateManager.UpdateLogic();
+
         foreach (Player player in players)
         {
             player.UpdateLogic();
@@ -40,12 +43,12 @@ public class TableTurnManager : MonoBehaviour
         _clock.AddHour(1);
 
         _currentPlayerIndex = 0;
-        _stateManager.ChangeState(new TableTurnPlayerState(this, players[_currentPlayerIndex]));
+        _stateManager.ChangeState(new TableTurnTransitionState(this, players[_currentPlayerIndex]));
     }
 
-    public void DrawCard()
+    public void DrawCard(Card card)
     {
-        players[_currentPlayerIndex].DrawCard();
+        players[_currentPlayerIndex].DrawCard(card);
     }
 
     public void PlayCard()
@@ -64,8 +67,14 @@ public class TableTurnManager : MonoBehaviour
         if (_currentPlayerIndex == players.Count)
         {
             StartTableTurn();
+            return;
         }
 
+        _stateManager.ChangeState(new TableTurnTransitionState(this, players[_currentPlayerIndex]));
+    }
+
+    public void StartPlayerTurn()
+    {
         _stateManager.ChangeState(new TableTurnPlayerState(this, players[_currentPlayerIndex]));
     }
 }

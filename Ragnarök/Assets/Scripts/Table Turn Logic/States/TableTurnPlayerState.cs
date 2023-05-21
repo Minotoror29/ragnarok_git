@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TableTurnPlayerState : State
+public class TableTurnPlayerState : TableTurnState
 {
-    private TableTurnManager _tableTurnManager;
-    private Player _player;
-
-    public TableTurnPlayerState(TableTurnManager tableTurnManager, Player player)
+    public TableTurnPlayerState(TableTurnManager tableTurnManager, Player player) : base(tableTurnManager, player)
     {
-        _tableTurnManager = tableTurnManager;
-        _player = player;
+        
     }
 
     public override void Enter()

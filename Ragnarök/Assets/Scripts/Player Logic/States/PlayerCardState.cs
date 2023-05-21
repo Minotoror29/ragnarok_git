@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerCardState : PlayerState
 {
-    public PlayerCardState(Player player) : base(player)
+    private Card _card;
+
+    public PlayerCardState(Player player, Card card) : base(player)
     {
+        _card = card;
     }
 
     public override void Enter()
     {
-        _player.DisplayCardCanvas(true);
+        _player.CardCanvas.gameObject.SetActive(true);
+        _player.CardDisplay.Initialize(_card);
     }
 
     public override void Exit()
     {
-        _player.DisplayCardCanvas(false);
+        _player.CardCanvas.gameObject.SetActive(false);
     }
 
     public override void UpdateLogic()

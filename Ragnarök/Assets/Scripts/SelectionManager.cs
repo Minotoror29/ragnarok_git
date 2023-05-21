@@ -10,7 +10,7 @@ public class SelectionManager : MonoBehaviour
 
     private ISelectable _currentSelection;
 
-    public void Initialize()
+    public void Enable()
     {
         _playerControls = new PlayerControls();
         _playerControls.InGame.Enable();
