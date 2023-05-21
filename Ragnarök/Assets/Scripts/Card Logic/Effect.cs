@@ -5,4 +5,6 @@ using UnityEngine;
 public abstract class Effect : ScriptableObject
 {
     public string description;
+
+    public abstract void Activate(EffectsManager effectsManager, Player sourcePlayer);
 }

@@ -6,13 +6,17 @@ public class RoundManager : MonoBehaviour
 {
     [SerializeField] private TableTurnManager tableTurnManager;
 
-    [SerializeField] private Clock clock;
+    private Clock _clock;
     [SerializeField] private int startHours = 0;
 
-    public void Initialize()
+    [SerializeField] private List<Player> players;
+    [SerializeField] private int playersStartPoints = 4;
+
+    public void Initialize(Clock clock)
     {
-        tableTurnManager.Initialize(this, clock);
-        clock.Initialize(this);
+        _clock = clock;
+
+        tableTurnManager.Initialize(this, _clock, players);
     }
 
     public void UpdateLogic()
@@ -22,7 +26,11 @@ public class RoundManager : MonoBehaviour
 
     public void StartRound()
     {
-        clock.SetHour(startHours);
+        _clock.SetHours(startHours);
+        foreach (Player player in players)
+        {
+            player.SetPoints(playersStartPoints);
+        }
         tableTurnManager.StartTableTurn();
     }
 }

@@ -14,7 +14,7 @@ public class PlayerCardState : PlayerState
     public override void Enter()
     {
         _player.CardCanvas.gameObject.SetActive(true);
-        _player.CardDisplay.Initialize(_card);
+        _player.CardDisplay.SetCard(_card);
     }
 
     public override void Exit()

@@ -12,27 +12,30 @@ public class TableTurnManager : MonoBehaviour
     [SerializeField] private CardDisplay cardDisplay;
     private Clock _clock;
 
-    [SerializeField] private List<Player> players;
+    private List<Player> _players;
     private int _currentPlayerIndex = 0;
 
-    public void Initialize(RoundManager roundManager, Clock clock)
+    public void Initialize(RoundManager roundManager, Clock clock, List<Player> players)
     {
         _stateManager = GetComponent<StateManager>();
         _roundManager = roundManager;
 
         _clock = clock;
+        _players = players;
 
-        foreach (Player player in players)
+        foreach (Player player in _players)
         {
             player.Initialize(this, selectionManager, cardCanvas, cardDisplay);
         }
+
+        cardDisplay.Initialize(this);
     }
 
     public void UpdateLogic()
     {
         _stateManager.UpdateLogic();
 
-        foreach (Player player in players)
+        foreach (Player player in _players)
         {
             player.UpdateLogic();
         }
@@ -40,41 +43,36 @@ public class TableTurnManager : MonoBehaviour
 
     public void StartTableTurn()
     {
-        _clock.AddHour(1);
+        _clock.AddHours(1);
 
         _currentPlayerIndex = 0;
-        _stateManager.ChangeState(new TableTurnTransitionState(this, players[_currentPlayerIndex]));
+        _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
     }
 
     public void DrawCard(Card card)
     {
-        players[_currentPlayerIndex].DrawCard(card);
+        _players[_currentPlayerIndex].DrawCard(card);
     }
 
-    public void PlayCard()
+    public void PlayCard(EffectsManager effectsManager, Card card)
     {
-        NextPlayerTurn();
-    }
-
-    public void DiscardCard()
-    {
-        NextPlayerTurn();
+        _players[_currentPlayerIndex].PlayCard(effectsManager, card);
     }
 
     public void NextPlayerTurn()
     {
         _currentPlayerIndex ++;
-        if (_currentPlayerIndex == players.Count)
+        if (_currentPlayerIndex == _players.Count)
         {
             StartTableTurn();
             return;
         }
 
-        _stateManager.ChangeState(new TableTurnTransitionState(this, players[_currentPlayerIndex]));
+        _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
     }
 
     public void StartPlayerTurn()
     {
-        _stateManager.ChangeState(new TableTurnPlayerState(this, players[_currentPlayerIndex]));
+        _stateManager.ChangeState(new TableTurnPlayerState(this, _players[_currentPlayerIndex]));
     }
 }

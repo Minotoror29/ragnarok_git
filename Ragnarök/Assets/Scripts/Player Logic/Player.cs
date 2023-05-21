@@ -15,12 +15,15 @@ public class Player : MonoBehaviour
     private Canvas _cardCanvas;
     private CardDisplay _cardDisplay;
 
+    private int _points;
+    [SerializeField] private TextMeshProUGUI pointsText;
+
+    [SerializeField] private TextMeshProUGUI nameText;
+
+    public SelectionManager SelectionManager { get { return _selectionManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public Canvas CardCanvas { get { return _cardCanvas; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
-
-    //TESTS
-    [SerializeField] private TextMeshProUGUI text;
 
     public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay)
     {
@@ -41,22 +44,27 @@ public class Player : MonoBehaviour
     public void StartPlayerTurn()
     {
         _stateManager.ChangeState(new PlayerDefaultState(this));
-        text.color = Color.blue;
+        nameText.color = Color.blue;
     }
 
-    public void EnableSelection()
+    public void AddPoints(int value)
     {
-        _selectionManager.Enable();
+        _points += value;
+        _points = Mathf.Max(_points, 0);
+
+        SetPointsText();
     }
 
-    public void UpdateSelection()
+    public void SetPoints(int value)
     {
-        _selectionManager.UpdateLogic();
+        _points = value;
+
+        SetPointsText();
     }
 
-    public void DisableSelection()
+    public void SetPointsText()
     {
-        _selectionManager.Disable();
+        pointsText.text = _points.ToString();
     }
 
     public void DrawCard(Card card)
@@ -64,10 +72,16 @@ public class Player : MonoBehaviour
         _stateManager.ChangeState(new PlayerCardState(this, card));
     }
 
+    public void PlayCard(EffectsManager effectsManager, Card card)
+    {
+        card.effect1.Activate(effectsManager, this);
+        card.effect2.Activate(effectsManager, this);
+    }
+
     public void EndPlayerTurn()
     {
         vCam.gameObject.SetActive(false);
         _stateManager.ChangeState(new PlayerInactiveState(this));
-        text.color = Color.white;
+        nameText.color = Color.white;
     }
 }

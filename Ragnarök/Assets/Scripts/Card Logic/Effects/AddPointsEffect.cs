@@ -6,4 +6,9 @@ using UnityEngine;
 public class AddPointsEffect : Effect
 {
     public int points;
+
+    public override void Activate(EffectsManager effectsManager, Player sourcePlayer)
+    {
+        effectsManager.AddPointsToPlayer(sourcePlayer, points);
+    }
 }

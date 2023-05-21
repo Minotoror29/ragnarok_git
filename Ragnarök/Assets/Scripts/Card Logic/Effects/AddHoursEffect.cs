@@ -6,4 +6,9 @@ using UnityEngine;
 public class AddHoursEffect : Effect
 {
     public int hours;
+
+    public override void Activate(EffectsManager effectsManager, Player sourcePlayer)
+    {
+        effectsManager.AddHours(hours);
+    }
 }

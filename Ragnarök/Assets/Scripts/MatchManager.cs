@@ -5,6 +5,7 @@ using UnityEngine;
 public class MatchManager : MonoBehaviour
 {
     [SerializeField] private RoundManager roundManager;
+    [SerializeField] private Clock clock;
 
     private int _currentRound;
     [SerializeField] private int maxRounds = 3;
@@ -21,7 +22,8 @@ public class MatchManager : MonoBehaviour
 
     public void Initialize()
     {
-        roundManager.Initialize();
+        roundManager.Initialize(clock);
+        clock.Initialize(this);
 
         StartMatch();
     }
@@ -37,11 +39,12 @@ public class MatchManager : MonoBehaviour
         StartNewRound();
     }
 
-    private void StartNewRound()
+    public void StartNewRound()
     {
         if (_currentRound == maxRounds)
         {
             EndMatch();
+            return;
         }
 
         _currentRound++;
@@ -50,6 +53,6 @@ public class MatchManager : MonoBehaviour
 
     private void EndMatch()
     {
-
+        Debug.Log("End of the match");
     }
 }
