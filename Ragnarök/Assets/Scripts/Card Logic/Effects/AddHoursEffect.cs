@@ -9,6 +9,11 @@ public class AddHoursEffect : Effect
 
     public override void Activate(EffectsManager effectsManager, Player sourcePlayer)
     {
+        Resolve(effectsManager, sourcePlayer);
+    }
+
+    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer)
+    {
         effectsManager.AddHours(hours);
     }
 }

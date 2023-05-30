@@ -25,7 +25,7 @@ public class TableTurnManager : MonoBehaviour
 
         foreach (Player player in _players)
         {
-            player.Initialize(this, selectionManager, cardCanvas, cardDisplay);
+            player.Initialize(this, selectionManager, cardCanvas, cardDisplay, _players);
         }
 
         cardDisplay.Initialize(this);

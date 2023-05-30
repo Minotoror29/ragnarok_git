@@ -26,7 +26,7 @@ public class RoundManager : MonoBehaviour
 
     public void StartRound()
     {
-        _clock.SetHours(startHours);
+        _clock.SetHour(startHours);
         foreach (Player player in players)
         {
             player.SetPoints(playersStartPoints);

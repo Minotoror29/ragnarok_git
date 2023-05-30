@@ -29,7 +29,7 @@ public class Clock : MonoBehaviour
         }
     }
 
-    public void SetHours(int value)
+    public void SetHour(int value)
     {
         _hours = value;
 

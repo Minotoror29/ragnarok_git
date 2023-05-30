@@ -11,8 +11,21 @@ public class EffectsManager : MonoBehaviour
         clock.AddHours(value);
     }
 
-    public void AddPointsToPlayer(Player player, int value)
+    public void SetHour(int value)
     {
-        player.AddPoints(value);
+        clock.SetHour(value);
+    }
+
+    public void AddPointsToPlayers(List<Player> targets, int value)
+    {
+        foreach (Player target in targets)
+        {
+            target.AddPoints(value);
+        }
+    }
+
+    public void DividePlayerPoints(Player player, float value)
+    {
+        player.DividePoints(value);
     }
 }

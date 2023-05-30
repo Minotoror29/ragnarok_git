@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     private Canvas _cardCanvas;
     private CardDisplay _cardDisplay;
 
+    private List<Player> _opponents;
+
     private int _points;
     [SerializeField] private TextMeshProUGUI pointsText;
 
@@ -24,14 +26,22 @@ public class Player : MonoBehaviour
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public Canvas CardCanvas { get { return _cardCanvas; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
+    public List<Player> Opponents { get { return _opponents; } }
 
-    public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay)
+    public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, List<Player> players)
     {
         _stateManager = GetComponent<StateManager>();
         _tableTurnManager = tableTurnManager;
         _selectionManager = selectionManager;
         _cardCanvas = cardCanvas;
         _cardDisplay = cardDisplay;
+
+        _opponents = new List<Player>();
+        foreach (Player player in players)
+        {
+            _opponents.Add(player);
+        }
+        _opponents.Remove(this);
 
         _stateManager.ChangeState(new PlayerInactiveState(this));
     }
@@ -58,6 +68,13 @@ public class Player : MonoBehaviour
     public void SetPoints(int value)
     {
         _points = value;
+
+        SetPointsText();
+    }
+
+    public void DividePoints(float value)
+    {
+        _points = (int)(_points / value);
 
         SetPointsText();
     }
