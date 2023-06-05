@@ -8,4 +8,5 @@ public class Card : ScriptableObject
     public string cardName;
     public Effect effect1;
     public Effect effect2;
+    public bool vote = false;
 }

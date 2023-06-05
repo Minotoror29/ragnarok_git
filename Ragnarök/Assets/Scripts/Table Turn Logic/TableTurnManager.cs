@@ -28,7 +28,7 @@ public class TableTurnManager : MonoBehaviour
             player.Initialize(this, selectionManager, cardCanvas, cardDisplay, _players);
         }
 
-        cardDisplay.Initialize(this);
+        cardDisplay.Initialize(this, _players);
     }
 
     public void UpdateLogic()
