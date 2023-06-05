@@ -24,8 +24,11 @@ public class EffectsManager : MonoBehaviour
         }
     }
 
-    public void DividePlayerPoints(Player player, float value)
+    public void DividePlayerPoints(List<Player> targets, float value)
     {
-        player.DividePoints(value);
+        foreach (Player target in targets)
+        {
+            target.DividePoints(value);
+        }
     }
 }

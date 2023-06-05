@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38a9c60385b1414883ef6b171b26fed, type: 3}
-  m_Name: -4 Points
+  m_Script: {fileID: 11500000, guid: 2321b0da8b0d9194f9a4739d306a9bfd, type: 3}
+  m_Name: 2 Target Players
   m_EditorClassIdentifier: 
-  description: Vous perdez 4 jetons
-  points: -4
-  playerApplication: {fileID: 11400000, guid: 794c1fe1c89db194180cb6d694d047f6, type: 2}
+  playersToTarget: 2

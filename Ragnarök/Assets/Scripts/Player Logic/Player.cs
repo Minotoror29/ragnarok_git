@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ISelectable
 {
     private StateManager _stateManager;
     private TableTurnManager _tableTurnManager;
@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI nameText;
 
+    public StateManager StateManager { get { return _stateManager; } }
+    public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public SelectionManager SelectionManager { get { return _selectionManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public Canvas CardCanvas { get { return _cardCanvas; } }
@@ -91,8 +93,10 @@ public class Player : MonoBehaviour
 
     public void PlayCard(EffectsManager effectsManager, Card card)
     {
-        card.effect1.Activate(effectsManager, this);
-        card.effect2.Activate(effectsManager, this);
+        //card.effect1.Activate(effectsManager, this);
+        //card.effect2.Activate(effectsManager, this);
+
+        _stateManager.ChangeState(new PlayerEffectState(this, card.effect1, card.effect2, effectsManager));
     }
 
     public void EndPlayerTurn()
@@ -100,5 +104,10 @@ public class Player : MonoBehaviour
         vCam.gameObject.SetActive(false);
         _stateManager.ChangeState(new PlayerInactiveState(this));
         nameText.color = Color.white;
+    }
+
+    public void Select(PlayerState state)
+    {
+        state.SelectPlayer(this);
     }
 }

@@ -28,7 +28,7 @@ public class CardDisplay : MonoBehaviour
     public void PlayCard()
     {
         _tableTurnManager.PlayCard(effectsManager, _card);
-        _tableTurnManager.NextPlayerTurn();
+        //_tableTurnManager.NextPlayerTurn();
     }
 
     public void DiscardCard()

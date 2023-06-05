@@ -10,11 +10,15 @@ public class SelectionManager : MonoBehaviour
 
     private ISelectable _currentSelection;
 
-    public void Enable()
+    private PlayerState _currentState;
+
+    public void Enable(PlayerState state)
     {
         _playerControls = new PlayerControls();
         _playerControls.InGame.Enable();
         _playerControls.InGame.LeftClick.performed += ctx => Select();
+
+        _currentState = state;
     }
 
     public void UpdateLogic()
@@ -45,12 +49,14 @@ public class SelectionManager : MonoBehaviour
     {
         if (_currentSelection == null) return;
 
-        _currentSelection.Select();
+        _currentSelection.Select(_currentState);
     }
 
     public void Disable()
     {
         _playerControls.InGame.Disable();
         _playerControls.InGame.LeftClick.performed -= ctx => Select();
+
+        _currentState = null;
     }
 }

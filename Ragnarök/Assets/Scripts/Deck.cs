@@ -8,13 +8,15 @@ public class Deck : MonoBehaviour, ISelectable
 
     [SerializeField] private List<Card> cards;
 
-    public void Select()
+    public void Select(PlayerState state)
     {
-        DrawCard();
+        state.SelectDeck(cards[0]);
+
+        //DrawCard();
     }
 
-    private void DrawCard()
-    {
-        tableTurnManager.DrawCard(cards[0]);
-    }
+    //private void DrawCard()
+    //{
+    //    tableTurnManager.DrawCard(cards[0]);
+    //}
 }

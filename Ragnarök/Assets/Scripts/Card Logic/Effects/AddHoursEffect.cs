@@ -7,13 +7,15 @@ public class AddHoursEffect : Effect
 {
     public int hours;
 
-    public override void Activate(EffectsManager effectsManager, Player sourcePlayer)
+    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, PlayerEffectState state)
     {
-        Resolve(effectsManager, sourcePlayer);
+        //Resolve(effectsManager, sourcePlayer);
+        effectsManager.AddHours(hours);
+        state.ResolveEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer)
-    {
-        effectsManager.AddHours(hours);
-    }
+    //public override void Resolve(EffectsManager effectsManager, Player sourcePlayer)
+    //{
+    //    effectsManager.AddHours(hours);
+    //}
 }

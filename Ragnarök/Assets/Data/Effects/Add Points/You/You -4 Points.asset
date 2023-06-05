@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b686769799d5d8e4090f96d645fbfd12, type: 3}
-  m_Name: Divide P 2
+  m_Script: {fileID: 11500000, guid: d38a9c60385b1414883ef6b171b26fed, type: 3}
+  m_Name: You -4 Points
   m_EditorClassIdentifier: 
-  description: "Votre nombre de jetons est divis\xE9 par deux arrondi \xE0 l'inf\xE9rieur"
-  value: 2
+  description: Vous perdez 4 jetons
+  application: {fileID: 11400000, guid: 794c1fe1c89db194180cb6d694d047f6, type: 2}
+  points: -4
