@@ -41,4 +41,9 @@ public class EffectsManager : MonoBehaviour
 
         sourcePlayer.AddPoints(value * targets.Count);
     }
+
+    public void EqualizePoints(Player sourcePlayer, Player targetPlayer)
+    {
+        sourcePlayer.SetPoints(targetPlayer.Points);
+    }
 }

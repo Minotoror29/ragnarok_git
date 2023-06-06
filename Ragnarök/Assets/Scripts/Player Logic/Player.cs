@@ -29,6 +29,7 @@ public class Player : MonoBehaviour, ISelectable
     public Canvas CardCanvas { get { return _cardCanvas; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public List<Player> Opponents { get { return _opponents; } }
+    public int Points { get { return _points; } }
 
     public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, List<Player> players)
     {

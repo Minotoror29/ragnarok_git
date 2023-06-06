@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af22e524342a28d47bb3e1a2992b789a, type: 3}
-  m_Name: +2h
+  m_Script: {fileID: 11500000, guid: f0fc40616aa32bb47b53241fd39bb520, type: 3}
+  m_Name: Steal 1P All Opponents
   m_EditorClassIdentifier: 
-  description: L'horloge augmente de 2 heures
-  hours: 2
+  description: "Vous volez 1 jeton \xE0 chaque \xE9tat"
+  application: {fileID: 11400000, guid: 1a9c42becec5455499ee03cd4810df42, type: 2}
+  points: 1
