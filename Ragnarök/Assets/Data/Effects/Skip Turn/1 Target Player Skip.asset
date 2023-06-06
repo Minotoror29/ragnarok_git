@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50a9e738f34a6a4ba5665fbcd039190, type: 3}
-  m_Name: Equalize Points
+  m_Script: {fileID: 11500000, guid: 7b08b726f229c4b43b84a543f05eb029, type: 3}
+  m_Name: 1 Target Player Skip
   m_EditorClassIdentifier: 
-  description: "Vous \xE9galisez votre nombre de jetons avec un autre joueur de votre
-    choix"
+  description: "L'\xE9tat de votre choix ne peut pas jouer son prochain tour"
   application: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}

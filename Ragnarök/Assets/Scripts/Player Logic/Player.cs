@@ -22,6 +22,8 @@ public class Player : MonoBehaviour, ISelectable
 
     [SerializeField] private TextMeshProUGUI nameText;
 
+    [HideInInspector] public bool mustSkipNextTurn = false;
+
     public StateManager StateManager { get { return _stateManager; } }
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public SelectionManager SelectionManager { get { return _selectionManager; } }
@@ -58,6 +60,12 @@ public class Player : MonoBehaviour, ISelectable
     {
         _stateManager.ChangeState(new PlayerDefaultState(this));
         nameText.color = Color.blue;
+
+        if (mustSkipNextTurn)
+        {
+            _tableTurnManager.NextPlayerTurn();
+            mustSkipNextTurn = false;
+        }
     }
 
     public void AddPoints(int value)

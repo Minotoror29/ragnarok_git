@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af22e524342a28d47bb3e1a2992b789a, type: 3}
   m_Name: -2h
   m_EditorClassIdentifier: 
-  description: 
-  hours: 0
+  description: L'horloge recule de deux heures
+  hours: -2

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50a9e738f34a6a4ba5665fbcd039190, type: 3}
-  m_Name: Equalize Points
+  m_Script: {fileID: 11500000, guid: d38a9c60385b1414883ef6b171b26fed, type: 3}
+  m_Name: You +4P
   m_EditorClassIdentifier: 
-  description: "Vous \xE9galisez votre nombre de jetons avec un autre joueur de votre
-    choix"
-  application: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}
+  description: 
+  application: {fileID: 0}
+  points: 0

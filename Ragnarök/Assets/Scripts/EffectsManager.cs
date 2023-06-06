@@ -46,4 +46,12 @@ public class EffectsManager : MonoBehaviour
     {
         sourcePlayer.SetPoints(targetPlayer.Points);
     }
+
+    public void SkipTurn(List<Player> targets)
+    {
+        foreach (Player target in targets)
+        {
+            target.mustSkipNextTurn = true;
+        }
+    }
 }
