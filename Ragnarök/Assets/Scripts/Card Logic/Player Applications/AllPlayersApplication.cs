@@ -20,19 +20,4 @@ public class AllPlayersApplication : PlayerApplication
 
         Resolve(effectsManager, sourcePlayer, effect, targets, state);
     }
-
-    //public override List<Player> Targets(Player source, Effect effect)
-    //{
-    //    List<Player> targets = new()
-    //    {
-    //        source
-    //    };
-
-    //    foreach (Player player in source.Opponents)
-    //    {
-    //        targets.Add(player);
-    //    }
-
-    //    return targets;
-    //}
 }

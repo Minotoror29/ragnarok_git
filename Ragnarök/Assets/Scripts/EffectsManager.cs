@@ -31,4 +31,14 @@ public class EffectsManager : MonoBehaviour
             target.DividePoints(value);
         }
     }
+
+    public void StealPoints(Player sourcePlayer, List<Player> targets, int value)
+    {
+        foreach (Player target in targets)
+        {
+            target.AddPoints(-value);
+        }
+
+        sourcePlayer.AddPoints(value * targets.Count);
+    }
 }

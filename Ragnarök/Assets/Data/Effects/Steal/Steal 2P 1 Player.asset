@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: Pillage
+  m_Script: {fileID: 11500000, guid: f0fc40616aa32bb47b53241fd39bb520, type: 3}
+  m_Name: Steal 2P 1 Player
   m_EditorClassIdentifier: 
-  cardName: Pillage
-  effect1: {fileID: 11400000, guid: 3b03f6bd47077104da34cbae84ad2907, type: 2}
-  effect2: {fileID: 11400000, guid: 8d743aa34f3905d4687157eb31b05472, type: 2}
-  vote: 0
+  description: "Vous volez 2 jetons \xE0 un \xE9tat de votre choix"
+  application: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}
+  points: 2

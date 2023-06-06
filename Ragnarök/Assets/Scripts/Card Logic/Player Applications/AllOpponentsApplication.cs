@@ -9,9 +9,4 @@ public class AllOpponentsApplication : PlayerApplication
     {
         Resolve(effectsManager, sourcePlayer, effect, sourcePlayer.Opponents, state);
     }
-
-    //public override List<Player> Targets(Player source, Effect effect)
-    //{
-    //    return source.Opponents;
-    //}
 }

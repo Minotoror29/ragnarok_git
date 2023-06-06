@@ -9,13 +9,7 @@ public class SetHourEffect : Effect
 
     public override void Activate(EffectsManager effectsManager, Player sourcePlayer, PlayerEffectState state)
     {
-        //Resolve(effectsManager, sourcePlayer);
         effectsManager.SetHour(hour);
         state.ResolveEffect();
     }
-
-    //public override void Resolve(EffectsManager effectsManager, Player sourcePlayer)
-    //{
-    //    effectsManager.SetHour(hour);
-    //}
 }

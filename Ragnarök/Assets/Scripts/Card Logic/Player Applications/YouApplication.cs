@@ -15,14 +15,4 @@ public class YouApplication : PlayerApplication
 
         Resolve(effectsManager, sourcePlayer, effect, targets, state);
     }
-
-    //public override List<Player> Targets(Player source, Effect effect)
-    //{
-    //    List<Player> targets = new()
-    //    {
-    //        source
-    //    };
-
-    //    return targets;
-    //}
 }
