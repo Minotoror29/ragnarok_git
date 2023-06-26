@@ -42,6 +42,16 @@ public class EffectsManager : MonoBehaviour
         sourcePlayer.AddPoints(value * targets.Count);
     }
 
+    public void GivePoints(Player sourcePlayer, List<Player> targets, int value)
+    {
+        sourcePlayer.AddPoints(-value);
+
+        foreach (Player target in targets)
+        {
+            target.AddPoints(value);
+        }
+    }
+
     public void EqualizePoints(Player sourcePlayer, Player targetPlayer)
     {
         sourcePlayer.SetPoints(targetPlayer.Points);
@@ -53,5 +63,10 @@ public class EffectsManager : MonoBehaviour
         {
             target.mustSkipNextTurn = true;
         }
+    }
+
+    public void OpponentsVoteForCard(Player sourcePlayer)
+    {
+        sourcePlayer.opponentsVoteForCard = true;
     }
 }

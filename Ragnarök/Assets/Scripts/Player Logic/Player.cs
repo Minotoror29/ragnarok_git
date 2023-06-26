@@ -23,6 +23,7 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private TextMeshProUGUI nameText;
 
     [HideInInspector] public bool mustSkipNextTurn = false;
+    [HideInInspector] public bool opponentsVoteForCard = false;
 
     public StateManager StateManager { get { return _stateManager; } }
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d38a9c60385b1414883ef6b171b26fed, type: 3}
   m_Name: You +4P
   m_EditorClassIdentifier: 
-  description: 
-  application: {fileID: 0}
-  points: 0
+  description: Vous gagnez 4 jetons
+  application: {fileID: 11400000, guid: 794c1fe1c89db194180cb6d694d047f6, type: 2}
+  points: 4
