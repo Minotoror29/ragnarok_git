@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/Add Hours")]
-public class AddHoursEffect : Effect
+[CreateAssetMenu(menuName = "Effect/Add Custom Hours")]
+public class AddCustomHoursEffect : Effect
 {
-    public FixedValueApplication valueApplication;
+    public CustomValueApplication valueApplication;
 
     public override void Activate(EffectsManager effectsManager, Player sourcePlayer, PlayerEffectState state)
     {
         valueApplication.DetermineValue(effectsManager, sourcePlayer, this, state);
     }
 
-    public void Resolve(EffectsManager effectsManager, int value, PlayerEffectState state)
+    public void Resolve(EffectsManager effectsManager, Player sourcePlayer, int value, PlayerEffectState state)
     {
         effectsManager.AddHours(value);
+        effectsManager.AddPointsToPlayers(new List<Player>() { sourcePlayer }, value);
         state.ResolveEffect();
     }
 }

@@ -6,14 +6,14 @@ using UnityEngine.Events;
 public class PlayerValueState : PlayerState
 {
     private EffectsManager _effectsManager;
-    private AddHoursEffect _effect;
+    private AddCustomHoursEffect _effect;
     private CustomValueApplication _valueApplication;
 
     private PlayerEffectState _superState;
 
     private UnityAction<int> _confirmAction;
 
-    public PlayerValueState(EffectsManager effectsManager, Player player, AddHoursEffect effect, CustomValueApplication valueApplication, PlayerEffectState superState) : base(player)
+    public PlayerValueState(EffectsManager effectsManager, Player player, AddCustomHoursEffect effect, CustomValueApplication valueApplication, PlayerEffectState superState) : base(player)
     {
         _effectsManager = effectsManager;
         _effect = effect;
@@ -43,7 +43,7 @@ public class PlayerValueState : PlayerState
             actualValue = -value;
         }
 
-        _effect.Resolve(_effectsManager, actualValue, _superState);
+        _effect.Resolve(_effectsManager, _player, actualValue, _superState);
     }
 
     public override void UpdateLogic()

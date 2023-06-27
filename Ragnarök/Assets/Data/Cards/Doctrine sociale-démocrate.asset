@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: "Doctrine lib\xE9rale"
+  m_Name: "Doctrine sociale-d\xE9mocrate"
   m_EditorClassIdentifier: 
-  cardName: "Doctrine lib\xE9rale"
-  effect1: {fileID: 11400000, guid: bb90deec16e8f6044b0c6a0ddbb88207, type: 2}
-  effect2: {fileID: 11400000, guid: d83050392d648974bbfa45ca727fb23c, type: 2}
+  cardName: "Doctrine sociale-d\xE9mocrate"
+  effect1: {fileID: 11400000, guid: b54a08669f7f9be4590be1ac93e42dc1, type: 2}
+  effect2: {fileID: 11400000, guid: be45c42f800f0174e97190f09b650943, type: 2}
   vote: 0
