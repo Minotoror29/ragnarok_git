@@ -11,7 +11,7 @@ public class PlayerEffectState : PlayerState
 
     private int _resolvedEffects = 0;
 
-    private PlayerTargetState _targetState;
+    private PlayerState _subState;
 
     public PlayerEffectState(Player player, Effect effect1, Effect effect2, EffectsManager effectsManager) : base(player)
     {
@@ -32,7 +32,7 @@ public class PlayerEffectState : PlayerState
 
     public void ResolveEffect()
     {
-        ExitTargetState();
+        ExitSubState();
 
         _resolvedEffects++;
 
@@ -45,33 +45,25 @@ public class PlayerEffectState : PlayerState
         }
     }
 
-    public void EnterTargetState(PlayerTargetState targetState)
+    public void EnterSubState(PlayerState subState)
     {
-        _targetState = targetState;
+        _subState = subState;
 
-        _targetState.Enter();
+        _subState.Enter();
     }
 
-    public void ExitTargetState()
+    public void ExitSubState()
     {
-        if (_targetState == null) return;
+        if (_subState == null) return;
 
-        _targetState.Exit();
-        _targetState = null;
-    }
-
-    public override void SelectDeck(Card card)
-    {
-    }
-
-    public override void SelectPlayer(Player selectedPlayer)
-    {
+        _subState.Exit();
+        _subState = null;
     }
 
     public override void UpdateLogic()
     {
-        if (_targetState == null) return;
+        if (_subState == null) return;
 
-        _targetState.UpdateLogic();
+        _subState.UpdateLogic();
     }
 }

@@ -12,7 +12,7 @@ public abstract class PlayerState : State
         _player = player;
     }
 
-    public abstract void SelectDeck(Card card);
+    public virtual void SelectDeck(Card card) { }
 
-    public abstract void SelectPlayer(Player selectedPlayer);
+    public virtual void SelectPlayer(Player selectedPlayer) { }
 }

@@ -9,6 +9,6 @@ public class TargetPlayersApplication : PlayerApplication
 
     public override void DetermineTargets(EffectsManager effectsManager, Player sourcePlayer, TargettingPlayersEffect effect, PlayerEffectState state)
     {
-        state.EnterTargetState(new PlayerTargetState(effectsManager, sourcePlayer, effect, this, state, playersToTarget));
+        state.EnterSubState(new PlayerTargetState(effectsManager, sourcePlayer, effect, this, state, playersToTarget));
     }
 }

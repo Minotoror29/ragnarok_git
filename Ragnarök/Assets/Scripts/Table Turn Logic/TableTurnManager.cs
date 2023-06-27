@@ -10,6 +10,7 @@ public class TableTurnManager : MonoBehaviour
 
     [SerializeField] private Canvas cardCanvas;
     [SerializeField] private CardDisplay cardDisplay;
+    [SerializeField] private ValueDisplay valueDisplay;
     private Clock _clock;
 
     private List<Player> _players;
@@ -25,7 +26,7 @@ public class TableTurnManager : MonoBehaviour
 
         foreach (Player player in _players)
         {
-            player.Initialize(this, selectionManager, cardCanvas, cardDisplay, _players);
+            player.Initialize(this, selectionManager, cardCanvas, cardDisplay, valueDisplay, _players);
         }
 
         cardDisplay.Initialize(this, _players);

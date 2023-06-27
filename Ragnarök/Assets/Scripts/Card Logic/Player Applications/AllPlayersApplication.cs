@@ -18,6 +18,6 @@ public class AllPlayersApplication : PlayerApplication
             targets.Add(player);
         }
 
-        Resolve(effectsManager, sourcePlayer, effect, targets, state);
+        effect.Resolve(effectsManager, sourcePlayer, targets, state);
     }
 }

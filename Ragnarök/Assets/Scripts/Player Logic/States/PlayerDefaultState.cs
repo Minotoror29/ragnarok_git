@@ -23,10 +23,6 @@ public class PlayerDefaultState : PlayerState
         _player.DrawCard(card);
     }
 
-    public override void SelectPlayer(Player selectedPlayer)
-    {
-    }
-
     public override void UpdateLogic()
     {
         _player.SelectionManager.UpdateLogic();

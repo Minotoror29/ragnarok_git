@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, ISelectable
 
     private Canvas _cardCanvas;
     private CardDisplay _cardDisplay;
+    private ValueDisplay _valueDisplay;
 
     private List<Player> _opponents;
 
@@ -31,16 +32,18 @@ public class Player : MonoBehaviour, ISelectable
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public Canvas CardCanvas { get { return _cardCanvas; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
+    public ValueDisplay ValueDisplay { get { return _valueDisplay; } }
     public List<Player> Opponents { get { return _opponents; } }
     public int Points { get { return _points; } }
 
-    public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, List<Player> players)
+    public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, ValueDisplay valueDisplay, List<Player> players)
     {
         _stateManager = GetComponent<StateManager>();
         _tableTurnManager = tableTurnManager;
         _selectionManager = selectionManager;
         _cardCanvas = cardCanvas;
         _cardDisplay = cardDisplay;
+        _valueDisplay = valueDisplay;
 
         _opponents = new List<Player>();
         foreach (Player player in players)

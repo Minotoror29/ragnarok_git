@@ -13,6 +13,6 @@ public class YouApplication : PlayerApplication
             sourcePlayer
         };
 
-        Resolve(effectsManager, sourcePlayer, effect, targets, state);
+        effect.Resolve(effectsManager, sourcePlayer, targets, state);
     }
 }

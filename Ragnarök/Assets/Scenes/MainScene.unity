@@ -234,6 +234,7 @@ MonoBehaviour:
   selectionManager: {fileID: 540364198}
   cardCanvas: {fileID: 1653901913}
   cardDisplay: {fileID: 1478612472}
+  valueDisplay: {fileID: 2097747245}
 --- !u!4 &179236479
 Transform:
   m_ObjectHideFlags: 0
@@ -2408,7 +2409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tableTurnManager: {fileID: 179236478}
   cards:
-  - {fileID: 11400000, guid: f38c321a17a756f44b66dbdddcad7bac, type: 2}
+  - {fileID: 11400000, guid: 3115dea206d471d4bb280f5113b9063d, type: 2}
 --- !u!1 &1451001602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3756,7 +3757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2097747245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3771,6 +3772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: {fileID: 1798120997}
   valueDisplay: {fileID: 364370477}
+  confirmButton: {fileID: 0}
 --- !u!114 &2097747246
 MonoBehaviour:
   m_ObjectHideFlags: 0

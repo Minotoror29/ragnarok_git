@@ -16,14 +16,6 @@ public class PlayerInactiveState : PlayerState
     {
     }
 
-    public override void SelectDeck(Card card)
-    {
-    }
-
-    public override void SelectPlayer(Player selectedPlayer)
-    {
-    }
-
     public override void UpdateLogic()
     {
     }

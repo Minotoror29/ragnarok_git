@@ -22,8 +22,6 @@ public class PlayerTargetState : PlayerState
 
     public override void Enter()
     {
-        Debug.Log("Select " + _playersToTarget.ToString() + " players");
-
         _player.SelectionManager.Enable(this);
         _targetedPlayers = new List<Player>();
     }
@@ -31,10 +29,6 @@ public class PlayerTargetState : PlayerState
     public override void Exit()
     {
         _player.SelectionManager.Disable();
-    }
-
-    public override void SelectDeck(Card card)
-    {
     }
 
     public override void SelectPlayer(Player selectedPlayer)
@@ -49,7 +43,7 @@ public class PlayerTargetState : PlayerState
 
         if (_targetedPlayers.Count == _playersToTarget)
         {
-            _application.Resolve(_effectsManager, _player, _effect, _targetedPlayers, _effectState);
+            _effect.Resolve(_effectsManager, _player, _targetedPlayers, _effectState);
         }
     }
 
