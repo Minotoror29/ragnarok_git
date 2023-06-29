@@ -21,16 +21,17 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private Image discardVote;
     private int _discardVotes = 0;
     private List<Image> totalVotes;
-    private int _totalPlayers;
+    private List<Player> _totalPlayers;
+    private int _votingPlayers;
 
     public void Initialize(TableTurnManager tableTurnManager, List<Player> players)
     {
         _tableTurnManager = tableTurnManager;
 
-        _totalPlayers = players.Count;
+        _totalPlayers = players;
     }
 
-    public void SetCard(Card card, bool voting)
+    public void SetCard(Card card, bool opponentsVote)
     {
         _card = card;
 
@@ -39,9 +40,17 @@ public class CardDisplay : MonoBehaviour
 
         totalVotes = new List<Image>();
 
-        if (_card.vote || voting)
+        if (_card.vote || opponentsVote)
         {
             _voting = true;
+
+            if (opponentsVote)
+            {
+                _votingPlayers = _totalPlayers.Count - 1;
+            } else
+            {
+                _votingPlayers = _totalPlayers.Count;
+            }
         }
     }
 
@@ -83,7 +92,7 @@ public class CardDisplay : MonoBehaviour
 
         totalVotes.Add(newVote);
 
-        if (totalVotes.Count == _totalPlayers)
+        if (totalVotes.Count == _votingPlayers)
         {
             if (_playVotes > _discardVotes)
             {
@@ -97,7 +106,6 @@ public class CardDisplay : MonoBehaviour
                 ResetVotes();
             } else if (_playVotes == _discardVotes)
             {
-                _tableTurnManager.PlayCard(effectsManager, _card);
                 _voting = false;
                 ResetVotes();
             }

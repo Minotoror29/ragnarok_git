@@ -26,7 +26,7 @@ public class PlayerValueState : PlayerState
         _player.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        _player.ValueDisplay.Initialize(_valueApplication.add, _confirmAction);
+        _player.ValueDisplay.Initialize(_valueApplication.add, _confirmAction, _player);
     }
 
     public override void Exit()

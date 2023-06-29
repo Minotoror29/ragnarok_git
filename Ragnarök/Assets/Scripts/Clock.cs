@@ -11,6 +11,8 @@ public class Clock : MonoBehaviour
     private int _hours;
     [SerializeField] private TextMeshProUGUI hoursText;
 
+    public int Hours { get { return _hours; } }
+
     public void Initialize(MatchManager matchManager)
     {
         _matchManager = matchManager;

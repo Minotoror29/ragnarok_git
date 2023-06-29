@@ -9,21 +9,25 @@ public class ValueDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI valueDisplay;
-    [SerializeField] private Button confirmButton;
     private int _value;
     private int _minValue = 0;
     private int _maxValue = 8;
 
     UnityAction<int> _confirmAction;
 
-    public void Initialize(bool add, UnityAction<int> action)
+    [SerializeField] private Clock clock;
+
+    public void Initialize(bool add, UnityAction<int> action, Player player)
     {
         if (add)
         {
             title.text = "L'horloge avance de :";
+            _maxValue = 8 - clock.Hours;
         } else
         {
             title.text = "L'horloge recule de :";
+            _maxValue = player.Points;
+            _maxValue = Mathf.Clamp(_maxValue, 0, clock.Hours);
         }
 
         _value = 0;
@@ -42,16 +46,6 @@ public class ValueDisplay : MonoBehaviour
     private void UpdateValueDisplay()
     {
         valueDisplay.text = _value.ToString();
-    }
-
-    private void AddConfirm(UnityAction<int> action)
-    {
-        //confirmButton.onClick.AddListener(action);
-    }
-
-    public void RemoveConfirm()
-    {
-        confirmButton.onClick.RemoveAllListeners();
     }
 
     public void Confirm()
