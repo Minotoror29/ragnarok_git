@@ -14,7 +14,7 @@ public class PlayerCardState : PlayerState
     public override void Enter()
     {
         _player.CardCanvas.gameObject.SetActive(true);
-        _player.CardDisplay.SetCard(_card, _player.opponentsVoteForCard);
+        _player.CardDisplay.SetCard(_player, _card, _player.opponentsVoteForCard);
     }
 
     public override void Exit()

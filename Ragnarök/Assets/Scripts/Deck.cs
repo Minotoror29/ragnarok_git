@@ -11,12 +11,5 @@ public class Deck : MonoBehaviour, ISelectable
     public void Select(PlayerState state)
     {
         state.SelectDeck(cards[0]);
-
-        //DrawCard();
     }
-
-    //private void DrawCard()
-    //{
-    //    tableTurnManager.DrawCard(cards[0]);
-    //}
 }

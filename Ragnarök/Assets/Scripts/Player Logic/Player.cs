@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private TextMeshProUGUI pointsText;
 
     [SerializeField] private TextMeshProUGUI nameText;
+    [SerializeField] private string playerName;
 
     [HideInInspector] public bool mustSkipNextTurn = false;
     [HideInInspector] public bool opponentsVoteForCard = false;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour, ISelectable
     public ValueDisplay ValueDisplay { get { return _valueDisplay; } }
     public List<Player> Opponents { get { return _opponents; } }
     public int Points { get { return _points; } }
+    public string PlayerName { get { return playerName; } }
 
     public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, ValueDisplay valueDisplay, List<Player> players)
     {
@@ -52,6 +54,8 @@ public class Player : MonoBehaviour, ISelectable
         }
         _opponents.Remove(this);
 
+        nameText.text = playerName;
+
         _stateManager.ChangeState(new PlayerInactiveState(this));
     }
 
@@ -67,7 +71,8 @@ public class Player : MonoBehaviour, ISelectable
 
         if (mustSkipNextTurn)
         {
-            _tableTurnManager.NextPlayerTurn();
+            //_tableTurnManager.NextPlayerTurn();
+            EndPlayerTurn();
             mustSkipNextTurn = false;
         }
     }
@@ -106,9 +111,6 @@ public class Player : MonoBehaviour, ISelectable
 
     public void PlayCard(EffectsManager effectsManager, Card card)
     {
-        //card.effect1.Activate(effectsManager, this);
-        //card.effect2.Activate(effectsManager, this);
-
         _stateManager.ChangeState(new PlayerEffectState(this, card.effect1, card.effect2, effectsManager));
     }
 
@@ -117,6 +119,8 @@ public class Player : MonoBehaviour, ISelectable
         vCam.gameObject.SetActive(false);
         _stateManager.ChangeState(new PlayerInactiveState(this));
         nameText.color = Color.white;
+
+        _tableTurnManager.NextPlayerTurn();
     }
 
     public void Select(PlayerState state)

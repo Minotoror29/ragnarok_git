@@ -38,7 +38,8 @@ public class PlayerEffectState : PlayerState
 
         if (_resolvedEffects == 2)
         {
-            _player.TableTurnManager.NextPlayerTurn();
+            //_player.TableTurnManager.NextPlayerTurn();
+            _player.EndPlayerTurn();
         } else
         {
             _effect2.Activate(_effectsManager, _player, this);

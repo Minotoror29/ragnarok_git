@@ -151,6 +151,9 @@ MonoBehaviour:
   vCam: {fileID: 0}
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
+  playerName: 
+  mustSkipNextTurn: 0
+  opponentsVoteForCard: 0
 --- !u!1 &1852274133704180559
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +573,9 @@ MonoBehaviour:
   vCam: {fileID: 0}
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
+  playerName: 
+  mustSkipNextTurn: 0
+  opponentsVoteForCard: 0
 --- !u!1 &6599593704875325278
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +627,9 @@ MonoBehaviour:
   vCam: {fileID: 2882107257576469062}
   pointsText: {fileID: 6080182821959348599}
   nameText: {fileID: 1081778912}
+  playerName: Player
+  mustSkipNextTurn: 0
+  opponentsVoteForCard: 0
 --- !u!114 &6653670044644409503
 MonoBehaviour:
   m_ObjectHideFlags: 0

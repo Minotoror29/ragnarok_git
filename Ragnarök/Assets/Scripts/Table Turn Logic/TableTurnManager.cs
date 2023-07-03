@@ -50,11 +50,6 @@ public class TableTurnManager : MonoBehaviour
         _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
     }
 
-    //public void DrawCard(Card card)
-    //{
-    //    _players[_currentPlayerIndex].DrawCard(card);
-    //}
-
     public void PlayCard(EffectsManager effectsManager, Card card)
     {
         _players[_currentPlayerIndex].PlayCard(effectsManager, card);
@@ -65,7 +60,7 @@ public class TableTurnManager : MonoBehaviour
         _currentPlayerIndex ++;
         if (_currentPlayerIndex == _players.Count)
         {
-            StartTableTurn();
+            _roundManager.StartNewTableTurn();
             return;
         }
 
@@ -75,5 +70,10 @@ public class TableTurnManager : MonoBehaviour
     public void StartPlayerTurn()
     {
         _stateManager.ChangeState(new TableTurnPlayerState(this, _players[_currentPlayerIndex]));
+    }
+
+    public void EndTableTurn()
+    {
+
     }
 }

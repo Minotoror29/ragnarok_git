@@ -10,6 +10,8 @@ public class MatchManager : MonoBehaviour
     private int _currentRound;
     [SerializeField] private int maxRounds = 3;
 
+    public int CurrentRound { get { return _currentRound; } }
+
     private void Start()
     {
         Initialize();
@@ -22,7 +24,7 @@ public class MatchManager : MonoBehaviour
 
     public void Initialize()
     {
-        roundManager.Initialize(clock);
+        roundManager.Initialize(this, clock);
         clock.Initialize(this);
 
         StartMatch();
@@ -35,6 +37,8 @@ public class MatchManager : MonoBehaviour
 
     private void StartMatch()
     {
+        Debug.Log("Start new match");
+
         _currentRound = 0;
         StartNewRound();
     }
@@ -48,6 +52,7 @@ public class MatchManager : MonoBehaviour
         }
 
         _currentRound++;
+        Debug.Log("Start round " + _currentRound);
         roundManager.StartRound();
     }
 

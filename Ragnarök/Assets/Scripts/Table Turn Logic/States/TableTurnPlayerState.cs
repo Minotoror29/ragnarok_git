@@ -16,7 +16,7 @@ public class TableTurnPlayerState : TableTurnState
 
     public override void Exit()
     {
-        _player.EndPlayerTurn();
+        //_player.EndPlayerTurn();
     }
 
     public override void UpdateLogic()

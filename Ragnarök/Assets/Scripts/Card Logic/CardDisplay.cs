@@ -8,6 +8,7 @@ public class CardDisplay : MonoBehaviour
 {
     private TableTurnManager _tableTurnManager;
     [SerializeField] private EffectsManager effectsManager;
+    private Player _player;
 
     private Card _card;
     [SerializeField] private TextMeshProUGUI cardName;
@@ -31,8 +32,9 @@ public class CardDisplay : MonoBehaviour
         _totalPlayers = players;
     }
 
-    public void SetCard(Card card, bool opponentsVote)
+    public void SetCard(Player player, Card card, bool opponentsVote)
     {
+        _player = player;
         _card = card;
 
         cardName.text = card.name.ToUpper();
@@ -61,7 +63,8 @@ public class CardDisplay : MonoBehaviour
             Vote(true);
         } else
         {
-            _tableTurnManager.PlayCard(effectsManager, _card);
+            //_tableTurnManager.PlayCard(effectsManager, _card);
+            _player.PlayCard(effectsManager, _card);
         }
     }
 
@@ -72,7 +75,8 @@ public class CardDisplay : MonoBehaviour
             Vote(false);
         } else
         {
-            _tableTurnManager.NextPlayerTurn();
+            //_tableTurnManager.NextPlayerTurn();
+            _player.EndPlayerTurn();
         }
     }
 
@@ -96,12 +100,14 @@ public class CardDisplay : MonoBehaviour
         {
             if (_playVotes > _discardVotes)
             {
-                _tableTurnManager.PlayCard(effectsManager, _card);
+                //_tableTurnManager.PlayCard(effectsManager, _card);
+                _player.PlayCard(effectsManager, _card);
                 _voting = false;
                 ResetVotes();
             } else if (_discardVotes > _playVotes)
             {
-                _tableTurnManager.NextPlayerTurn();
+                //_tableTurnManager.NextPlayerTurn();
+                _player.EndPlayerTurn();
                 _voting = false;
                 ResetVotes();
             } else if (_playVotes == _discardVotes)
