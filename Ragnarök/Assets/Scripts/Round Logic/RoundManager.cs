@@ -11,7 +11,7 @@ public class RoundManager : MonoBehaviour
     private Clock _clock;
     [SerializeField] private int startHours = 0;
 
-    [SerializeField] private List<Player> players;
+    private List<Player> _players;
     [SerializeField] private int playersStartPoints = 4;
 
     [SerializeField] private int maxTableTurns = 5;
@@ -19,11 +19,14 @@ public class RoundManager : MonoBehaviour
 
     [SerializeField] private EndRoundDisplay endRoundDisplay;
 
-    public void Initialize(MatchManager matchManager, Clock clock)
+    public StateManager StateManager { get { return _stateManager; } }
+
+    public void Initialize(MatchManager matchManager, Clock clock, List<Player> players)
     {
         _stateManager = GetComponent<StateManager>();
         _matchManager = matchManager;
         _clock = clock;
+        _players = players;
 
         tableTurnManager.Initialize(this, _clock, players);
     }
@@ -40,7 +43,7 @@ public class RoundManager : MonoBehaviour
         _stateManager.ChangeState(new RoundPlayState());
 
         _clock.SetHour(startHours);
-        foreach (Player player in players)
+        foreach (Player player in _players)
         {
             player.SetPoints(playersStartPoints);
         }
@@ -64,7 +67,7 @@ public class RoundManager : MonoBehaviour
 
     private void EndRound()
     {
-        _stateManager.ChangeState(new RoundEndState(endRoundDisplay, _matchManager.CurrentRound, DetermineWinners(players)));
+        _stateManager.ChangeState(new RoundEndState(endRoundDisplay, _matchManager.CurrentRound, DetermineWinners(_players)));
     }
 
     private List<Player> DetermineWinners(List<Player> players)
@@ -86,6 +89,7 @@ public class RoundManager : MonoBehaviour
             if (player.Points == highestPoints)
             {
                 winners.Add(player);
+                player.WinRound();
             }
         }
 

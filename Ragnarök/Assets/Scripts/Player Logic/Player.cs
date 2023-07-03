@@ -18,6 +18,7 @@ public class Player : MonoBehaviour, ISelectable
 
     private List<Player> _opponents;
 
+    private int _roundsWon = 0;
     private int _points;
     [SerializeField] private TextMeshProUGUI pointsText;
 
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour, ISelectable
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return _valueDisplay; } }
     public List<Player> Opponents { get { return _opponents; } }
+    public int RoundsWon { get { return _roundsWon; } }
     public int Points { get { return _points; } }
     public string PlayerName { get { return playerName; } }
 
@@ -47,7 +49,7 @@ public class Player : MonoBehaviour, ISelectable
         _cardDisplay = cardDisplay;
         _valueDisplay = valueDisplay;
 
-        _opponents = new List<Player>();
+        _opponents = new();
         foreach (Player player in players)
         {
             _opponents.Add(player);
@@ -121,6 +123,11 @@ public class Player : MonoBehaviour, ISelectable
         nameText.color = Color.white;
 
         _tableTurnManager.NextPlayerTurn();
+    }
+
+    public void WinRound()
+    {
+        _roundsWon++;
     }
 
     public void Select(PlayerState state)

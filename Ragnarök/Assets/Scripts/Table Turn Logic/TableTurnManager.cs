@@ -35,11 +35,6 @@ public class TableTurnManager : MonoBehaviour
     public void UpdateLogic()
     {
         _stateManager.UpdateLogic();
-
-        foreach (Player player in _players)
-        {
-            player.UpdateLogic();
-        }
     }
 
     public void StartTableTurn()

@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class EndRoundDisplay : MonoBehaviour
+public class EndMatchDisplay : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI winnersText;
 
-    public void SetTitle(int roundNumber)
-    {
-        title.text = "Round " + roundNumber + " is over";
-    }
-
-    public void SetWinnerText(List<Player> winners)
+    public void SetWinnersText(List<Player> winners)
     {
         List<string> winnerNames = new();
 
@@ -24,11 +18,13 @@ public class EndRoundDisplay : MonoBehaviour
 
         if (winnerNames.Count == 0)
         {
-            winnersText.text = "Nobody wins the round";
-        } else if (winnerNames.Count == 1)
+            winnersText.text = "Nobody wins the match";
+        }
+        else if (winnerNames.Count == 1)
         {
-            winnersText.text = winnerNames[0] + " wins the round";
-        } else if (winnerNames.Count > 1)
+            winnersText.text = winnerNames[0] + " wins the match";
+        }
+        else if (winnerNames.Count > 1)
         {
             string names = "";
 
@@ -48,7 +44,7 @@ public class EndRoundDisplay : MonoBehaviour
                 }
             }
 
-            winnersText.text = names + " win the round";
+            winnersText.text = names + " win the match";
         }
     }
 }

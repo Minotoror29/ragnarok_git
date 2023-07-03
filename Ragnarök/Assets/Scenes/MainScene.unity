@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 97914377}
   - component: {fileID: 97914376}
+  - component: {fileID: 97914378}
   m_Layer: 0
   m_Name: Match Manager
   m_TagString: Untagged
@@ -185,7 +186,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundManager: {fileID: 441064389}
   clock: {fileID: 969296271}
-  maxRounds: 3
+  endMatchDisplay: {fileID: 1075070365}
+  maxRounds: 1
+  players:
+  - {fileID: 9008074111773250693}
+  - {fileID: 1851497725}
+  - {fileID: 1676166067}
+  - {fileID: 1553266616}
 --- !u!4 &97914377
 Transform:
   m_ObjectHideFlags: 0
@@ -201,6 +208,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &97914378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97914375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67055f2837fc3914d8954b4c00cf9efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &179236477
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +665,7 @@ MonoBehaviour:
   - {fileID: 1676166067}
   - {fileID: 1553266616}
   playersStartPoints: 4
-  maxTableTurns: 2
+  maxTableTurns: 1
   endRoundDisplay: {fileID: 1654069833}
 --- !u!4 &441064390
 Transform:
@@ -1004,7 +1023,7 @@ GameObject:
   - component: {fileID: 688132678}
   - component: {fileID: 688132677}
   m_Layer: 5
-  m_Name: Winner
+  m_Name: Winners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2095,6 +2114,7 @@ GameObject:
   - component: {fileID: 1075070363}
   - component: {fileID: 1075070362}
   - component: {fileID: 1075070361}
+  - component: {fileID: 1075070365}
   m_Layer: 5
   m_Name: End Match Canvas
   m_TagString: Untagged
@@ -2186,6 +2206,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1075070365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075070360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdeb0eea2496ee4a84f74234b81e206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winnersText: {fileID: 688132677}
 --- !u!1 &1147730989
 GameObject:
   m_ObjectHideFlags: 0
@@ -2742,7 +2775,7 @@ GameObject:
   - component: {fileID: 1280164470}
   - component: {fileID: 1280164469}
   m_Layer: 5
-  m_Name: Winner
+  m_Name: Winners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4177,7 +4210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 1419092937}
-  winnerText: {fileID: 1280164469}
+  winnersText: {fileID: 1280164469}
 --- !u!114 &1676166067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 465725103926377280, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
