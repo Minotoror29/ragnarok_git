@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TableTurnManager : MonoBehaviour
 {
-    private StateManager _stateManager;
+    [SerializeField] private StateManager _stateManager;
     [SerializeField] private SelectionManager selectionManager;
     private RoundManager _roundManager;
 
@@ -15,10 +15,13 @@ public class TableTurnManager : MonoBehaviour
 
     private List<Player> _players;
     private int _currentPlayerIndex = 0;
+    private int _startingPlayerIndex;
+
+    public List<Player> Players { get { return _players; } }
 
     public void Initialize(RoundManager roundManager, Clock clock, List<Player> players)
     {
-        _stateManager = GetComponent<StateManager>();
+        //_stateManager = GetComponent<StateManager>();
         _roundManager = roundManager;
 
         _clock = clock;
@@ -29,19 +32,20 @@ public class TableTurnManager : MonoBehaviour
             player.Initialize(this, selectionManager, cardCanvas, cardDisplay, valueDisplay, _players);
         }
 
-        cardDisplay.Initialize(this, _players);
+        cardDisplay.Initialize(this);
     }
 
     public void UpdateLogic()
     {
-        _stateManager.UpdateLogic();
+        //_stateManager.UpdateLogic();
     }
 
-    public void StartTableTurn()
+    public void StartTableTurn(Player player)
     {
         _clock.AddHours(1);
 
-        _currentPlayerIndex = 0;
+        _startingPlayerIndex = _players.IndexOf(player);
+        _currentPlayerIndex = _startingPlayerIndex;
         _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
     }
 
@@ -53,7 +57,8 @@ public class TableTurnManager : MonoBehaviour
     public void NextPlayerTurn()
     {
         _currentPlayerIndex ++;
-        if (_currentPlayerIndex == _players.Count)
+        _currentPlayerIndex %= _players.Count;
+        if (_currentPlayerIndex == _startingPlayerIndex)
         {
             _roundManager.StartNewTableTurn();
             return;
@@ -70,5 +75,12 @@ public class TableTurnManager : MonoBehaviour
     public void EndTableTurn()
     {
 
+    }
+
+    public void EliminatePlayer(Player player)
+    {
+        _players.Remove(player);
+
+        _roundManager.EliminatePlayer(player);
     }
 }

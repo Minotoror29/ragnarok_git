@@ -25,17 +25,16 @@ public class CardDisplay : MonoBehaviour
     private List<Player> _totalPlayers;
     private int _votingPlayers;
 
-    public void Initialize(TableTurnManager tableTurnManager, List<Player> players)
+    public void Initialize(TableTurnManager tableTurnManager)
     {
         _tableTurnManager = tableTurnManager;
-
-        _totalPlayers = players;
     }
 
     public void SetCard(Player player, Card card, bool opponentsVote)
     {
         _player = player;
         _card = card;
+        _totalPlayers = _tableTurnManager.Players;
 
         cardName.text = card.name.ToUpper();
         cardEffect.text = card.effect1.description + " / " + card.effect2.description;
@@ -63,7 +62,6 @@ public class CardDisplay : MonoBehaviour
             Vote(true);
         } else
         {
-            //_tableTurnManager.PlayCard(effectsManager, _card);
             _player.PlayCard(effectsManager, _card);
         }
     }
@@ -75,7 +73,6 @@ public class CardDisplay : MonoBehaviour
             Vote(false);
         } else
         {
-            //_tableTurnManager.NextPlayerTurn();
             _player.EndPlayerTurn();
         }
     }
@@ -100,13 +97,11 @@ public class CardDisplay : MonoBehaviour
         {
             if (_playVotes > _discardVotes)
             {
-                //_tableTurnManager.PlayCard(effectsManager, _card);
                 _player.PlayCard(effectsManager, _card);
                 _voting = false;
                 ResetVotes();
             } else if (_discardVotes > _playVotes)
             {
-                //_tableTurnManager.NextPlayerTurn();
                 _player.EndPlayerTurn();
                 _voting = false;
                 ResetVotes();

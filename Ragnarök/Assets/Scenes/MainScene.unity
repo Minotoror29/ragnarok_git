@@ -187,7 +187,7 @@ MonoBehaviour:
   roundManager: {fileID: 441064389}
   clock: {fileID: 969296271}
   endMatchDisplay: {fileID: 1075070365}
-  maxRounds: 1
+  maxRounds: 2
   players:
   - {fileID: 9008074111773250693}
   - {fileID: 1851497725}
@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d10c3d7550aa04ebfaeaeef2671949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateManager: {fileID: 97914378}
   selectionManager: {fileID: 540364198}
   cardCanvas: {fileID: 1653901913}
   cardDisplay: {fileID: 1478612472}
@@ -657,15 +658,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fa5598e9676584b87b97a4fd3d0639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateManager: {fileID: 97914378}
   tableTurnManager: {fileID: 179236478}
   startHours: 0
-  players:
-  - {fileID: 9008074111773250693}
-  - {fileID: 1851497725}
-  - {fileID: 1676166067}
-  - {fileID: 1553266616}
   playersStartPoints: 4
-  maxTableTurns: 1
+  maxTableTurns: 2
   endRoundDisplay: {fileID: 1654069833}
 --- !u!4 &441064390
 Transform:
@@ -1255,6 +1252,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Goulven
       objectReference: {fileID: 0}
+    - target: {fileID: 465725103926377280, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
+      propertyPath: _stateManager
+      value: 
+      objectReference: {fileID: 97914378}
     - target: {fileID: 5270388201407173882, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3842,6 +3843,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Jormungandr
       objectReference: {fileID: 0}
+    - target: {fileID: 465725103926377280, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
+      propertyPath: _stateManager
+      value: 
+      objectReference: {fileID: 97914378}
     - target: {fileID: 5270388201407173882, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -4614,6 +4619,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Simon
       objectReference: {fileID: 0}
+    - target: {fileID: 465725103926377280, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
+      propertyPath: _stateManager
+      value: 
+      objectReference: {fileID: 97914378}
     - target: {fileID: 5270388201407173882, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5293,6 +5302,10 @@ PrefabInstance:
       propertyPath: playerName
       value: Matthieu
       objectReference: {fileID: 0}
+    - target: {fileID: 465725103926377280, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
+      propertyPath: _stateManager
+      value: 
+      objectReference: {fileID: 97914378}
     - target: {fileID: 5270388201407173882, guid: 0d5ab1b477980a54db2553c145733eb0, type: 3}
       propertyPath: m_IsActive
       value: 0

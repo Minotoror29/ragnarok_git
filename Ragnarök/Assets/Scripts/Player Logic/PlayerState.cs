@@ -15,4 +15,8 @@ public abstract class PlayerState : State
     public virtual void SelectDeck(Card card) { }
 
     public virtual void SelectPlayer(Player selectedPlayer) { }
+
+    public virtual void CheckPoints(int points) { }
+    public virtual void StartPlayerTurn() { }
+    public virtual void EndPlayerTurn() { }
 }

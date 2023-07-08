@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, ISelectable
 {
-    private StateManager _stateManager;
+    [SerializeField] private StateManager _stateManager;
+    private StateManager _playerStateManager;
     private TableTurnManager _tableTurnManager;
     private SelectionManager _selectionManager;
 
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour, ISelectable
     [HideInInspector] public bool mustSkipNextTurn = false;
     [HideInInspector] public bool opponentsVoteForCard = false;
 
+    private bool _isDead = false;
+
     public StateManager StateManager { get { return _stateManager; } }
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public SelectionManager SelectionManager { get { return _selectionManager; } }
@@ -38,36 +41,49 @@ public class Player : MonoBehaviour, ISelectable
     public List<Player> Opponents { get { return _opponents; } }
     public int RoundsWon { get { return _roundsWon; } }
     public int Points { get { return _points; } }
+    public TextMeshProUGUI NameText { get { return nameText; } }
     public string PlayerName { get { return playerName; } }
+    public bool IsDead { set { _isDead = value; } }
 
     public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, ValueDisplay valueDisplay, List<Player> players)
     {
-        _stateManager = GetComponent<StateManager>();
+        _playerStateManager = GetComponent<StateManager>();
         _tableTurnManager = tableTurnManager;
         _selectionManager = selectionManager;
         _cardCanvas = cardCanvas;
         _cardDisplay = cardDisplay;
         _valueDisplay = valueDisplay;
 
+        SetOpponents(players);
+
+        nameText.text = playerName;
+
+        //_stateManager.ChangeState(new PlayerInactiveState(this));
+    }
+
+    public void SetOpponents(List<Player> players)
+    {
         _opponents = new();
         foreach (Player player in players)
         {
             _opponents.Add(player);
         }
         _opponents.Remove(this);
-
-        nameText.text = playerName;
-
-        _stateManager.ChangeState(new PlayerInactiveState(this));
     }
 
     public void UpdateLogic()
     {
-        _stateManager.UpdateLogic();
+        //_stateManager.UpdateLogic();
     }
 
     public void StartPlayerTurn()
     {
+        if (_isDead)
+        {
+            EndPlayerTurn();
+            return;
+        }
+
         _stateManager.ChangeState(new PlayerDefaultState(this));
         nameText.color = Color.blue;
 
@@ -83,6 +99,13 @@ public class Player : MonoBehaviour, ISelectable
     {
         _points += value;
         _points = Mathf.Max(_points, 0);
+
+        if (_points == 0)
+        {
+            _isDead = true;
+            nameText.color = Color.red;
+            //_tableTurnManager.EliminatePlayer(this);
+        }
 
         SetPointsText();
     }
@@ -119,8 +142,11 @@ public class Player : MonoBehaviour, ISelectable
     public void EndPlayerTurn()
     {
         vCam.gameObject.SetActive(false);
-        _stateManager.ChangeState(new PlayerInactiveState(this));
-        nameText.color = Color.white;
+        //_stateManager.ChangeState(new PlayerInactiveState(this));
+        if (!_isDead)
+        {
+            nameText.color = Color.white;
+        }
 
         _tableTurnManager.NextPlayerTurn();
     }
@@ -132,6 +158,8 @@ public class Player : MonoBehaviour, ISelectable
 
     public void Select(PlayerState state)
     {
+        if (_isDead) return;
+
         state.SelectPlayer(this);
     }
 }

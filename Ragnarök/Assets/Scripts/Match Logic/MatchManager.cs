@@ -30,13 +30,14 @@ public class MatchManager : MonoBehaviour
     {
         _stateManager = GetComponent<StateManager>();
         roundManager.Initialize(this, clock, players);
-        clock.Initialize(this);
+        clock.Initialize(roundManager);
 
         StartMatch();
     }
 
     public void UpdateLogic()
     {
+        _stateManager.UpdateLogic();
         roundManager.UpdateLogic();
     }
 
@@ -60,7 +61,14 @@ public class MatchManager : MonoBehaviour
 
         _currentRound++;
         Debug.Log("Start round " + _currentRound);
-        roundManager.StartRound();
+
+        if (_currentRound == 1)
+        {
+            roundManager.StartRound(GetRandomPlayer(players));
+        } else
+        {
+            roundManager.StartRound(GetPlayerWithLessPoints(players));
+        }
     }
 
     private void EndMatch()
@@ -71,13 +79,13 @@ public class MatchManager : MonoBehaviour
         _stateManager.ChangeState(new MatchEndState(endMatchDisplay, DetermineMatchWinners(players)));
     }
 
-    private List<Player> DetermineMatchWinners(List<Player> players)
+    private List<Player> DetermineMatchWinners(List<Player> l)
     {
         List<Player> winners = new();
 
         int highestPoints = 0;
 
-        foreach (Player player in players)
+        foreach (Player player in l)
         {
             if (player.RoundsWon > highestPoints)
             {
@@ -85,7 +93,7 @@ public class MatchManager : MonoBehaviour
             }
         }
 
-        foreach (Player player in players)
+        foreach (Player player in l)
         {
             if (player.RoundsWon == highestPoints)
             {
@@ -94,5 +102,43 @@ public class MatchManager : MonoBehaviour
         }
 
         return winners;
+    }
+
+    private Player GetRandomPlayer(List<Player> l)
+    {
+        int randomIndex = Random.Range(0, l.Count);
+
+        return l[randomIndex];
+    }
+
+    private Player GetPlayerWithLessPoints(List<Player> l)
+    {
+        List<Player> losers = new();
+
+        int minimumPoints = 0;
+
+        for (int i = 0; i < l.Count; i++)
+        {
+            if (i == 0)
+            {
+                minimumPoints = l[i].Points;
+            } else
+            {
+                if (l[i].Points < minimumPoints)
+                {
+                    minimumPoints = l[i].Points;
+                }
+            }
+        }
+
+        foreach (Player player in l)
+        {
+            if (player.Points == minimumPoints)
+            {
+                losers.Add(player);
+            }
+        }
+
+        return GetRandomPlayer(losers);
     }
 }

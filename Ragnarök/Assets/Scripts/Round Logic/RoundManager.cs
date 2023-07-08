@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
-    private StateManager _stateManager;
+    [SerializeField] private StateManager _stateManager;
     private MatchManager _matchManager;
     [SerializeField] private TableTurnManager tableTurnManager;
 
@@ -12,7 +12,9 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private int startHours = 0;
 
     private List<Player> _players;
+    private List<Player> _activePlayers;
     [SerializeField] private int playersStartPoints = 4;
+    private Player _startingPlayer;
 
     [SerializeField] private int maxTableTurns = 5;
     private int _currentTableTurn;
@@ -23,22 +25,22 @@ public class RoundManager : MonoBehaviour
 
     public void Initialize(MatchManager matchManager, Clock clock, List<Player> players)
     {
-        _stateManager = GetComponent<StateManager>();
+        //_stateManager = GetComponent<StateManager>();
         _matchManager = matchManager;
         _clock = clock;
         _players = players;
 
-        tableTurnManager.Initialize(this, _clock, players);
+        tableTurnManager.Initialize(this, _clock, _players);
     }
 
     public void UpdateLogic()
     {
-        _stateManager.UpdateLogic();
+        //_stateManager.UpdateLogic();
 
         tableTurnManager.UpdateLogic();
     }
 
-    public void StartRound()
+    public void StartRound(Player startingPlayer)
     {
         _stateManager.ChangeState(new RoundPlayState());
 
@@ -46,8 +48,12 @@ public class RoundManager : MonoBehaviour
         foreach (Player player in _players)
         {
             player.SetPoints(playersStartPoints);
+            player.IsDead = false;
+            player.NameText.color = Color.white;
         }
 
+        _activePlayers = _players;
+        _startingPlayer = startingPlayer;
         _currentTableTurn = 0;
         StartNewTableTurn();
     }
@@ -56,18 +62,24 @@ public class RoundManager : MonoBehaviour
     {
         if (_currentTableTurn == maxTableTurns)
         {
-            EndRound();
+            EndRound(false);
             return;
         }
 
         _currentTableTurn++;
         Debug.Log("Start table turn " + _currentTableTurn);
-        tableTurnManager.StartTableTurn();
+        tableTurnManager.StartTableTurn(_startingPlayer);
     }
 
-    private void EndRound()
+    public void EndRound(bool ragnarok)
     {
-        _stateManager.ChangeState(new RoundEndState(endRoundDisplay, _matchManager.CurrentRound, DetermineWinners(_players)));
+        List<Player> winners = new();
+        if (!ragnarok)
+        {
+            winners = DetermineWinners(_activePlayers);
+        }
+
+        _stateManager.ChangeState(new RoundEndState(endRoundDisplay, _matchManager.CurrentRound, winners));
     }
 
     private List<Player> DetermineWinners(List<Player> players)
@@ -94,5 +106,18 @@ public class RoundManager : MonoBehaviour
         }
 
         return winners;
+    }
+
+    public void EliminatePlayer(Player player)
+    {
+        _activePlayers.Remove(player);
+
+        if (_activePlayers.Count == 1)
+        {
+            EndRound(false);
+        } else if (_activePlayers.Count == 0)
+        {
+            EndRound(true);
+        }
     }
 }

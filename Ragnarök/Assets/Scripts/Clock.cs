@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
-    private MatchManager _matchManager;
+    private RoundManager _roundManager;
 
     [SerializeField] private int maxHours = 8;
     private int _hours;
@@ -13,9 +13,9 @@ public class Clock : MonoBehaviour
 
     public int Hours { get { return _hours; } }
 
-    public void Initialize(MatchManager matchManager)
+    public void Initialize(RoundManager roundManager)
     {
-        _matchManager = matchManager;
+        _roundManager = roundManager;
     }
 
     public void AddHours(int value)
@@ -27,7 +27,7 @@ public class Clock : MonoBehaviour
 
         if (_hours == maxHours)
         {
-            _matchManager.StartNewRound();
+            _roundManager.EndRound(true);
         }
     }
 

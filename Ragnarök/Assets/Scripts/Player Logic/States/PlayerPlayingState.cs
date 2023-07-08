@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInactiveState : PlayerState
+public class PlayerPlayingState : PlayerState
 {
     private StateManager _stateManager;
 
-    public PlayerInactiveState(Player player) : base (player)
+    public PlayerPlayingState(Player player) : base(player)
     {
     }
 
     public override void Enter()
     {
-        _player.NameText.color = Color.white;
+        _player.NameText.color = Color.blue;
     }
 
     public override void Exit()
@@ -23,13 +23,6 @@ public class PlayerInactiveState : PlayerState
     {
     }
 
-    public override void StartPlayerTurn()
-    {
-        base.StartPlayerTurn();
-
-        _stateManager.ChangeState(new PlayerPlayingState(_player));
-    }
-
     public override void CheckPoints(int points)
     {
         base.CheckPoints(points);
@@ -38,5 +31,12 @@ public class PlayerInactiveState : PlayerState
         {
             _stateManager.ChangeState(new PlayerDeadState(_player));
         }
+    }
+
+    public override void EndPlayerTurn()
+    {
+        base.EndPlayerTurn();
+
+        _stateManager.ChangeState(new PlayerInactiveState(_player));
     }
 }
