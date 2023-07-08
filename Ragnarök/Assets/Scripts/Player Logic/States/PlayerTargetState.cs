@@ -31,6 +31,8 @@ public class PlayerTargetState : PlayerState
 
     public override void SelectPlayer(Player selectedPlayer)
     {
+        if (selectedPlayer == _player) return;
+
         if (_targetedPlayers.Contains(selectedPlayer))
         {
             _targetedPlayers.Remove(selectedPlayer);
