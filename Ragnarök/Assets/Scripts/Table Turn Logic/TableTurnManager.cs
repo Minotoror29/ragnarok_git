@@ -49,10 +49,10 @@ public class TableTurnManager : MonoBehaviour
         _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
     }
 
-    public void PlayCard(EffectsManager effectsManager, Card card)
-    {
-        _players[_currentPlayerIndex].PlayCard(effectsManager, card);
-    }
+    //public void PlayCard(EffectsManager effectsManager, Card card)
+    //{
+    //    _players[_currentPlayerIndex].PlayCard(effectsManager, card);
+    //}
 
     public void NextPlayerTurn()
     {

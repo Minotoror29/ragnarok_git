@@ -5,20 +5,17 @@ using UnityEngine.Events;
 
 public class PlayerValueState : PlayerState
 {
-    private EffectsManager _effectsManager;
-    private AddCustomHoursEffect _effect;
     private CustomValueApplication _valueApplication;
 
-    private PlayerEffectState _superState;
+    private bool _add;
 
     private UnityAction<int> _confirmAction;
 
-    public PlayerValueState(EffectsManager effectsManager, Player player, AddCustomHoursEffect effect, CustomValueApplication valueApplication, PlayerEffectState superState) : base(player)
+    public PlayerValueState(Player player, CustomValueApplication valueApplication, bool add) : base(player)
     {
-        _effectsManager = effectsManager;
-        _effect = effect;
         _valueApplication = valueApplication;
-        _superState = superState;
+
+        _add = add;
     }
 
     public override void Enter()
@@ -26,7 +23,7 @@ public class PlayerValueState : PlayerState
         _player.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        _player.ValueDisplay.Initialize(_valueApplication.add, _confirmAction, _player);
+        _player.ValueDisplay.Initialize(_add, _confirmAction, _player);
     }
 
     public override void Exit()
@@ -38,12 +35,12 @@ public class PlayerValueState : PlayerState
     {
         int actualValue = value;
 
-        if (!_valueApplication.add)
+        if (!_add)
         {
             actualValue = -value;
         }
 
-        _effect.Resolve(_effectsManager, _player, actualValue, _superState);
+        _valueApplication.SetValue(actualValue);
     }
 
     public override void UpdateLogic()

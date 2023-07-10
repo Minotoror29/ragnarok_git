@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/Add Points")]
-public class AddPointsEffect : TargettingPlayersEffect
+[CreateAssetMenu(menuName = "Effect/Divide Points")]
+public class DividePointsEffect : TargettingPlayersEffect
 {
-    public int points;
+    public float value;
 
     public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targetPlayers, PlayerEffectState state)
     {
-        effectsManager.AddPointsToPlayers(targetPlayers, points);
-        state.ResolveEffect();
+        effectsManager.DividePlayerPoints(targetPlayers, value);
+        state.NextEffect();
     }
 }

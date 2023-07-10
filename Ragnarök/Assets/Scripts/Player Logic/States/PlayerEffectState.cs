@@ -13,24 +13,24 @@ public class PlayerEffectState : PlayerState
 
     private PlayerState _subState;
 
-    public PlayerEffectState(Player player, Effect effect1, Effect effect2, EffectsManager effectsManager) : base(player)
+    public PlayerEffectState(Player player, EffectData effect1, EffectData effect2, EffectsManager effectsManager) : base(player)
     {
-        _effect1 = effect1;
-        _effect2 = effect2;
+        _effect1 = effect1.Effect(player, this);
+        _effect2 = effect2.Effect(player, this);
 
         _effectsManager = effectsManager;
     }
 
     public override void Enter()
     {
-        _effect1.Activate(_effectsManager, _player, this);
+        _effect1.Activate();
     }
 
     public override void Exit()
     {
     }
 
-    public void ResolveEffect()
+    public void NextEffect()
     {
         ExitSubState();
 
@@ -38,12 +38,19 @@ public class PlayerEffectState : PlayerState
 
         if (_resolvedEffects == 2)
         {
-            //_player.TableTurnManager.NextPlayerTurn();
-            _player.EndPlayerTurn();
+            ResolveEffects();
         } else
         {
-            _effect2.Activate(_effectsManager, _player, this);
+            _effect2.Activate();
         }
+    }
+
+    private void ResolveEffects()
+    {
+        _effect1.Resolve(_effectsManager);
+        _effect2.Resolve(_effectsManager);
+
+        _player.EndPlayerTurn();
     }
 
     public void EnterSubState(PlayerState subState)

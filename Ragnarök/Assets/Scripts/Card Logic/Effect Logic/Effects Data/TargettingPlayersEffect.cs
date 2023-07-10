@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class TargettingPlayersEffect : Effect
+public abstract class TargettingPlayersEffect : EffectData
 {
     public PlayerApplication application;
 
