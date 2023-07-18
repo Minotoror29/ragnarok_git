@@ -11,9 +11,12 @@ public class MatchManager : MonoBehaviour
 
     private int _currentRound;
     [SerializeField] private int maxRounds = 3;
+    [SerializeField] private EndRoundDisplay endRoundDisplay;
 
     [SerializeField] private List<Player> players;
 
+    public RoundManager RoundManager { get { return roundManager; } }
+    public Clock Clock { get { return clock; } }
     public int CurrentRound { get { return _currentRound; } }
 
     private void Start()
@@ -45,7 +48,7 @@ public class MatchManager : MonoBehaviour
     {
         Debug.Log("Start new match");
 
-        _stateManager.ChangeState(new MatchPlayState());
+        //_stateManager.ChangeState(new MatchPlayState(_stateManager));
 
         _currentRound = 0;
         StartNewRound();
@@ -64,10 +67,18 @@ public class MatchManager : MonoBehaviour
 
         if (_currentRound == 1)
         {
-            roundManager.StartRound(GetRandomPlayer(players));
+            Player player = GetRandomPlayer(players);
+
+            roundManager.StartRound(player);
+
+            _stateManager.ChangeState(new TransitionState(_stateManager, this, player));
         } else
         {
-            roundManager.StartRound(GetPlayerWithLessPoints(players));
+            Player player = GetPlayerWithLessPoints();
+
+            roundManager.StartRound(player);
+
+            _stateManager.ChangeState(new TransitionState(_stateManager, this, player));
         }
     }
 
@@ -75,8 +86,8 @@ public class MatchManager : MonoBehaviour
     {
         Debug.Log("End of the match");
 
-        roundManager.StateManager.ChangeState(new RoundPlayState());
-        _stateManager.ChangeState(new MatchEndState(endMatchDisplay, DetermineMatchWinners(players)));
+        //roundManager.StateManager.ChangeState(new RoundPlayState(_stateManager));
+        //_stateManager.ChangeState(new MatchEndState(_stateManager, endMatchDisplay, DetermineMatchWinners(players)));
     }
 
     private List<Player> DetermineMatchWinners(List<Player> l)
@@ -111,8 +122,12 @@ public class MatchManager : MonoBehaviour
         return l[randomIndex];
     }
 
-    private Player GetPlayerWithLessPoints(List<Player> l)
+    public Player GetPlayerWithLessPoints(List<Player> l = null)
     {
+        //Same thing as
+        // if (l == null) { l = players }
+        l ??= players;
+
         List<Player> losers = new();
 
         int minimumPoints = 0;
@@ -140,5 +155,31 @@ public class MatchManager : MonoBehaviour
         }
 
         return GetRandomPlayer(losers);
+    }
+
+    public Player GetNextPlayer(Player currentPlayer)
+    {
+        int playerIndex = roundManager.ActivePlayers.IndexOf(currentPlayer) + 1;
+
+        playerIndex %= roundManager.ActivePlayers.Count;
+
+        return roundManager.ActivePlayers[playerIndex];
+    }
+
+    public void DisplayEndRoundCanvas(bool display, RoundEndState state = null)
+    {
+        endRoundDisplay.gameObject.SetActive(display);
+        if (!display) return;
+        endRoundDisplay.Initialize(state);
+        endRoundDisplay.SetTitle(_currentRound);
+        endRoundDisplay.SetWinnerText(roundManager.DetermineRoundWinners(roundManager.ActivePlayers));
+        endRoundDisplay.SetButton(_currentRound == maxRounds);
+    }
+
+    public void DisplayEndMatchCanvas(bool display)
+    {
+        endMatchDisplay.gameObject.SetActive(display);
+        if (!display) return;
+        endMatchDisplay.SetWinnersText(DetermineMatchWinners(roundManager.ActivePlayers));
     }
 }

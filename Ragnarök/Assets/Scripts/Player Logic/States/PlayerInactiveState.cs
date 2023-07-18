@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerInactiveState : PlayerState
 {
-    private StateManager _stateManager;
-
-    public PlayerInactiveState(Player player) : base (player)
+    public PlayerInactiveState(StateManager stateManager, Player player) : base(stateManager, player)
     {
     }
 
@@ -27,7 +25,7 @@ public class PlayerInactiveState : PlayerState
     {
         base.StartPlayerTurn();
 
-        _stateManager.ChangeState(new PlayerPlayingState(_player));
+        _stateManager.ChangeState(new PlayerPlayingState(_stateManager, _player));
     }
 
     public override void CheckPoints(int points)
@@ -36,7 +34,7 @@ public class PlayerInactiveState : PlayerState
 
         if (points == 0)
         {
-            _stateManager.ChangeState(new PlayerDeadState(_player));
+            _stateManager.ChangeState(new PlayerDeadState(_stateManager, _player));
         }
     }
 }

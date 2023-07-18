@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class RoundEndState : State
 {
-    private EndRoundDisplay _endRoundDisplay;
-    private int _roundNumber;
-    private List<Player> _winners;
+    private MatchManager _matchManager;
 
-    public RoundEndState(EndRoundDisplay endRoundDisplay, int roundNumber, List<Player> winners)
+    public RoundEndState(StateManager stateManager, MatchManager matchManager) : base(stateManager)
     {
-        _endRoundDisplay = endRoundDisplay;
-        _roundNumber = roundNumber;
-        _winners = winners;
+        _matchManager = matchManager;
     }
 
     public override void Enter()
     {
-        _endRoundDisplay.gameObject.SetActive(true);
-        _endRoundDisplay.SetTitle(_roundNumber);
-        _endRoundDisplay.SetWinnerText(_winners);
+        _matchManager.RoundManager.EndRound();
+        _matchManager.DisplayEndRoundCanvas(true, this);
     }
 
     public override void Exit()
     {
-        _endRoundDisplay.gameObject.SetActive(false);
+        _matchManager.DisplayEndRoundCanvas(false);
     }
 
     public override void UpdateLogic()
     {
+    }
+
+    public void NextRound()
+    {
+        _stateManager.ChangeState(new TransitionState(_stateManager, _matchManager, _matchManager.GetPlayerWithLessPoints()));
+    }
+
+    public void Endmatch()
+    {
+        _stateManager.ChangeState(new MatchEndState(_stateManager, _matchManager));
     }
 }

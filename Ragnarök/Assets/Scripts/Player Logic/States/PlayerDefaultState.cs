@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerDefaultState : PlayerState
 {
-    public PlayerDefaultState(Player player) : base(player)
+    private MatchManager _matchManager;
+
+    public PlayerDefaultState(StateManager stateManager, MatchManager matchManager, Player player) : base(stateManager, player)
     {
+        _matchManager = matchManager;
     }
 
     public override void Enter()
@@ -20,7 +23,7 @@ public class PlayerDefaultState : PlayerState
 
     public override void SelectDeck(Card card)
     {
-        _player.DrawCard(card);
+        _stateManager.ChangeState(new PlayerCardState(_stateManager, _matchManager, _player, card));
     }
 
     public override void UpdateLogic()

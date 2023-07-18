@@ -46,7 +46,7 @@ public class TableTurnManager : MonoBehaviour
 
         _startingPlayerIndex = _players.IndexOf(player);
         _currentPlayerIndex = _startingPlayerIndex;
-        _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
+        //_stateManager.ChangeState(new TransitionState(_stateManager, _players[_currentPlayerIndex]));
     }
 
     //public void PlayCard(EffectsManager effectsManager, Card card)
@@ -64,12 +64,12 @@ public class TableTurnManager : MonoBehaviour
             return;
         }
 
-        _stateManager.ChangeState(new TableTurnTransitionState(this, _players[_currentPlayerIndex]));
+        //_stateManager.ChangeState(new TransitionState(_stateManager, this, _players[_currentPlayerIndex]));
     }
 
     public void StartPlayerTurn()
     {
-        _stateManager.ChangeState(new TableTurnPlayerState(this, _players[_currentPlayerIndex]));
+        //_stateManager.ChangeState(new TableTurnPlayerState(_stateManager, this, _players[_currentPlayerIndex]));
     }
 
     public void EndTableTurn()
@@ -79,8 +79,6 @@ public class TableTurnManager : MonoBehaviour
 
     public void EliminatePlayer(Player player)
     {
-        _players.Remove(player);
-
         _roundManager.EliminatePlayer(player);
     }
 }

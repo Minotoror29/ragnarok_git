@@ -3,13 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TableTurnTransitionState : TableTurnState
+public class TransitionState : State
 {
+    private MatchManager _matchManager;
+    private Player _player;
+
     private float _transitionTime;
     private float _transitionTimer;
 
-    public TableTurnTransitionState(TableTurnManager tableTurnManager, Player player) : base(tableTurnManager, player)
+    public TransitionState(StateManager stateManager, MatchManager matchManager, Player player) : base(stateManager)
     {
+        _matchManager = matchManager;
+        _player = player;
     }
 
     public override void Enter()
@@ -32,7 +37,7 @@ public class TableTurnTransitionState : TableTurnState
 
             if (_transitionTimer <= 0f)
             {
-                _tableTurnManager.StartPlayerTurn();
+                _stateManager.ChangeState(new PlayerDefaultState(_stateManager, _matchManager, _player));
             }
         }
     }

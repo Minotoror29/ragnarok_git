@@ -9,6 +9,7 @@ public class CardDisplay : MonoBehaviour
     private TableTurnManager _tableTurnManager;
     [SerializeField] private EffectsManager effectsManager;
     private Player _player;
+    private PlayerCardState _state;
 
     private Card _card;
     [SerializeField] private TextMeshProUGUI cardName;
@@ -30,9 +31,10 @@ public class CardDisplay : MonoBehaviour
         _tableTurnManager = tableTurnManager;
     }
 
-    public void SetCard(Player player, Card card, bool opponentsVote)
+    public void SetCard(Player player, Card card, bool opponentsVote, PlayerCardState state)
     {
         _player = player;
+        _state = state;
         _card = card;
         _totalPlayers = _tableTurnManager.Players;
 
@@ -62,7 +64,8 @@ public class CardDisplay : MonoBehaviour
             Vote(true);
         } else
         {
-            _player.PlayCard(effectsManager, _card);
+            //_player.PlayCard(effectsManager, _card);
+            _state.PlayCard(effectsManager, _card);
         }
     }
 
@@ -73,7 +76,8 @@ public class CardDisplay : MonoBehaviour
             Vote(false);
         } else
         {
-            _player.EndPlayerTurn();
+            //_player.EndPlayerTurn();
+            _state.DiscardCard();
         }
     }
 
@@ -97,12 +101,14 @@ public class CardDisplay : MonoBehaviour
         {
             if (_playVotes > _discardVotes)
             {
-                _player.PlayCard(effectsManager, _card);
+                //_player.PlayCard(effectsManager, _card);
+                _state.PlayCard(effectsManager, _card);
                 _voting = false;
                 ResetVotes();
             } else if (_discardVotes > _playVotes)
             {
-                _player.EndPlayerTurn();
+                //_player.EndPlayerTurn();
+                _state.DiscardCard();
                 _voting = false;
                 ResetVotes();
             } else if (_playVotes == _discardVotes)

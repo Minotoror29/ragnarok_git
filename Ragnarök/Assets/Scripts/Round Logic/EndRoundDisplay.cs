@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndRoundDisplay : MonoBehaviour
 {
+    private RoundEndState _state;
+
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI winnersText;
+    [SerializeField] private Button nextRoundButton;
+    [SerializeField] private Button seeMatchResultsButton;
+
+    public void Initialize(RoundEndState state)
+    {
+        _state = state;
+    }
 
     public void SetTitle(int roundNumber)
     {
@@ -50,5 +60,28 @@ public class EndRoundDisplay : MonoBehaviour
 
             winnersText.text = names + " win the round";
         }
+    }
+
+    public void SetButton(bool isMatchOver)
+    {
+        if (!isMatchOver)
+        {
+            nextRoundButton.gameObject.SetActive(true);
+            seeMatchResultsButton.gameObject.SetActive(false);
+        } else
+        {
+            nextRoundButton.gameObject.SetActive(false);
+            seeMatchResultsButton.gameObject.SetActive(true);
+        }
+    }
+
+    public void NextRound()
+    {
+        _state.NextRound();
+    }
+
+    public void EndMatch()
+    {
+        _state.Endmatch();
     }
 }

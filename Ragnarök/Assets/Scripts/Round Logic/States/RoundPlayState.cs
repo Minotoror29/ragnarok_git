@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RoundPlayState : State
 {
+    public RoundPlayState(StateManager stateManager) : base(stateManager)
+    {
+    }
+
     public override void Enter()
     {
     }

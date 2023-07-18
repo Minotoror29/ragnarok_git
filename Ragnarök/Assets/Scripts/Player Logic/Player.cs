@@ -43,7 +43,7 @@ public class Player : MonoBehaviour, ISelectable
     public int Points { get { return _points; } }
     public TextMeshProUGUI NameText { get { return nameText; } }
     public string PlayerName { get { return playerName; } }
-    public bool IsDead { set { _isDead = value; } }
+    public bool IsDead { get { return _isDead; } set { _isDead = value; } }
 
     public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, Canvas cardCanvas, CardDisplay cardDisplay, ValueDisplay valueDisplay, List<Player> players)
     {
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour, ISelectable
             return;
         }
 
-        _stateManager.ChangeState(new PlayerDefaultState(this));
+        //_stateManager.ChangeState(new PlayerDefaultState(_stateManager, this));
         nameText.color = Color.blue;
 
         if (mustSkipNextTurn)
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour, ISelectable
         {
             _isDead = true;
             nameText.color = Color.red;
-            //_tableTurnManager.EliminatePlayer(this);
+            _tableTurnManager.EliminatePlayer(this);
         }
 
         SetPointsText();
@@ -129,14 +129,14 @@ public class Player : MonoBehaviour, ISelectable
         pointsText.text = _points.ToString();
     }
 
-    public void DrawCard(Card card)
-    {
-        _stateManager.ChangeState(new PlayerCardState(this, card));
-    }
+    //public void DrawCard(Card card)
+    //{
+    //    _stateManager.ChangeState(new PlayerCardState(this, card));
+    //}
 
     public void PlayCard(EffectsManager effectsManager, Card card)
     {
-        _stateManager.ChangeState(new PlayerEffectState(this, card.effect1, card.effect2, effectsManager));
+        //_stateManager.ChangeState(new PlayerEffectState(_stateManager, this, card.effect1, card.effect2, effectsManager));
     }
 
     public void EndPlayerTurn()
@@ -148,7 +148,7 @@ public class Player : MonoBehaviour, ISelectable
             nameText.color = Color.white;
         }
 
-        _tableTurnManager.NextPlayerTurn();
+        //_tableTurnManager.NextPlayerTurn();
     }
 
     public void WinRound()

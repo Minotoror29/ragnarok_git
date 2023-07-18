@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerEffectState : PlayerState
 {
+    private MatchManager _matchManager;
+
     private Effect _effect1;
     private Effect _effect2;
 
@@ -13,8 +15,10 @@ public class PlayerEffectState : PlayerState
 
     private PlayerState _subState;
 
-    public PlayerEffectState(Player player, EffectData effect1, EffectData effect2, EffectsManager effectsManager) : base(player)
+    public PlayerEffectState(StateManager stateManager, MatchManager matchManager, Player player, EffectData effect1, EffectData effect2, EffectsManager effectsManager) : base(stateManager, player)
     {
+        _matchManager = matchManager;
+
         _effect1 = effect1.Effect(player, this);
         _effect2 = effect2.Effect(player, this);
 
@@ -51,6 +55,8 @@ public class PlayerEffectState : PlayerState
         _effect2.Resolve(_effectsManager);
 
         _player.EndPlayerTurn();
+
+        _stateManager.ChangeState(new CheckEndRoundConditionsState(_stateManager, _matchManager, _player));
     }
 
     public void EnterSubState(PlayerState subState)

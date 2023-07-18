@@ -11,7 +11,7 @@ public class PlayerValueState : PlayerState
 
     private UnityAction<int> _confirmAction;
 
-    public PlayerValueState(Player player, CustomValueApplication valueApplication, bool add) : base(player)
+    public PlayerValueState(Player player, CustomValueApplication valueApplication, bool add, StateManager stateManager = null) : base(stateManager, player)
     {
         _valueApplication = valueApplication;
 

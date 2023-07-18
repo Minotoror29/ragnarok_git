@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TableTurnPlayerState : TableTurnState
 {
-    public TableTurnPlayerState(TableTurnManager tableTurnManager, Player player) : base(tableTurnManager, player)
+    public TableTurnPlayerState(StateManager stateManager, TableTurnManager tableTurnManager, Player player) : base(stateManager, tableTurnManager, player)
     {
         
     }

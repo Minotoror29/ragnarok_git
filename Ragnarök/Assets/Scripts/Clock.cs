@@ -25,10 +25,10 @@ public class Clock : MonoBehaviour
 
         SetHoursText();
 
-        if (_hours == maxHours)
-        {
-            _roundManager.EndRound(true);
-        }
+        //if (_hours == maxHours)
+        //{
+        //    _roundManager.EndRound(true);
+        //}
     }
 
     public void SetHour(int value)
@@ -41,5 +41,10 @@ public class Clock : MonoBehaviour
     private void SetHoursText()
     {
         hoursText.text = _hours.ToString();
+    }
+
+    public bool IsAtMidnight()
+    {
+        return _hours == maxHours;
     }
 }

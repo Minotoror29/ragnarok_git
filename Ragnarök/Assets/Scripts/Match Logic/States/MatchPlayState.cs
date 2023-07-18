@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MatchPlayState : State
 {
+    public MatchPlayState(StateManager stateManager) : base(stateManager)
+    {
+    }
+
     public override void Enter()
     {
     }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Test New Effect System
   effect1: {fileID: 11400000, guid: 3b03f6bd47077104da34cbae84ad2907, type: 2}
-  effect2: {fileID: 11400000, guid: 3b03f6bd47077104da34cbae84ad2907, type: 2}
+  effect2: {fileID: 11400000, guid: 67b55e4363832d146be8f54882be6d8e, type: 2}
   vote: 0

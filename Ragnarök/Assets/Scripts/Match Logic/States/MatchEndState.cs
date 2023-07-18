@@ -4,24 +4,21 @@ using UnityEngine;
 
 public class MatchEndState : State
 {
-    private EndMatchDisplay _endMatchDisplay;
-    private List<Player> _winners;
+    private MatchManager _matchManager;
 
-    public MatchEndState(EndMatchDisplay endMatchDisplay, List<Player> winners)
+    public MatchEndState(StateManager stateManager, MatchManager matchManager) : base(stateManager)
     {
-        _endMatchDisplay = endMatchDisplay;
-        _winners = winners;
+        _matchManager = matchManager;
     }
 
     public override void Enter()
     {
-        _endMatchDisplay.gameObject.SetActive(true);
-        _endMatchDisplay.SetWinnersText(_winners);
+        _matchManager.DisplayEndMatchCanvas(true);
     }
 
     public override void Exit()
     {
-        _endMatchDisplay.gameObject.SetActive(false);
+        _matchManager.DisplayEndMatchCanvas(false);
     }
 
     public override void UpdateLogic()

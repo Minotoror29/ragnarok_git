@@ -7,7 +7,7 @@ public abstract class PlayerState : State
     protected Player _player;
     protected SelectionManager _selectionManager;
 
-    public PlayerState(Player player)
+    public PlayerState(StateManager stateManager, Player player) : base(stateManager)
     {
         _player = player;
     }

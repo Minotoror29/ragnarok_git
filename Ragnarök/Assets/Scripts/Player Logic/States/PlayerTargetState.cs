@@ -10,7 +10,7 @@ public class PlayerTargetState : PlayerState
     private int _playersToTarget;
     private List<Player> _targetedPlayers;
 
-    public PlayerTargetState(EffectsManager effectsManager, Player player, TargettingPlayersEffect effect, PlayerEffectState effectState, int playersToTarget) : base(player)
+    public PlayerTargetState(EffectsManager effectsManager, Player player, TargettingPlayersEffect effect, PlayerEffectState effectState, int playersToTarget, StateManager stateManager = null) : base(stateManager, player)
     {
         _effectsManager = effectsManager;
         _effect = effect;

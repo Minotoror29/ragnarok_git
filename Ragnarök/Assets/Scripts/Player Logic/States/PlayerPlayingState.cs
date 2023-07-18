@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerPlayingState : PlayerState
 {
-    private StateManager _stateManager;
-
-    public PlayerPlayingState(Player player) : base(player)
+    public PlayerPlayingState(StateManager stateManager, Player player) : base(stateManager, player)
     {
     }
 
@@ -29,7 +27,7 @@ public class PlayerPlayingState : PlayerState
 
         if (points == 0)
         {
-            _stateManager.ChangeState(new PlayerDeadState(_player));
+            _stateManager.ChangeState(new PlayerDeadState(_stateManager, _player));
         }
     }
 
@@ -37,6 +35,6 @@ public class PlayerPlayingState : PlayerState
     {
         base.EndPlayerTurn();
 
-        _stateManager.ChangeState(new PlayerInactiveState(_player));
+        _stateManager.ChangeState(new PlayerInactiveState(_stateManager, _player));
     }
 }
