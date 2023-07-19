@@ -41,14 +41,11 @@ public class MatchManager : MonoBehaviour
     public void UpdateLogic()
     {
         _stateManager.UpdateLogic();
-        roundManager.UpdateLogic();
     }
 
     private void StartMatch()
     {
         Debug.Log("Start new match");
-
-        //_stateManager.ChangeState(new MatchPlayState(_stateManager));
 
         _currentRound = 0;
         StartNewRound();
@@ -56,12 +53,6 @@ public class MatchManager : MonoBehaviour
 
     public void StartNewRound()
     {
-        if (_currentRound == maxRounds)
-        {
-            EndMatch();
-            return;
-        }
-
         _currentRound++;
         Debug.Log("Start round " + _currentRound);
 
@@ -85,9 +76,6 @@ public class MatchManager : MonoBehaviour
     private void EndMatch()
     {
         Debug.Log("End of the match");
-
-        //roundManager.StateManager.ChangeState(new RoundPlayState(_stateManager));
-        //_stateManager.ChangeState(new MatchEndState(_stateManager, endMatchDisplay, DetermineMatchWinners(players)));
     }
 
     private List<Player> DetermineMatchWinners(List<Player> l)

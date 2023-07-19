@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
-    [SerializeField] private StateManager _stateManager;
     private MatchManager _matchManager;
     [SerializeField] private TableTurnManager tableTurnManager;
 
@@ -21,14 +20,12 @@ public class RoundManager : MonoBehaviour
 
     [SerializeField] private EndRoundDisplay endRoundDisplay;
 
-    public StateManager StateManager { get { return _stateManager; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
     public int MaxTableTurns { get { return maxTableTurns; } }
     public int CurrentTableTurn { get { return _currentTableTurn; } }
 
     public void Initialize(MatchManager matchManager, Clock clock, List<Player> players)
     {
-        //_stateManager = GetComponent<StateManager>();
         _matchManager = matchManager;
         _clock = clock;
         _players = players;
@@ -36,17 +33,8 @@ public class RoundManager : MonoBehaviour
         tableTurnManager.Initialize(this, _clock, _players);
     }
 
-    public void UpdateLogic()
-    {
-        //_stateManager.UpdateLogic();
-
-        tableTurnManager.UpdateLogic();
-    }
-
     public void StartRound(Player startingPlayer)
     {
-        //_stateManager.ChangeState(new RoundPlayState(_stateManager));
-
         _clock.SetHour(startHours);
         foreach (Player player in _players)
         {
@@ -71,12 +59,6 @@ public class RoundManager : MonoBehaviour
 
     public void StartNewTableTurn()
     {
-        if (_currentTableTurn == maxTableTurns)
-        {
-            EndRound();
-            return;
-        }
-
         _currentTableTurn++;
         Debug.Log("Start table turn " + _currentTableTurn);
         tableTurnManager.StartTableTurn(_startingPlayer);
@@ -84,13 +66,7 @@ public class RoundManager : MonoBehaviour
 
     public void EndRound()
     {
-        //List<Player> winners = new();
-        //if (!ragnarok)
-        //{
-        //    winners = DetermineRoundWinners(_activePlayers);
-        //}
 
-        //_stateManager.ChangeState(new RoundEndState(_stateManager, endRoundDisplay, _matchManager.CurrentRound, winners));
     }
 
     public List<Player> DetermineRoundWinners(List<Player> players)

@@ -8,7 +8,6 @@ public class TableTurnManager : MonoBehaviour
     [SerializeField] private SelectionManager selectionManager;
     private RoundManager _roundManager;
 
-    [SerializeField] private Canvas cardCanvas;
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
     private Clock _clock;
@@ -21,7 +20,6 @@ public class TableTurnManager : MonoBehaviour
 
     public void Initialize(RoundManager roundManager, Clock clock, List<Player> players)
     {
-        //_stateManager = GetComponent<StateManager>();
         _roundManager = roundManager;
 
         _clock = clock;
@@ -29,15 +27,10 @@ public class TableTurnManager : MonoBehaviour
 
         foreach (Player player in _players)
         {
-            player.Initialize(this, selectionManager, cardCanvas, cardDisplay, valueDisplay, _players);
+            player.Initialize(this, selectionManager, cardDisplay, valueDisplay, _players);
         }
 
         cardDisplay.Initialize(this);
-    }
-
-    public void UpdateLogic()
-    {
-        //_stateManager.UpdateLogic();
     }
 
     public void StartTableTurn(Player player)
@@ -46,13 +39,7 @@ public class TableTurnManager : MonoBehaviour
 
         _startingPlayerIndex = _players.IndexOf(player);
         _currentPlayerIndex = _startingPlayerIndex;
-        //_stateManager.ChangeState(new TransitionState(_stateManager, _players[_currentPlayerIndex]));
     }
-
-    //public void PlayCard(EffectsManager effectsManager, Card card)
-    //{
-    //    _players[_currentPlayerIndex].PlayCard(effectsManager, card);
-    //}
 
     public void NextPlayerTurn()
     {
@@ -63,13 +50,10 @@ public class TableTurnManager : MonoBehaviour
             _roundManager.StartNewTableTurn();
             return;
         }
-
-        //_stateManager.ChangeState(new TransitionState(_stateManager, this, _players[_currentPlayerIndex]));
     }
 
     public void StartPlayerTurn()
     {
-        //_stateManager.ChangeState(new TableTurnPlayerState(_stateManager, this, _players[_currentPlayerIndex]));
     }
 
     public void EndTableTurn()

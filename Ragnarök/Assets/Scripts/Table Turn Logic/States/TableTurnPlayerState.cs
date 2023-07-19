@@ -21,6 +21,5 @@ public class TableTurnPlayerState : TableTurnState
 
     public override void UpdateLogic()
     {
-        _player.UpdateLogic();
     }
 }

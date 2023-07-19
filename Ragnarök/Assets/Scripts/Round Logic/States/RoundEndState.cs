@@ -13,7 +13,6 @@ public class RoundEndState : State
 
     public override void Enter()
     {
-        _matchManager.RoundManager.EndRound();
         _matchManager.DisplayEndRoundCanvas(true, this);
     }
 

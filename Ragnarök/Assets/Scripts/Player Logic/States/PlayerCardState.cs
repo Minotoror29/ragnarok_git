@@ -16,13 +16,13 @@ public class PlayerCardState : PlayerState
 
     public override void Enter()
     {
-        _player.CardCanvas.gameObject.SetActive(true);
+        _player.CardDisplay.gameObject.SetActive(true);
         _player.CardDisplay.SetCard(_player, _card, _player.opponentsVoteForCard, this);
     }
 
     public override void Exit()
     {
-        _player.CardCanvas.gameObject.SetActive(false);
+        _player.CardDisplay.gameObject.SetActive(false);
     }
 
     public override void UpdateLogic()
