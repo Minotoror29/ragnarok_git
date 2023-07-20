@@ -152,8 +152,6 @@ MonoBehaviour:
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
   playerName: 
-  mustSkipNextTurn: 0
-  opponentsVoteForCard: 0
 --- !u!1 &1852274133704180559
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,8 +572,6 @@ MonoBehaviour:
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
   playerName: 
-  mustSkipNextTurn: 0
-  opponentsVoteForCard: 0
 --- !u!1 &6599593704875325278
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,8 +582,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8152492321957448888}
   - component: {fileID: 465725103926377280}
-  - component: {fileID: 6653670044644409503}
   - component: {fileID: 4931088371418214431}
+  - component: {fileID: 239195510217414124}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -628,20 +624,6 @@ MonoBehaviour:
   pointsText: {fileID: 6080182821959348599}
   nameText: {fileID: 1081778912}
   playerName: Player
-  mustSkipNextTurn: 0
-  opponentsVoteForCard: 0
---- !u!114 &6653670044644409503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6599593704875325278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67055f2837fc3914d8954b4c00cf9efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4931088371418214431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -655,3 +637,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &239195510217414124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6599593704875325278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ac4cbdfd849754dbc9f543c6519842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

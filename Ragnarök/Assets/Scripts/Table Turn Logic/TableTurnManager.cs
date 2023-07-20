@@ -4,65 +4,65 @@ using UnityEngine;
 
 public class TableTurnManager : MonoBehaviour
 {
-    [SerializeField] private StateManager _stateManager;
+    private StateManager _stateManager;
     [SerializeField] private SelectionManager selectionManager;
-    private RoundManager _roundManager;
+
+    [SerializeField] private List<Player> activePlayers;
+
+    [SerializeField] private Clock clock;
 
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
-    private Clock _clock;
 
-    private List<Player> _players;
-    private int _currentPlayerIndex = 0;
-    private int _startingPlayerIndex;
+    public SelectionManager SelectionManager { get { return selectionManager; } }
+    public List<Player> ActivePlayers { get { return activePlayers; } }
+    public Clock Clock { get { return clock; } }
+    public CardDisplay CardDisplay { get { return cardDisplay; } }
+    public ValueDisplay ValueDisplay { get { return valueDisplay; } }
 
-    public List<Player> Players { get { return _players; } }
-
-    public void Initialize(RoundManager roundManager, Clock clock, List<Player> players)
+    private void Start()
     {
-        _roundManager = roundManager;
+        Initialize();
+    }
 
-        _clock = clock;
-        _players = players;
+    public void Initialize()
+    {
+        _stateManager = GetComponent<StateManager>();
 
-        foreach (Player player in _players)
+        foreach (Player player in activePlayers)
         {
-            player.Initialize(this, selectionManager, cardDisplay, valueDisplay, _players);
+            player.Initialize(this, activePlayers);
         }
-
         cardDisplay.Initialize(this);
+
+        _stateManager.ChangeState(new TableTurnStartState(_stateManager, this));
     }
 
-    public void StartTableTurn(Player player)
+    private void Update()
     {
-        _clock.AddHours(1);
-
-        _startingPlayerIndex = _players.IndexOf(player);
-        _currentPlayerIndex = _startingPlayerIndex;
+        UpdateLogic();
     }
 
-    public void NextPlayerTurn()
+    public void UpdateLogic()
     {
-        _currentPlayerIndex ++;
-        _currentPlayerIndex %= _players.Count;
-        if (_currentPlayerIndex == _startingPlayerIndex)
-        {
-            _roundManager.StartNewTableTurn();
-            return;
-        }
-    }
-
-    public void StartPlayerTurn()
-    {
-    }
-
-    public void EndTableTurn()
-    {
-
+        _stateManager.UpdateLogic();
     }
 
     public void EliminatePlayer(Player player)
     {
-        _roundManager.EliminatePlayer(player);
+        activePlayers.Remove(player);
+
+        foreach (Player p in activePlayers)
+        {
+            if (p != player)
+            {
+                p.RemoveOpponent(player);
+            }
+        }
+    }
+
+    public Player GetNextPlayer(Player currentPlayer)
+    {
+        return activePlayers[activePlayers.IndexOf(currentPlayer) + 1];
     }
 }

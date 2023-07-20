@@ -22,7 +22,7 @@ public class CheckEndRoundConditionsState : MatchState
             _stateManager.ChangeState(new RoundEndState(_stateManager, _matchManager));
         } else
         {
-            _stateManager.ChangeState(new TransitionState(_stateManager, _matchManager, _matchManager.GetNextPlayer(_currentPlayer)));
+            //_stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _matchManager, _matchManager.GetNextPlayer(_currentPlayer)));
         }
     }
 

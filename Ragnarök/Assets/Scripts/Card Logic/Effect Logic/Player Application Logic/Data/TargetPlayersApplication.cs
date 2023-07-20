@@ -7,8 +7,8 @@ public class TargetPlayersApplication : PlayerApplication
 {
     public int playersToTarget;
 
-    public override void DetermineTargets(EffectsManager effectsManager, Player sourcePlayer, TargettingPlayersEffect effect, PlayerEffectState state)
+    public override void DetermineTargets(EffectsManager effectsManager, Player sourcePlayer, TargettingPlayersEffect effect, TableTurnEffectState state)
     {
-        state.EnterSubState(new PlayerTargetState(effectsManager, sourcePlayer, effect, state, playersToTarget));
+        state.EnterTargetSubState(effect, playersToTarget);
     }
 }

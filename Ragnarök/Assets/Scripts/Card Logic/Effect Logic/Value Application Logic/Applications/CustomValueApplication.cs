@@ -6,14 +6,14 @@ public class CustomValueApplication : ValueApplication
 {
     private bool _add;
 
-    public CustomValueApplication(Player player, Effect effect, PlayerEffectState state, bool add) : base(player, effect, state)
+    public CustomValueApplication(Player player, Effect effect, TableTurnEffectState state, bool add) : base(player, effect, state)
     {
         _add = add;
     }
 
     public override void DetermineValue()
     {
-        _state.EnterSubState(new PlayerValueState(_player, this, _add));
+        _state.EnterValueSubState(this, _add);
     }
 
     public void SetValue(int value)

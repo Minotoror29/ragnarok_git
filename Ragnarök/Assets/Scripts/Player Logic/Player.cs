@@ -6,14 +6,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, ISelectable
 {
-    private StateManager _playerStateManager;
+    private PlayerStateManager _stateManager;
     private TableTurnManager _tableTurnManager;
-    private SelectionManager _selectionManager;
 
     [SerializeField] private CinemachineVirtualCamera vCam;
-
-    private CardDisplay _cardDisplay;
-    private ValueDisplay _valueDisplay;
 
     private List<Player> _opponents;
 
@@ -24,34 +20,29 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private string playerName;
 
-    [HideInInspector] public bool mustSkipNextTurn = false;
-    [HideInInspector] public bool opponentsVoteForCard = false;
-
-    private bool _isDead = false;
+    private bool _mustSkipNextTurn = false;
+    private bool _opponentsVoteForCard = false;
 
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
-    public SelectionManager SelectionManager { get { return _selectionManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
-    public CardDisplay CardDisplay { get { return _cardDisplay; } }
-    public ValueDisplay ValueDisplay { get { return _valueDisplay; } }
     public List<Player> Opponents { get { return _opponents; } }
     public int RoundsWon { get { return _roundsWon; } }
     public int Points { get { return _points; } }
     public TextMeshProUGUI NameText { get { return nameText; } }
     public string PlayerName { get { return playerName; } }
-    public bool IsDead { get { return _isDead; } set { _isDead = value; } }
+    public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
+    public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
 
-    public void Initialize(TableTurnManager tableTurnManager, SelectionManager selectionManager, CardDisplay cardDisplay, ValueDisplay valueDisplay, List<Player> players)
+    public void Initialize(TableTurnManager tableTurnManager, List<Player> players)
     {
-        _playerStateManager = GetComponent<StateManager>();
+        _stateManager = GetComponent<PlayerStateManager>();
         _tableTurnManager = tableTurnManager;
-        _selectionManager = selectionManager;
-        _cardDisplay = cardDisplay;
-        _valueDisplay = valueDisplay;
 
         SetOpponents(players);
 
         nameText.text = playerName;
+
+        _stateManager.ChangeState(new PlayerInactiveState(_stateManager, this));
     }
 
     public void SetOpponents(List<Player> players)
@@ -66,19 +57,7 @@ public class Player : MonoBehaviour, ISelectable
 
     public void StartPlayerTurn()
     {
-        if (_isDead)
-        {
-            EndPlayerTurn();
-            return;
-        }
-
-        nameText.color = Color.blue;
-
-        if (mustSkipNextTurn)
-        {
-            EndPlayerTurn();
-            mustSkipNextTurn = false;
-        }
+        _stateManager.StartPlayerTurn();
     }
 
     public void AddPoints(int value)
@@ -86,12 +65,7 @@ public class Player : MonoBehaviour, ISelectable
         _points += value;
         _points = Mathf.Max(_points, 0);
 
-        if (_points == 0)
-        {
-            _isDead = true;
-            nameText.color = Color.red;
-            _tableTurnManager.EliminatePlayer(this);
-        }
+        _stateManager.CheckPoints(_points);
 
         SetPointsText();
     }
@@ -117,11 +91,8 @@ public class Player : MonoBehaviour, ISelectable
 
     public void EndPlayerTurn()
     {
-        vCam.gameObject.SetActive(false);
-        if (!_isDead)
-        {
-            nameText.color = Color.white;
-        }
+        _mustSkipNextTurn = false;
+        _stateManager.EndPlayerTurn();
     }
 
     public void WinRound()
@@ -129,10 +100,13 @@ public class Player : MonoBehaviour, ISelectable
         _roundsWon++;
     }
 
-    public void Select(PlayerState state)
+    public void Select(TableTurnState state)
     {
-        if (_isDead) return;
-
         state.SelectPlayer(this);
+    }
+
+    public void RemoveOpponent(Player player)
+    {
+        _opponents.Remove(player);
     }
 }

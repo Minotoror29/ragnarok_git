@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerTargetState : PlayerState
+public class TableTurnTargetState : TableTurnState
 {
+    private Player _player;
     private EffectsManager _effectsManager;
     private TargettingPlayersEffect _effect;
-    private PlayerEffectState _effectState;
+    private TableTurnEffectState _effectState;
     private int _playersToTarget;
     private List<Player> _targetedPlayers;
 
-    public PlayerTargetState(EffectsManager effectsManager, Player player, TargettingPlayersEffect effect, PlayerEffectState effectState, int playersToTarget, StateManager stateManager = null) : base(stateManager, player)
+    public TableTurnTargetState(EffectsManager effectsManager, TableTurnManager tableTurnManager, Player player, TargettingPlayersEffect effect, TableTurnEffectState effectState, int playersToTarget, StateManager stateManager = null) : base(stateManager, tableTurnManager)
     {
+        _player = player;
         _effectsManager = effectsManager;
         _effect = effect;
         _effectState = effectState;
@@ -20,13 +22,13 @@ public class PlayerTargetState : PlayerState
 
     public override void Enter()
     {
-        _player.SelectionManager.Enable(this);
+        _tableTurnManager.SelectionManager.Enable(this);
         _targetedPlayers = new List<Player>();
     }
 
     public override void Exit()
     {
-        _player.SelectionManager.Disable();
+        _tableTurnManager.SelectionManager.Disable();
     }
 
     public override void SelectPlayer(Player selectedPlayer)
@@ -49,6 +51,6 @@ public class PlayerTargetState : PlayerState
 
     public override void UpdateLogic()
     {
-        _player.SelectionManager.UpdateLogic();
+        _tableTurnManager.SelectionManager.UpdateLogic();
     }
 }

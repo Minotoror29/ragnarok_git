@@ -30,7 +30,7 @@ public class RoundManager : MonoBehaviour
         _clock = clock;
         _players = players;
 
-        tableTurnManager.Initialize(this, _clock, _players);
+        //tableTurnManager.Initialize(this, _clock, _players);
     }
 
     public void StartRound(Player startingPlayer)
@@ -39,7 +39,6 @@ public class RoundManager : MonoBehaviour
         foreach (Player player in _players)
         {
             player.SetPoints(playersStartPoints);
-            player.IsDead = false;
             player.NameText.color = Color.white;
         }
 
@@ -61,7 +60,7 @@ public class RoundManager : MonoBehaviour
     {
         _currentTableTurn++;
         Debug.Log("Start table turn " + _currentTableTurn);
-        tableTurnManager.StartTableTurn(_startingPlayer);
+        //tableTurnManager.StartTableTurn(_startingPlayer);
     }
 
     public void EndRound()

@@ -61,12 +61,12 @@ public class EffectsManager : MonoBehaviour
     {
         foreach (Player target in targets)
         {
-            target.mustSkipNextTurn = true;
+            target.MustSkipNextTurn = true;
         }
     }
 
     public void OpponentsVoteForCard(Player sourcePlayer)
     {
-        sourcePlayer.opponentsVoteForCard = true;
+        sourcePlayer.OpponentsVoteForCard = true;
     }
 }

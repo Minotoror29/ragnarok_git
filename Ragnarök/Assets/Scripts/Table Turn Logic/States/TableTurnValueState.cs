@@ -3,32 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerValueState : PlayerState
+public class TableTurnValueState : TableTurnState
 {
+    Player _player;
     private CustomValueApplication _valueApplication;
-
     private bool _add;
 
     private UnityAction<int> _confirmAction;
 
-    public PlayerValueState(Player player, CustomValueApplication valueApplication, bool add, StateManager stateManager = null) : base(stateManager, player)
+    public TableTurnValueState(TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication, bool add, StateManager stateManager = null) : base(stateManager, tableTurnManager)
     {
+        _player = player;
         _valueApplication = valueApplication;
-
         _add = add;
     }
 
     public override void Enter()
     {
-        _player.ValueDisplay.gameObject.SetActive(true);
+        _tableTurnManager.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        _player.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        _tableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
     }
 
     public override void Exit()
     {
-        _player.ValueDisplay.gameObject.SetActive(false);
+        _tableTurnManager.ValueDisplay.gameObject.SetActive(false);
     }
 
     public void Confirm(int value)

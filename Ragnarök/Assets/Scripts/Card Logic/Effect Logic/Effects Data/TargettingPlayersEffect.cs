@@ -6,9 +6,9 @@ public abstract class TargettingPlayersEffect : EffectData
 {
     public PlayerApplication application;
 
-    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, PlayerEffectState state)
+    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, TableTurnEffectState state)
     {
         application.DetermineTargets(effectsManager, sourcePlayer, this, state);
     }
-    public abstract void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, PlayerEffectState state);
+    public abstract void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, TableTurnEffectState state);
 }

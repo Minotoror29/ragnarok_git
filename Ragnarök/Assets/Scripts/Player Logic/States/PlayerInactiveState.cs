@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInactiveState : PlayerState
 {
-    public PlayerInactiveState(StateManager stateManager, Player player) : base(stateManager, player)
+    public PlayerInactiveState(PlayerStateManager stateManager, Player player) : base(stateManager, player)
     {
     }
 
@@ -14,10 +14,6 @@ public class PlayerInactiveState : PlayerState
     }
 
     public override void Exit()
-    {
-    }
-
-    public override void UpdateLogic()
     {
     }
 

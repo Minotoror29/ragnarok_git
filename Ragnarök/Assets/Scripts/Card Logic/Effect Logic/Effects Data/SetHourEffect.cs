@@ -7,7 +7,7 @@ public class SetHourEffect : EffectData
 {
     public int hour;
 
-    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, PlayerEffectState state)
+    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, TableTurnEffectState state)
     {
         effectsManager.SetHour(hour);
         state.NextEffect();

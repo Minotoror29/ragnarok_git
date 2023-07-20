@@ -6,7 +6,7 @@ using static Unity.VisualScripting.Member;
 [CreateAssetMenu(menuName = "Player Application/All Players")]
 public class AllPlayersApplication : PlayerApplication
 {
-    public override void DetermineTargets(EffectsManager effectsManager, Player sourcePlayer, TargettingPlayersEffect effect, PlayerEffectState state)
+    public override void DetermineTargets(EffectsManager effectsManager, Player sourcePlayer, TargettingPlayersEffect effect, TableTurnEffectState state)
     {
         List<Player> targets = new()
         {

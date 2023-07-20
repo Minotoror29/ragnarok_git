@@ -6,7 +6,7 @@ public class AddHoursEffect : Effect
 {
     private ValueApplication _valueApplication;
 
-    public AddHoursEffect(Player sourcePlayer, PlayerEffectState state, ValueApplicationData valueApplicationData) : base(sourcePlayer, state)
+    public AddHoursEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplicationData) : base(sourcePlayer, state)
     {
         _player = sourcePlayer;
         _valueApplication = valueApplicationData.ValueApplication(_player, this, state);

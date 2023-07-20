@@ -6,11 +6,11 @@ public abstract class ValueApplication
 {
     protected Player _player;
     protected Effect _effect;
-    protected PlayerEffectState _state;
+    protected TableTurnEffectState _state;
 
     protected int _value;
 
-    public ValueApplication(Player player, Effect effect, PlayerEffectState state)
+    public ValueApplication(Player player, Effect effect, TableTurnEffectState state)
     {
         _player = player;
         _effect = effect;

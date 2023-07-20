@@ -10,9 +10,9 @@ public class SelectionManager : MonoBehaviour
 
     private ISelectable _currentSelection;
 
-    private PlayerState _currentState;
+    private TableTurnState _currentState;
 
-    public void Enable(PlayerState state)
+    public void Enable(TableTurnState state)
     {
         _playerControls = new PlayerControls();
         _playerControls.InGame.Enable();

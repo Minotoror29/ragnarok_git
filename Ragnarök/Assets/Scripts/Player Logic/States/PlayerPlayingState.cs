@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class PlayerPlayingState : PlayerState
 {
-    public PlayerPlayingState(StateManager stateManager, Player player) : base(stateManager, player)
+    public PlayerPlayingState(PlayerStateManager stateManager, Player player) : base(stateManager, player)
     {
     }
 
     public override void Enter()
     {
         _player.NameText.color = Color.blue;
+        _player.VCam.gameObject.SetActive(true);
     }
 
     public override void Exit()
     {
-    }
-
-    public override void UpdateLogic()
-    {
+        _player.VCam.gameObject.SetActive(false);
     }
 
     public override void CheckPoints(int points)

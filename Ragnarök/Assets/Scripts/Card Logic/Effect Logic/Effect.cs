@@ -6,11 +6,11 @@ public abstract class Effect
 {
     protected EffectsManager _effectsManager;
     protected Player _player;
-    protected PlayerEffectState _state;
+    protected TableTurnEffectState _state;
 
     protected int _resolvedApplications;
 
-    public Effect(Player player, PlayerEffectState state)
+    public Effect(Player player, TableTurnEffectState state)
     {
         _player = player;
         _state = state;

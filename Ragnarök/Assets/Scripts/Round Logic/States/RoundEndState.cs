@@ -27,7 +27,7 @@ public class RoundEndState : State
 
     public void NextRound()
     {
-        _stateManager.ChangeState(new TransitionState(_stateManager, _matchManager, _matchManager.GetPlayerWithLessPoints()));
+        //_stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _matchManager, _matchManager.GetPlayerWithLessPoints()));
     }
 
     public void Endmatch()

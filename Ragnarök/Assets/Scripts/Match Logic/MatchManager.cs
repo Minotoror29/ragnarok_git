@@ -62,14 +62,14 @@ public class MatchManager : MonoBehaviour
 
             roundManager.StartRound(player);
 
-            _stateManager.ChangeState(new TransitionState(_stateManager, this, player));
+            //_stateManager.ChangeState(new TableTurnTransitionState(_stateManager, this, player));
         } else
         {
             Player player = GetPlayerWithLessPoints();
 
             roundManager.StartRound(player);
 
-            _stateManager.ChangeState(new TransitionState(_stateManager, this, player));
+            //_stateManager.ChangeState(new TableTurnTransitionState(_stateManager, this, player));
         }
     }
 

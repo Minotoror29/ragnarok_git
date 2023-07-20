@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour, ISelectable
 
     [SerializeField] private List<Card> cards;
 
-    public void Select(PlayerState state)
+    public void Select(TableTurnState state)
     {
         state.SelectDeck(cards[0]);
     }

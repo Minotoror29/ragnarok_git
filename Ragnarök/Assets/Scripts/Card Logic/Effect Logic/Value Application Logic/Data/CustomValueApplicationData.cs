@@ -7,7 +7,7 @@ public class CustomValueApplicationData : ValueApplicationData
 {
     public bool add;
 
-    public override ValueApplication ValueApplication(Player player, Effect effect, PlayerEffectState state)
+    public override ValueApplication ValueApplication(Player player, Effect effect, TableTurnEffectState state)
     {
         return new CustomValueApplication(player, effect, state, add);
     }

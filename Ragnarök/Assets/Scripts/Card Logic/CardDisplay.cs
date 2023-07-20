@@ -9,7 +9,7 @@ public class CardDisplay : MonoBehaviour
     private TableTurnManager _tableTurnManager;
     [SerializeField] private EffectsManager effectsManager;
     private Player _player;
-    private PlayerCardState _state;
+    private TableTurnCardState _state;
 
     private Card _card;
     [SerializeField] private TextMeshProUGUI cardName;
@@ -31,12 +31,12 @@ public class CardDisplay : MonoBehaviour
         _tableTurnManager = tableTurnManager;
     }
 
-    public void SetCard(Player player, Card card, bool opponentsVote, PlayerCardState state)
+    public void SetCard(Player player, Card card, bool opponentsVote, TableTurnCardState state)
     {
         _player = player;
         _state = state;
         _card = card;
-        _totalPlayers = _tableTurnManager.Players;
+        _totalPlayers = _tableTurnManager.ActivePlayers;
 
         cardName.text = card.name.ToUpper();
         cardEffect.text = card.effect1.description + " / " + card.effect2.description;

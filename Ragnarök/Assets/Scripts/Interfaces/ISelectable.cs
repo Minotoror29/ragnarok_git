@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ISelectable
 {
-    void Select(PlayerState state);
+    void Select(TableTurnState state);
 }

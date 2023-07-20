@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effect/Skip Turn")]
 public class SkipTurnEffect : TargettingPlayersEffect
 {
-    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, PlayerEffectState state)
+    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, TableTurnEffectState state)
     {
         effectsManager.SkipTurn(targets);
         state.NextEffect();

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effect/Opponents Vote For Next Card")]
 public class OpponentsVoteForCardEffect : EffectData
 {
-    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, PlayerEffectState state)
+    public override void Activate(EffectsManager effectsManager, Player sourcePlayer, TableTurnEffectState state)
     {
         effectsManager.OpponentsVoteForCard(sourcePlayer);
         state.NextEffect();

@@ -7,7 +7,7 @@ public class StealEffect : TargettingPlayersEffect
 {
     public int points;
 
-    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, PlayerEffectState state)
+    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, TableTurnEffectState state)
     {
         effectsManager.StealPoints(sourcePlayer, targets, points);
         state.NextEffect();

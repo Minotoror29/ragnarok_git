@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerState : State
+public abstract class PlayerState
 {
+    protected PlayerStateManager _stateManager;
     protected Player _player;
-    protected SelectionManager _selectionManager;
 
-    public PlayerState(StateManager stateManager, Player player) : base(stateManager)
+    public PlayerState(PlayerStateManager stateManager, Player player)
     {
+        _stateManager = stateManager;
         _player = player;
     }
 
-    public virtual void SelectDeck(Card card) { }
-
-    public virtual void SelectPlayer(Player selectedPlayer) { }
+    public abstract void Enter();
+    public abstract void Exit();
 
     public virtual void CheckPoints(int points) { }
     public virtual void StartPlayerTurn() { }

@@ -5,11 +5,13 @@ using UnityEngine;
 public abstract class TableTurnState : State
 {
     protected TableTurnManager _tableTurnManager;
-    protected Player _player;
 
-    public TableTurnState(StateManager stateManager, TableTurnManager tableTurnManager, Player player) : base(stateManager)
+    public TableTurnState(StateManager stateManager, TableTurnManager tableTurnManager) : base(stateManager)
     {
         _tableTurnManager = tableTurnManager;
-        _player = player;
     }
+
+    public virtual void SelectDeck(Card card) { }
+
+    public virtual void SelectPlayer(Player selectedPlayer) { }
 }

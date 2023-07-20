@@ -7,7 +7,7 @@ public class GiveEffect : TargettingPlayersEffect
 {
     public int points;
 
-    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, PlayerEffectState state)
+    public override void Resolve(EffectsManager effectsManager, Player sourcePlayer, List<Player> targets, TableTurnEffectState state)
     {
         effectsManager.GivePoints(sourcePlayer, targets, points);
         state.NextEffect();

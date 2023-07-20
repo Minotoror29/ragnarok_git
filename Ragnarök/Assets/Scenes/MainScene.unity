@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &97914376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,6 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179236479}
   - component: {fileID: 179236478}
+  - component: {fileID: 179236480}
   m_Layer: 0
   m_Name: Table Turn Manager
   m_TagString: Untagged
@@ -384,10 +385,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0d10c3d7550aa04ebfaeaeef2671949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateManager: {fileID: 97914378}
   selectionManager: {fileID: 540364198}
-  cardCanvas: {fileID: 1653901913}
-  cardDisplay: {fileID: 1478612472}
+  activePlayers:
+  - {fileID: 9008074111773250693}
+  - {fileID: 1851497725}
+  - {fileID: 1676166067}
+  - {fileID: 1553266616}
+  clock: {fileID: 969296271}
+  cardDisplay: {fileID: 1653901915}
   valueDisplay: {fileID: 2097747245}
 --- !u!4 &179236479
 Transform:
@@ -404,6 +409,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &179236480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179236477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67055f2837fc3914d8954b4c00cf9efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &219016341
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &441064389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2476,7 +2493,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1478612472}
+      - m_Target: {fileID: 1653901915}
         m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
         m_MethodName: DiscardCard
         m_Mode: 1
@@ -3704,7 +3721,6 @@ GameObject:
   - component: {fileID: 1478612469}
   - component: {fileID: 1478612471}
   - component: {fileID: 1478612470}
-  - component: {fileID: 1478612472}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -3772,25 +3788,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478612468}
   m_CullTransparentMesh: 1
---- !u!114 &1478612472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478612468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b352493aef796ce4cadab249c20843cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectsManager: {fileID: 2139410817}
-  cardName: {fileID: 1037965865}
-  cardEffect: {fileID: 498473590}
-  playVotesParent: {fileID: 1147730990}
-  playVote: {fileID: 5895903360689496479, guid: 138d324048283864eb7dd3a5b8751383, type: 3}
-  discardVotesParent: {fileID: 2005199284}
-  discardVote: {fileID: 8205885777897830407, guid: 8b6fe285f858527468972bb75d2fc9cc, type: 3}
 --- !u!1 &1497872507
 GameObject:
   m_ObjectHideFlags: 0
@@ -4113,6 +4110,7 @@ GameObject:
   - component: {fileID: 1653901913}
   - component: {fileID: 1653901912}
   - component: {fileID: 1653901911}
+  - component: {fileID: 1653901915}
   m_Layer: 5
   m_Name: Card Canvas
   m_TagString: Untagged
@@ -4205,6 +4203,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1653901915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653901910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b352493aef796ce4cadab249c20843cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectsManager: {fileID: 2139410817}
+  cardName: {fileID: 1037965865}
+  cardEffect: {fileID: 498473590}
+  playVotesParent: {fileID: 1147730990}
+  playVote: {fileID: 5895903360689496479, guid: 138d324048283864eb7dd3a5b8751383, type: 3}
+  discardVotesParent: {fileID: 2005199284}
+  discardVote: {fileID: 8205885777897830407, guid: 8b6fe285f858527468972bb75d2fc9cc, type: 3}
 --- !u!1 &1654069828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,7 +4817,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1478612472}
+      - m_Target: {fileID: 1653901915}
         m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
         m_MethodName: PlayCard
         m_Mode: 1
