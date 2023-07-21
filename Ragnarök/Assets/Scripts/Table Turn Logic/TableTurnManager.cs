@@ -5,42 +5,35 @@ using UnityEngine;
 public class TableTurnManager : MonoBehaviour
 {
     private StateManager _stateManager;
+    private RoundTableTurnState _roundState;
     [SerializeField] private SelectionManager selectionManager;
 
-    [SerializeField] private List<Player> activePlayers;
+    private List<Player> _activePlayers;
 
-    [SerializeField] private Clock clock;
+    private Clock _clock;
 
     [SerializeField] private CardDisplay cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
 
+    public RoundTableTurnState RoundState { get { return _roundState; } }
     public SelectionManager SelectionManager { get { return selectionManager; } }
-    public List<Player> ActivePlayers { get { return activePlayers; } }
-    public Clock Clock { get { return clock; } }
+    public List<Player> ActivePlayers { get { return _activePlayers; } }
+    public Clock Clock { get { return _clock; } }
     public CardDisplay CardDisplay { get { return cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
 
-    private void Start()
-    {
-        Initialize();
-    }
-
-    public void Initialize()
+    public void Initialize(List<Player> players, Clock clock)
     {
         _stateManager = GetComponent<StateManager>();
 
-        foreach (Player player in activePlayers)
+        foreach (Player player in players)
         {
-            player.Initialize(this, activePlayers);
+            player.Initialize(this, players);
         }
+
+        _clock = clock;
+
         cardDisplay.Initialize(this);
-
-        _stateManager.ChangeState(new TableTurnStartState(_stateManager, this));
-    }
-
-    private void Update()
-    {
-        UpdateLogic();
     }
 
     public void UpdateLogic()
@@ -48,11 +41,27 @@ public class TableTurnManager : MonoBehaviour
         _stateManager.UpdateLogic();
     }
 
+    public void StartTableTurn(RoundTableTurnState roundState)
+    {
+        _roundState = roundState;
+
+        _stateManager.ChangeState(new TableTurnStartState(_stateManager, this));
+    }
+
+    public void SetActivePlayers(List<Player> players)
+    {
+        _activePlayers = new();
+        foreach (Player player in players)
+        {
+            _activePlayers.Add(player);
+        }
+    }
+
     public void EliminatePlayer(Player player)
     {
-        activePlayers.Remove(player);
+        _activePlayers.Remove(player);
 
-        foreach (Player p in activePlayers)
+        foreach (Player p in _activePlayers)
         {
             if (p != player)
             {
@@ -63,6 +72,6 @@ public class TableTurnManager : MonoBehaviour
 
     public Player GetNextPlayer(Player currentPlayer)
     {
-        return activePlayers[activePlayers.IndexOf(currentPlayer) + 1];
+        return _activePlayers[_activePlayers.IndexOf(currentPlayer) + 1];
     }
 }

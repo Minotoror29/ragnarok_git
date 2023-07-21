@@ -38,8 +38,6 @@ public class Player : MonoBehaviour, ISelectable
         _stateManager = GetComponent<PlayerStateManager>();
         _tableTurnManager = tableTurnManager;
 
-        SetOpponents(players);
-
         nameText.text = playerName;
 
         _stateManager.ChangeState(new PlayerInactiveState(_stateManager, this));
@@ -50,9 +48,11 @@ public class Player : MonoBehaviour, ISelectable
         _opponents = new();
         foreach (Player player in players)
         {
-            _opponents.Add(player);
+            if (player != this)
+            {
+                _opponents.Add(player);
+            }
         }
-        _opponents.Remove(this);
     }
 
     public void StartPlayerTurn()

@@ -10,10 +10,9 @@ public class EndRoundDisplay : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI winnersText;
-    [SerializeField] private Button nextRoundButton;
-    [SerializeField] private Button seeMatchResultsButton;
+    [SerializeField] private TextMeshProUGUI buttonText;
 
-    public void Initialize(RoundEndState state)
+    public void SetState(RoundEndState state)
     {
         _state = state;
     }
@@ -66,22 +65,15 @@ public class EndRoundDisplay : MonoBehaviour
     {
         if (!isMatchOver)
         {
-            nextRoundButton.gameObject.SetActive(true);
-            seeMatchResultsButton.gameObject.SetActive(false);
+            buttonText.text = "Next Round";
         } else
         {
-            nextRoundButton.gameObject.SetActive(false);
-            seeMatchResultsButton.gameObject.SetActive(true);
+            buttonText.text = "See Match Results";
         }
     }
 
     public void NextRound()
     {
         _state.NextRound();
-    }
-
-    public void EndMatch()
-    {
-        _state.Endmatch();
     }
 }

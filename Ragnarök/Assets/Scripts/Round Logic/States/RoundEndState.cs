@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoundEndState : State
+public class RoundEndState : RoundState
 {
-    private MatchManager _matchManager;
-
-    public RoundEndState(StateManager stateManager, MatchManager matchManager) : base(stateManager)
+    public RoundEndState(StateManager stateManager, RoundManager roundManager, int roundNumber) : base(stateManager, roundManager, roundNumber)
     {
-        _matchManager = matchManager;
     }
 
     public override void Enter()
     {
-        _matchManager.DisplayEndRoundCanvas(true, this);
+        _roundManager.EndRoundDisplay.gameObject.SetActive(true);
+        _roundManager.EndRoundDisplay.SetState(this);
+        _roundManager.EndRoundDisplay.SetTitle(_roundNumber);
+        _roundManager.EndRoundDisplay.SetWinnerText(_roundManager.DetermineRoundWinners());
     }
 
     public override void Exit()
     {
-        _matchManager.DisplayEndRoundCanvas(false);
+        _roundManager.EndRoundDisplay.gameObject.SetActive(false);
     }
 
     public override void UpdateLogic()
@@ -27,11 +27,7 @@ public class RoundEndState : State
 
     public void NextRound()
     {
-        //_stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _matchManager, _matchManager.GetPlayerWithLessPoints()));
-    }
-
-    public void Endmatch()
-    {
-        _stateManager.ChangeState(new MatchEndState(_stateManager, _matchManager));
+        _roundManager.EndRoundDisplay.gameObject.SetActive(false);
+        _roundManager.MatchRoundState.RoundEnd();
     }
 }

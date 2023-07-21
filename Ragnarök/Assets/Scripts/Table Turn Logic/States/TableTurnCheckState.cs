@@ -15,7 +15,12 @@ public class TableTurnCheckState : TableTurnState
     {
         _player.EndPlayerTurn();
 
-        if (_player == _tableTurnManager.ActivePlayers[^1])
+        if (_tableTurnManager.Clock.IsAtMidnight() ||
+            _tableTurnManager.ActivePlayers.Count == 1 ||
+            _tableTurnManager.ActivePlayers.Count == 0)
+        {
+            _tableTurnManager.RoundState.EndRound();
+        } else if (_player == _tableTurnManager.ActivePlayers[^1])
         {
             _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager));
         } else

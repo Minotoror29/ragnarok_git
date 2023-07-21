@@ -10,6 +10,7 @@ public class TableTurnEndState : TableTurnState
 
     public override void Enter()
     {
+        _tableTurnManager.RoundState.TableTurnEnd();
     }
 
     public override void Exit()
