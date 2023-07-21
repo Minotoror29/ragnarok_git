@@ -6,7 +6,8 @@ using UnityEngine;
 public class FixedValueApplicationData : ValueApplicationData
 {
     public int value;
-    public override ValueApplication ValueApplication(Player player, Effect effect, TableTurnEffectState state)
+
+    public override ValueApplication Application(Player player, Effect effect, TableTurnEffectState state)
     {
         return new FixedValueApplication(player, effect, state, value);
     }

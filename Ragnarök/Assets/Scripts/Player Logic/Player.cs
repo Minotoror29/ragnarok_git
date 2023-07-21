@@ -55,6 +55,12 @@ public class Player : MonoBehaviour, ISelectable
         }
     }
 
+    public void ResetContinuousEffects()
+    {
+        _mustSkipNextTurn = false;
+        _opponentsVoteForCard = false;
+    }
+
     public void StartPlayerTurn()
     {
         _stateManager.StartPlayerTurn();

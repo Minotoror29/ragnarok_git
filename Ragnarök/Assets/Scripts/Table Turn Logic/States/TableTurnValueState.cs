@@ -7,14 +7,16 @@ public class TableTurnValueState : TableTurnState
 {
     Player _player;
     private CustomValueApplication _valueApplication;
+    private TableTurnEffectState _effectState;
     private bool _add;
 
     private UnityAction<int> _confirmAction;
 
-    public TableTurnValueState(TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication, bool add, StateManager stateManager = null) : base(stateManager, tableTurnManager)
+    public TableTurnValueState(TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication, TableTurnEffectState effectState, bool add, StateManager stateManager = null) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _valueApplication = valueApplication;
+        _effectState = effectState;
         _add = add;
     }
 
@@ -41,6 +43,7 @@ public class TableTurnValueState : TableTurnState
         }
 
         _valueApplication.SetValue(actualValue);
+        _effectState.ExitSubState();
     }
 
     public override void UpdateLogic()

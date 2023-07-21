@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb8e8aa4dc02fd147a9c2ecbe76d9418, type: 3}
+  m_Script: {fileID: 11500000, guid: af22e524342a28d47bb3e1a2992b789a, type: 3}
   m_Name: Add Custom Hours
   m_EditorClassIdentifier: 
   description: "Vous d\xE9cidez du nombre d'heures que gagne l'horloge."

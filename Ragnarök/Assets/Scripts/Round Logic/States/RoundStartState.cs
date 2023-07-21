@@ -16,6 +16,7 @@ public class RoundStartState : RoundState
         {
             player.SetOpponents(_roundManager.Players);
             player.SetPoints(_roundManager.PlayersStartPoints);
+            player.ResetContinuousEffects();
         }
 
         _roundManager.TableTurnManager.SetActivePlayers(_roundManager.Players);

@@ -1,18 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public abstract class Effect
 {
-    protected EffectsManager _effectsManager;
     protected Player _player;
     protected TableTurnEffectState _state;
 
     protected int _resolvedApplications;
 
-    public Effect(Player player, TableTurnEffectState state)
+    public Effect(Player sourcePlayer, TableTurnEffectState state)
     {
-        _player = player;
+        _player = sourcePlayer;
         _state = state;
 
         _resolvedApplications = 0;

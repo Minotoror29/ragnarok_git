@@ -57,15 +57,15 @@ public class TableTurnEffectState : TableTurnState
         _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player));
     }
 
-    public void EnterTargetSubState(TargettingPlayersEffect effect, int playersToTarget)
+    public void EnterTargetSubState(TargetPlayersApplication application, int playersToTarget)
     {
-        _subState = new TableTurnTargetState(_effectsManager, _tableTurnManager, _player, effect, this, playersToTarget);
+        _subState = new TableTurnTargetState(_tableTurnManager, _player, application, this, playersToTarget);
         _subState.Enter();
     }
 
     public void EnterValueSubState(CustomValueApplication application, bool add)
     {
-        _subState = new TableTurnValueState(_tableTurnManager, _player, application, add);
+        _subState = new TableTurnValueState(_tableTurnManager, _player, application, this, add);
         _subState.Enter();
     }
 

@@ -10,6 +10,8 @@ public abstract class ValueApplication
 
     protected int _value;
 
+    public int Value { get { return _value; } }
+
     public ValueApplication(Player player, Effect effect, TableTurnEffectState state)
     {
         _player = player;
@@ -18,8 +20,4 @@ public abstract class ValueApplication
     }
 
     public abstract void DetermineValue();
-    public int ReturnValue()
-    {
-        return _value;
-    }
 }

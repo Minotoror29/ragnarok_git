@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AddHoursEffect : Effect
+public class SetHourEffect : Effect
 {
     private ValueApplication _valueApplication;
 
-    public AddHoursEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplication) : base(sourcePlayer, state)
+    public SetHourEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplicationData) : base(sourcePlayer, state)
     {
-        _valueApplication = valueApplication.Application(sourcePlayer, this, _state);
+        _valueApplication = valueApplicationData.Application(sourcePlayer, this, state);
     }
 
     public override void Activate()
@@ -25,6 +25,6 @@ public class AddHoursEffect : Effect
 
     public override void Resolve(EffectsManager effectsManager)
     {
-        effectsManager.AddHours(_valueApplication.Value);
+        effectsManager.SetHour(_valueApplication.Value);
     }
 }
