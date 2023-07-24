@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: "Doctrine lib\xE9rale"
   m_EditorClassIdentifier: 
   cardName: "Doctrine lib\xE9rale"
-  effect1: {fileID: 11400000, guid: bb90deec16e8f6044b0c6a0ddbb88207, type: 2}
+  effect1: {fileID: 11400000, guid: 7511aed41afde7b4590e9ae9b03912ef, type: 2}
   effect2: {fileID: 11400000, guid: d83050392d648974bbfa45ca727fb23c, type: 2}
   vote: 0

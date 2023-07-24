@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: You +5P
   m_EditorClassIdentifier: 
   description: Vous gagnez 5 jetons
-  application: {fileID: 11400000, guid: 794c1fe1c89db194180cb6d694d047f6, type: 2}
-  points: 5
+  valueApplication: {fileID: 0}
+  playerApplication: {fileID: 0}

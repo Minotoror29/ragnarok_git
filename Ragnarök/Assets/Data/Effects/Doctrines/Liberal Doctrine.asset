@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d38a9c60385b1414883ef6b171b26fed, type: 3}
-  m_Name: Target Player -2P
+  m_Script: {fileID: 11500000, guid: 45d727705b51d0c4dbd1713984bd3c95, type: 3}
+  m_Name: Liberal Doctrine
   m_EditorClassIdentifier: 
-  description: "Un \xE9tat de votre choix perd 2P"
-  valueApplication: {fileID: 0}
-  playerApplication: {fileID: 0}
+  description: "Vous d\xE9cidez du nombre d\u2019heures que gagne l\u2019horloge"
+  add: 1

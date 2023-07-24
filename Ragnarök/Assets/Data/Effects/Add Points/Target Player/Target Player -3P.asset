@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Target Player -3P
   m_EditorClassIdentifier: 
   description: "Un \xE9tat de votre choix perd 3 jetons"
-  application: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}
-  points: -3
+  valueApplication: {fileID: 0}
+  playerApplication: {fileID: 0}

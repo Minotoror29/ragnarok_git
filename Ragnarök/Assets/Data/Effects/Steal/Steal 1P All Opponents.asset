@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Steal 1P All Opponents
   m_EditorClassIdentifier: 
   description: "Vous volez 1 jeton \xE0 chaque \xE9tat"
-  application: {fileID: 11400000, guid: 1a9c42becec5455499ee03cd4810df42, type: 2}
-  points: 1
+  playerApplication: {fileID: 0}
+  valueApplication: {fileID: 0}

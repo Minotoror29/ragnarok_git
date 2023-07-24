@@ -7,6 +7,8 @@ public abstract class Effect
 
     protected int _resolvedApplications;
 
+    protected ValueApplication _previousValueApplication;
+
     public Effect(Player sourcePlayer, TableTurnEffectState state)
     {
         _player = sourcePlayer;

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Set 6h
   m_EditorClassIdentifier: 
   description: "L'horloge passe \xE0 6h"
-  hour: 6
+  valueApplication: {fileID: 0}
