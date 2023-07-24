@@ -59,14 +59,9 @@ public class TableTurnManager : MonoBehaviour
 
     public void EliminatePlayer(Player player)
     {
-        _activePlayers.Remove(player);
-
-        foreach (Player p in _activePlayers)
+        if (_activePlayers.Contains(player))
         {
-            if (p != player)
-            {
-                p.RemoveOpponent(player);
-            }
+            _activePlayers.Remove(player);
         }
     }
 

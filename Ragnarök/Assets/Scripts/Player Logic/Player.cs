@@ -39,7 +39,10 @@ public class Player : MonoBehaviour, ISelectable
         _tableTurnManager = tableTurnManager;
 
         nameText.text = playerName;
+    }
 
+    public void SetToInactive()
+    {
         _stateManager.ChangeState(new PlayerInactiveState(_stateManager, this));
     }
 
@@ -113,6 +116,9 @@ public class Player : MonoBehaviour, ISelectable
 
     public void RemoveOpponent(Player player)
     {
-        _opponents.Remove(player);
+        if (_opponents.Contains(player))
+        {
+            _opponents.Remove(player);
+        }
     }
 }

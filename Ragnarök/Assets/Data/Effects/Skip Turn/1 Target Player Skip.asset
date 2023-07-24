@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 1 Target Player Skip
   m_EditorClassIdentifier: 
   description: "L'\xE9tat de votre choix ne peut pas jouer son prochain tour"
-  playerApplication: {fileID: 0}
+  playerApplication: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}

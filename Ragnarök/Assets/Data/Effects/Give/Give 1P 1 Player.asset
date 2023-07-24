@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Give 1P 1 Player
   m_EditorClassIdentifier: 
   description: "Vous donnez 1 jeton \xE0 un \xE9tat de votre choix"
-  valueApplication: {fileID: 0}
-  playerApplication: {fileID: 0}
+  valueApplication: {fileID: 11400000, guid: 18f100882cecd0d42ba6443d5a03507f, type: 2}
+  playerApplication: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}

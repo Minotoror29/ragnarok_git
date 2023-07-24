@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: You -4P
   m_EditorClassIdentifier: 
   description: Vous perdez 4 jetons
-  valueApplication: {fileID: 0}
-  playerApplication: {fileID: 0}
+  valueApplication: {fileID: 11400000, guid: 47d04be738f35994b901bf57216d97cf, type: 2}
+  playerApplication: {fileID: 11400000, guid: 794c1fe1c89db194180cb6d694d047f6, type: 2}

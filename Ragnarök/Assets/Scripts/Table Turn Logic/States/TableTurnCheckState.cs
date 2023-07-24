@@ -15,18 +15,32 @@ public class TableTurnCheckState : TableTurnState
     {
         _player.EndPlayerTurn();
 
-        if (_tableTurnManager.Clock.IsAtMidnight() ||
-            _tableTurnManager.ActivePlayers.Count == 1 ||
-            _tableTurnManager.ActivePlayers.Count == 0)
+        _tableTurnManager.ActivePlayers.Remove(_player);
+
+        if (!_tableTurnManager.RoundState.IsRoundOver())
         {
-            _tableTurnManager.RoundState.EndRound();
-        } else if (_player == _tableTurnManager.ActivePlayers[^1])
-        {
-            _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager));
-        } else
-        {
-            _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.GetNextPlayer(_player)));
+            if (_tableTurnManager.ActivePlayers.Count == 0)
+            {
+                _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager));
+            }
+            else
+            {
+                _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.ActivePlayers[0]));
+            }
         }
+
+        //if (_tableTurnManager.Clock.IsAtMidnight() ||
+        //    _tableTurnManager.ActivePlayers.Count == 1 ||
+        //    _tableTurnManager.ActivePlayers.Count == 0)
+        //{
+        //    _tableTurnManager.RoundState.EndRound();
+        //} else if (_player == _tableTurnManager.ActivePlayers[^1])
+        //{
+        //    _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager));
+        //} else
+        //{
+        //    _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.GetNextPlayer(_player)));
+        //}
     }
 
     public override void Exit()

@@ -32,10 +32,11 @@ public class TableTurnPlayingState : TableTurnState
         _tableTurnManager.SelectionManager.UpdateLogic();
     }
 
-    public override void SelectDeck(Card card)
+    public override void SelectDeck(Deck deck, Card card)
     {
-        base.SelectDeck(card);
+        base.SelectDeck(deck, card);
 
+        deck.DrawCard();
         _stateManager.ChangeState(new TableTurnCardState(_stateManager, _tableTurnManager, _player, card));
     }
 }

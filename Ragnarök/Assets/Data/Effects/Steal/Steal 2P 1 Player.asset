@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Steal 2P 1 Player
   m_EditorClassIdentifier: 
   description: "Vous volez 2 jetons \xE0 un \xE9tat de votre choix"
-  playerApplication: {fileID: 0}
-  valueApplication: {fileID: 0}
+  playerApplication: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}
+  valueApplication: {fileID: 11400000, guid: a77d294a6452eb544afc0195695fdae5, type: 2}

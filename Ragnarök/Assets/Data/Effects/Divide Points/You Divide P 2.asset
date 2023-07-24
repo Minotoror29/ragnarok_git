@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: You Divide P 2
   m_EditorClassIdentifier: 
   description: "Votre nombre de jetons est divis\xE9 par deux arrondi \xE0 l'inf\xE9rieur"
-  valueApplication: {fileID: 0}
-  playerApplication: {fileID: 0}
+  valueApplication: {fileID: 11400000, guid: a77d294a6452eb544afc0195695fdae5, type: 2}
+  playerApplication: {fileID: 11400000, guid: 794c1fe1c89db194180cb6d694d047f6, type: 2}

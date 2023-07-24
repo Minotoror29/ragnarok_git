@@ -10,8 +10,9 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private TableTurnManager tableTurnManager;
 
     [SerializeField] private Clock clock;
+    [SerializeField] private Deck deck;
 
-    private List<Player> _players;
+    private List<Player> _activePlayers;
     [SerializeField] private int playersStartPoints = 4;
 
     [SerializeField] private int maxTableTurns = 5;
@@ -21,7 +22,8 @@ public class RoundManager : MonoBehaviour
     public MatchRoundState MatchRoundState { get { return _matchState; } }
     public TableTurnManager TableTurnManager { get { return tableTurnManager; } }
     public Clock Clock { get { return clock; } }
-    public List<Player> Players { get { return _players; } }
+    public Deck Deck { get { return deck; } }
+    public List<Player> ActivePlayers { get { return _activePlayers; } }
     public int PlayersStartPoints { get { return playersStartPoints; } }
     public int MaxTableTurns { get { return maxTableTurns; } }
     public EndRoundDisplay EndRoundDisplay { get { return endRoundDisplay; } }
@@ -31,6 +33,7 @@ public class RoundManager : MonoBehaviour
         _stateManager = GetComponent<StateManager>();
 
         tableTurnManager.Initialize(players, clock);
+        deck.Initialize();
     }
 
     public void Updatelogic()
@@ -41,7 +44,11 @@ public class RoundManager : MonoBehaviour
     public void StartRound(MatchRoundState matchState, int roundNumber, List<Player> players)
     {
         _matchState = matchState;
-        _players = players;
+        _activePlayers = new();
+        foreach (Player player in players)
+        {
+            _activePlayers.Add(player);
+        }
 
         _stateManager.ChangeState(new RoundStartState(_stateManager, this, roundNumber));
     }
@@ -52,7 +59,7 @@ public class RoundManager : MonoBehaviour
 
         int highestPoints = 0;
 
-        foreach (Player player in _players)
+        foreach (Player player in _activePlayers)
         {
             if (player.Points > highestPoints)
             {
@@ -60,7 +67,7 @@ public class RoundManager : MonoBehaviour
             }
         }
 
-        foreach (Player player in _players)
+        foreach (Player player in _activePlayers)
         {
             if (player.Points == highestPoints)
             {
@@ -70,5 +77,24 @@ public class RoundManager : MonoBehaviour
         }
 
         return winners;
+    }
+
+    public void EliminatePlayers(List<Player> playersToEliminate)
+    {
+        foreach (Player player in playersToEliminate)
+        {
+            if (_activePlayers.Contains(player))
+            {
+                _activePlayers.Remove(player);
+                foreach (Player p in _activePlayers)
+                {
+                    if (p != player)
+                    {
+                        p.RemoveOpponent(player);
+                    }
+                }
+                tableTurnManager.EliminatePlayer(player);
+            }
+        }
     }
 }

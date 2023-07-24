@@ -11,15 +11,15 @@ public class RoundStartState : RoundState
     public override void Enter()
     {
         _roundManager.Clock.SetHour(0);
+        _roundManager.Deck.Shuffle();
 
-        foreach (Player player in _roundManager.Players)
+        foreach (Player player in _roundManager.ActivePlayers)
         {
-            player.SetOpponents(_roundManager.Players);
+            player.SetToInactive();
+            player.SetOpponents(_roundManager.ActivePlayers);
             player.SetPoints(_roundManager.PlayersStartPoints);
             player.ResetContinuousEffects();
         }
-
-        _roundManager.TableTurnManager.SetActivePlayers(_roundManager.Players);
 
         _stateManager.ChangeState(new RoundTableTurnState(_stateManager, _roundManager, _roundNumber, 0));
     }

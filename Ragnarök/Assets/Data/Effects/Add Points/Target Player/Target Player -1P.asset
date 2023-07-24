@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Target Player -1P
   m_EditorClassIdentifier: 
   description: "Le joueur cibl\xE9 perd 1 point"
-  valueApplication: {fileID: 0}
-  playerApplication: {fileID: 0}
+  valueApplication: {fileID: 11400000, guid: bb9c461cbdad3bb4b9d257c18f1180ef, type: 2}
+  playerApplication: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}

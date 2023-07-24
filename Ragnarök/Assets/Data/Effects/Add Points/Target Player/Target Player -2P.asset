@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Target Player -2P
   m_EditorClassIdentifier: 
   description: "Un \xE9tat de votre choix perd 2P"
-  valueApplication: {fileID: 0}
-  playerApplication: {fileID: 0}
+  valueApplication: {fileID: 11400000, guid: 86e3277dffddb5c419b33ca2de52e266, type: 2}
+  playerApplication: {fileID: 11400000, guid: 9f0e9e537bf76db4eb08b879504e10c3, type: 2}
