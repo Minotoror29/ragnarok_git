@@ -11,7 +11,7 @@ public class RoundStartState : RoundState
     public override void Enter()
     {
         _roundManager.Clock.SetHour(0);
-        _roundManager.Deck.Shuffle();
+        _roundManager.Deck.PutCardsBack();
 
         foreach (Player player in _roundManager.ActivePlayers)
         {

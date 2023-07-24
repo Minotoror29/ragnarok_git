@@ -659,7 +659,7 @@ MonoBehaviour:
   clock: {fileID: 969296271}
   deck: {fileID: 1430095038}
   playersStartPoints: 4
-  maxTableTurns: 2
+  maxTableTurns: 10
   endRoundDisplay: {fileID: 1654069833}
 --- !u!4 &441064390
 Transform:
@@ -3466,6 +3466,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9e2392707c8f054e8127a51309303e1, type: 2}
   - {fileID: 11400000, guid: e93fe55e188cd7d4dbba0ddcc5ddec8d, type: 2}
   - {fileID: 11400000, guid: efc326d337907d7439c9d39e3cdbacfb, type: 2}
+  _graveyard: []
 --- !u!1 &1451001602
 GameObject:
   m_ObjectHideFlags: 0

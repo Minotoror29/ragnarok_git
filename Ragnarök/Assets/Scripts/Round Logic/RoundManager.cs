@@ -33,7 +33,6 @@ public class RoundManager : MonoBehaviour
         _stateManager = GetComponent<StateManager>();
 
         tableTurnManager.Initialize(players, clock);
-        deck.Initialize();
     }
 
     public void Updatelogic()
