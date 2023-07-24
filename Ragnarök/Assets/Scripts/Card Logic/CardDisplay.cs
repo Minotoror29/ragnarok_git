@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    private TableTurnManager _tableTurnManager;
+    private RoundManager _roundManager;
     [SerializeField] private EffectsManager effectsManager;
     private Player _player;
     private TableTurnCardState _state;
@@ -26,9 +26,9 @@ public class CardDisplay : MonoBehaviour
     private List<Player> _totalPlayers;
     private int _votingPlayers;
 
-    public void Initialize(TableTurnManager tableTurnManager)
+    public void Initialize(RoundManager roundManager)
     {
-        _tableTurnManager = tableTurnManager;
+        _roundManager = roundManager;
     }
 
     public void SetCard(Player player, Card card, bool opponentsVote, TableTurnCardState state)
@@ -36,12 +36,14 @@ public class CardDisplay : MonoBehaviour
         _player = player;
         _state = state;
         _card = card;
-        _totalPlayers = _tableTurnManager.ActivePlayers;
+        _totalPlayers = _roundManager.ActivePlayers;
 
         cardName.text = card.name.ToUpper();
         cardEffect.text = card.effect1.description + " / " + card.effect2.description;
 
         totalVotes = new List<Image>();
+        _playVotes = 0;
+        _discardVotes = 0;
 
         if (_card.vote || opponentsVote)
         {
@@ -64,7 +66,6 @@ public class CardDisplay : MonoBehaviour
             Vote(true);
         } else
         {
-            //_player.PlayCard(effectsManager, _card);
             _state.PlayCard(effectsManager, _card);
         }
     }
@@ -76,7 +77,6 @@ public class CardDisplay : MonoBehaviour
             Vote(false);
         } else
         {
-            //_player.EndPlayerTurn();
             _state.DiscardCard();
         }
     }
@@ -101,13 +101,11 @@ public class CardDisplay : MonoBehaviour
         {
             if (_playVotes > _discardVotes)
             {
-                //_player.PlayCard(effectsManager, _card);
                 _state.PlayCard(effectsManager, _card);
                 _voting = false;
                 ResetVotes();
             } else if (_discardVotes > _playVotes)
             {
-                //_player.EndPlayerTurn();
                 _state.DiscardCard();
                 _voting = false;
                 ResetVotes();

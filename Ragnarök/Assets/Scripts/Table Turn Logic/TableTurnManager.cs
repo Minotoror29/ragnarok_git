@@ -12,17 +12,17 @@ public class TableTurnManager : MonoBehaviour
 
     private Clock _clock;
 
-    [SerializeField] private CardDisplay cardDisplay;
+    private CardDisplay _cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
 
     public RoundTableTurnState RoundState { get { return _roundState; } }
     public SelectionManager SelectionManager { get { return selectionManager; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
     public Clock Clock { get { return _clock; } }
-    public CardDisplay CardDisplay { get { return cardDisplay; } }
+    public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
 
-    public void Initialize(List<Player> players, Clock clock)
+    public void Initialize(List<Player> players, Clock clock, CardDisplay cardDisplay)
     {
         _stateManager = GetComponent<StateManager>();
 
@@ -33,7 +33,7 @@ public class TableTurnManager : MonoBehaviour
 
         _clock = clock;
 
-        cardDisplay.Initialize(this);
+        _cardDisplay = cardDisplay;
     }
 
     public void UpdateLogic()

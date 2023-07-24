@@ -12,6 +12,8 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private Clock clock;
     [SerializeField] private Deck deck;
 
+    [SerializeField] private CardDisplay cardDisplay;
+
     private List<Player> _activePlayers;
     [SerializeField] private int playersStartPoints = 4;
 
@@ -32,7 +34,8 @@ public class RoundManager : MonoBehaviour
     {
         _stateManager = GetComponent<StateManager>();
 
-        tableTurnManager.Initialize(players, clock);
+        cardDisplay.Initialize(this);
+        tableTurnManager.Initialize(players, clock, cardDisplay);
     }
 
     public void Updatelogic()
