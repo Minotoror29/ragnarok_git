@@ -32,7 +32,7 @@ public class MatchManager : MonoBehaviour
         _stateManager = GetComponent<StateManager>();
         roundManager.Initialize(players);
 
-        StartMatch();
+        StartMatch(true);
     }
 
     public void UpdateLogic()
@@ -40,9 +40,9 @@ public class MatchManager : MonoBehaviour
         _stateManager.UpdateLogic();
     }
 
-    private void StartMatch()
+    public void StartMatch(bool firstMatch)
     {
-        _stateManager.ChangeState(new MatchStartState(_stateManager, this));
+        _stateManager.ChangeState(new MatchStartState(_stateManager, this, firstMatch));
     }
 
     public List<Player> DetermineMatchWinners(bool ragnarok)
@@ -115,6 +115,38 @@ public class MatchManager : MonoBehaviour
         foreach (Player player in players)
         {
             if (player.Points == minimumPoints)
+            {
+                losers.Add(player);
+            }
+        }
+
+        return GetRandomPlayer(losers);
+    }
+
+    public Player GetPlayerWhoWonLessRounds()
+    {
+        List<Player> losers = new();
+
+        int minimumRoundsWon = 0;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (i == 0)
+            {
+                minimumRoundsWon = players[i].RoundsWon;
+            }
+            else
+            {
+                if (players[i].RoundsWon < minimumRoundsWon)
+                {
+                    minimumRoundsWon = players[i].RoundsWon;
+                }
+            }
+        }
+
+        foreach (Player player in players)
+        {
+            if (player.RoundsWon == minimumRoundsWon)
             {
                 losers.Add(player);
             }

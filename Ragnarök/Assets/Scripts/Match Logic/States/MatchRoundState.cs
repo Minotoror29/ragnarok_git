@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class MatchRoundState : MatchState
 {
+    private Player _startingPlayer;
     private int _currentRound;
 
-    public MatchRoundState(StateManager stateManager, MatchManager matchManager, int previousRoundIndex) : base(stateManager, matchManager)
+    public MatchRoundState(StateManager stateManager, MatchManager matchManager, Player startingPlayer, int previousRoundIndex) : base(stateManager, matchManager)
     {
+        _startingPlayer = startingPlayer;
         _currentRound = previousRoundIndex + 1;
     }
 
@@ -15,7 +17,7 @@ public class MatchRoundState : MatchState
     {
         if (_currentRound == 1)
         {
-            _matchManager.RoundManager.StartRound(this, _currentRound, _matchManager.DeterminePlayerOrder(_matchManager.GetRandomPlayer(_matchManager.Players)));
+            _matchManager.RoundManager.StartRound(this, _currentRound, _matchManager.DeterminePlayerOrder(_startingPlayer));
         } else if (_currentRound > 1)
         {
             _matchManager.RoundManager.StartRound(this, _currentRound, _matchManager.DeterminePlayerOrder(_matchManager.GetPlayerWithLessPoints()));
@@ -35,7 +37,7 @@ public class MatchRoundState : MatchState
     {
         if (_currentRound < _matchManager.MaxRounds)
         {
-            _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, _currentRound));
+            _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, _startingPlayer, _currentRound));
         } else if (_currentRound == _matchManager.MaxRounds)
         {
             _stateManager.ChangeState(new MatchEndState(_stateManager, _matchManager, ragnarok));

@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class MatchStartState : MatchState
 {
-    public MatchStartState(StateManager stateManager, MatchManager matchManager) : base(stateManager, matchManager)
+    private bool _firstMatch;
+
+    public MatchStartState(StateManager stateManager, MatchManager matchManager, bool firstMatch) : base(stateManager, matchManager)
     {
+        _firstMatch = firstMatch;
     }
 
     public override void Enter()
     {
-        _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, 0));
+        Player startingPlayer = null;
+
+        if (_firstMatch)
+        {
+            startingPlayer = _matchManager.GetRandomPlayer(_matchManager.Players);
+        } else
+        {
+            startingPlayer = _matchManager.GetPlayerWhoWonLessRounds();
+        }
+
+        foreach (var player in _matchManager.Players)
+        {
+            player.RoundsWon = 0;
+        }
+
+        _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, startingPlayer, 0));
     }
 
     public override void Exit()

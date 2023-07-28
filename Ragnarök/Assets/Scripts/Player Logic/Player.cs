@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, ISelectable
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public List<Player> Opponents { get { return _opponents; } }
-    public int RoundsWon { get { return _roundsWon; } }
+    public int RoundsWon { get { return _roundsWon; } set { _roundsWon = value; } }
     public int Points { get { return _points; } }
     public TextMeshProUGUI NameText { get { return nameText; } }
     public string PlayerName { get { return playerName; } }
