@@ -55,26 +55,29 @@ public class RoundManager : MonoBehaviour
         _stateManager.ChangeState(new RoundStartState(_stateManager, this, roundNumber));
     }
 
-    public List<Player> DetermineRoundWinners()
+    public List<Player> DetermineRoundWinners(bool ragnarok)
     {
         List<Player> winners = new();
 
-        int highestPoints = 0;
-
-        foreach (Player player in _activePlayers)
+        if (!ragnarok)
         {
-            if (player.Points > highestPoints)
+            int highestPoints = 0;
+
+            foreach (Player player in _activePlayers)
             {
-                highestPoints = player.Points;
+                if (player.Points > highestPoints)
+                {
+                    highestPoints = player.Points;
+                }
             }
-        }
 
-        foreach (Player player in _activePlayers)
-        {
-            if (player.Points == highestPoints)
+            foreach (Player player in _activePlayers)
             {
-                winners.Add(player);
-                player.WinRound();
+                if (player.Points == highestPoints)
+                {
+                    winners.Add(player);
+                    player.WinRound();
+                }
             }
         }
 

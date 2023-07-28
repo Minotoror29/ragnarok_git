@@ -13,6 +13,8 @@ public class RoundTableTurnState : RoundState
 
     public override void Enter()
     {
+        Debug.Log("Table Turn " + _currentTableTurn);
+
         _roundManager.TableTurnManager.SetActivePlayers(_roundManager.ActivePlayers);
         _roundManager.TableTurnManager.StartTableTurn(this);
     }
@@ -30,7 +32,7 @@ public class RoundTableTurnState : RoundState
     {
         if (_currentTableTurn == _roundManager.MaxTableTurns)
         {
-            _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber));
+            _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber, false));
         } else
         {
             _stateManager.ChangeState(new RoundTableTurnState(_stateManager, _roundManager, _roundNumber, _currentTableTurn));
@@ -50,12 +52,17 @@ public class RoundTableTurnState : RoundState
         _roundManager.EliminatePlayers(playersToEliminate);
 
         if (_roundManager.Clock.IsAtMidnight() ||
-            _roundManager.ActivePlayers.Count == 1 ||
             _roundManager.ActivePlayers.Count == 0)
         {
-            _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber));
+            _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber, true));
             return true;
-        } else
+        }
+        else if (_roundManager.ActivePlayers.Count == 1)
+        {
+            _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber, false));
+            return true;
+        }
+        else
         {
             return false;
         }

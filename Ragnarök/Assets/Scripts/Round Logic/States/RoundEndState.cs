@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class RoundEndState : RoundState
 {
-    public RoundEndState(StateManager stateManager, RoundManager roundManager, int roundNumber) : base(stateManager, roundManager, roundNumber)
+    private bool _ragnarok;
+
+    public RoundEndState(StateManager stateManager, RoundManager roundManager, int roundNumber, bool ragnarok) : base(stateManager, roundManager, roundNumber)
     {
+        _ragnarok = ragnarok;
     }
 
     public override void Enter()
@@ -13,7 +16,7 @@ public class RoundEndState : RoundState
         _roundManager.EndRoundDisplay.gameObject.SetActive(true);
         _roundManager.EndRoundDisplay.SetState(this);
         _roundManager.EndRoundDisplay.SetTitle(_roundNumber);
-        _roundManager.EndRoundDisplay.SetWinnerText(_roundManager.DetermineRoundWinners());
+        _roundManager.EndRoundDisplay.SetWinnerText(_roundManager.DetermineRoundWinners(_ragnarok));
     }
 
     public override void Exit()

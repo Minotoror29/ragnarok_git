@@ -100,7 +100,7 @@ public class Player : MonoBehaviour, ISelectable
 
     public void EndPlayerTurn()
     {
-        _mustSkipNextTurn = false;
+        ResetContinuousEffects();
         _stateManager.EndPlayerTurn();
     }
 
