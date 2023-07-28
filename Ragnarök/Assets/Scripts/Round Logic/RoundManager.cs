@@ -20,6 +20,7 @@ public class RoundManager : MonoBehaviour
     [SerializeField] private int maxTableTurns = 5;
 
     [SerializeField] private EndRoundDisplay endRoundDisplay;
+    [SerializeField] private TableTurnsDisplay tableTurnsDisplay;
 
     public MatchRoundState MatchRoundState { get { return _matchState; } }
     public TableTurnManager TableTurnManager { get { return tableTurnManager; } }
@@ -29,6 +30,7 @@ public class RoundManager : MonoBehaviour
     public int PlayersStartPoints { get { return playersStartPoints; } }
     public int MaxTableTurns { get { return maxTableTurns; } }
     public EndRoundDisplay EndRoundDisplay { get { return endRoundDisplay; } }
+    public TableTurnsDisplay TableTurnsDisplay { get { return tableTurnsDisplay; } }
 
     public void Initialize(List<Player> players)
     {

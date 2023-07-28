@@ -13,10 +13,9 @@ public class RoundTableTurnState : RoundState
 
     public override void Enter()
     {
-        Debug.Log("Table Turn " + _currentTableTurn);
-
         _roundManager.TableTurnManager.SetActivePlayers(_roundManager.ActivePlayers);
         _roundManager.TableTurnManager.StartTableTurn(this);
+        _roundManager.TableTurnsDisplay.StartTableTurn(_currentTableTurn);
     }
 
     public override void Exit()
