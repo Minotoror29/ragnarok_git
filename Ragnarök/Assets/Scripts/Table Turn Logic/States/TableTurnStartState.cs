@@ -12,7 +12,7 @@ public class TableTurnStartState : TableTurnState
     {
         _tableTurnManager.Clock.AddHours(1);
 
-        _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.ActivePlayers[0]));
+        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
     }
 
     public override void Exit()

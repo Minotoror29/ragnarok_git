@@ -54,7 +54,10 @@ public class TableTurnEffectState : TableTurnState
         _effect1.Resolve(_effectsManager);
         _effect2.Resolve(_effectsManager);
 
-        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player));
+
+        _player.EndPlayerTurn();
+        _tableTurnManager.ActivePlayers.Remove(_player);
+        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
     }
 
     public void EnterTargetSubState(TargetPlayersApplication application, int playersToTarget)

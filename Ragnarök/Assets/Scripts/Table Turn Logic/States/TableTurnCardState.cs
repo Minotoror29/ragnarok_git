@@ -37,6 +37,8 @@ public class TableTurnCardState : TableTurnState
 
     public void DiscardCard()
     {
-        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player));
+        _player.EndPlayerTurn();
+        _tableTurnManager.ActivePlayers.Remove(_player);
+        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
     }
 }
