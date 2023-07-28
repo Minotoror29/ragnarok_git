@@ -31,14 +31,14 @@ public class MatchRoundState : MatchState
         _matchManager.RoundManager.Updatelogic();
     }
 
-    public void RoundEnd()
+    public void RoundEnd(bool ragnarok)
     {
         if (_currentRound < _matchManager.MaxRounds)
         {
             _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, _currentRound));
         } else if (_currentRound == _matchManager.MaxRounds)
         {
-            _stateManager.ChangeState(new MatchEndState(_stateManager, _matchManager));
+            _stateManager.ChangeState(new MatchEndState(_stateManager, _matchManager, ragnarok));
         }
     }
 }

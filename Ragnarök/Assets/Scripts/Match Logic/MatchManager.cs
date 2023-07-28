@@ -45,25 +45,28 @@ public class MatchManager : MonoBehaviour
         _stateManager.ChangeState(new MatchStartState(_stateManager, this));
     }
 
-    public List<Player> DetermineMatchWinners()
+    public List<Player> DetermineMatchWinners(bool ragnarok)
     {
         List<Player> winners = new();
 
-        int highestPoints = 0;
-
-        foreach (Player player in players)
+        if (!ragnarok)
         {
-            if (player.RoundsWon > highestPoints)
+            int highestPoints = 0;
+
+            foreach (Player player in players)
             {
-                highestPoints = player.RoundsWon;
+                if (player.RoundsWon > highestPoints)
+                {
+                    highestPoints = player.RoundsWon;
+                }
             }
-        }
 
-        foreach (Player player in players)
-        {
-            if (player.RoundsWon == highestPoints)
+            foreach (Player player in players)
             {
-                winners.Add(player);
+                if (player.RoundsWon == highestPoints)
+                {
+                    winners.Add(player);
+                }
             }
         }
 

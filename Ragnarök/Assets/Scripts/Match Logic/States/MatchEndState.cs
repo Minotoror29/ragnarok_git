@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class MatchEndState : MatchState
 {
-    public MatchEndState(StateManager stateManager, MatchManager matchManager) : base(stateManager, matchManager)
+    private bool _ragnarok;
+
+    public MatchEndState(StateManager stateManager, MatchManager matchManager, bool ragnarok) : base(stateManager, matchManager)
     {
         _matchManager = matchManager;
+        _ragnarok = ragnarok;
     }
 
     public override void Enter()
     {
         _matchManager.EndMatchDisplay.gameObject.SetActive(true);
-        _matchManager.EndMatchDisplay.SetWinnersText(_matchManager.DetermineMatchWinners());
+        _matchManager.EndMatchDisplay.SetWinnersText(_matchManager.DetermineMatchWinners(_ragnarok));
     }
 
     public override void Exit()

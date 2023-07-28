@@ -31,6 +31,6 @@ public class RoundEndState : RoundState
     public void NextRound()
     {
         _roundManager.EndRoundDisplay.gameObject.SetActive(false);
-        _roundManager.MatchRoundState.RoundEnd();
+        _roundManager.MatchRoundState.RoundEnd(_ragnarok);
     }
 }
