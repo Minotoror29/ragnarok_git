@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: Espionnage industriel
+  m_Name: Bombardements
   m_EditorClassIdentifier: 
-  cardName: Espionnage industriel
-  effect1: {fileID: 11400000, guid: 841b20dbc1deed54c8e5be1ead3b51e8, type: 2}
-  effect2: {fileID: 11400000, guid: f40e30f085bc01841a9f60a32cbe7c0c, type: 2}
+  cardName: Bombardements
+  effect1: {fileID: 11400000, guid: 3b03f6bd47077104da34cbae84ad2907, type: 2}
+  effect2: {fileID: 11400000, guid: 8fb3562ca54cce4449b861d9b0189cbd, type: 2}
+  duplicates: 4
   vote: 0

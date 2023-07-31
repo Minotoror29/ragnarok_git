@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: "Mesures d'aust\xE9rit\xE9"
+  m_Name: Industrialisation
   m_EditorClassIdentifier: 
-  cardName: "Mesures d'aust\xE9rit\xE9"
-  effect1: {fileID: 11400000, guid: a05864c5ea3b02d4cb94eb6d9dafbf02, type: 2}
-  effect2: {fileID: 11400000, guid: 2a9b2cefa08d0bc4eae5e32bb275c1d3, type: 2}
+  cardName: Industrialisation
+  effect1: {fileID: 11400000, guid: 841b20dbc1deed54c8e5be1ead3b51e8, type: 2}
+  effect2: {fileID: 11400000, guid: c8c7eb2ab93c5444bbbef349cb11056f, type: 2}
+  duplicates: 3
   vote: 0

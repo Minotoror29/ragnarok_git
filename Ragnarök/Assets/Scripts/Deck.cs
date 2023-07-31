@@ -7,7 +7,21 @@ public class Deck : MonoBehaviour, ISelectable
     [SerializeField] private TableTurnManager tableTurnManager;
 
     [SerializeField] private List<Card> cards;
-    public List<Card> _graveyard;
+    private List<Card> _graveyard;
+
+    public void Initialize()
+    {
+        cards = new();
+        _graveyard = new();
+
+        foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
+        {
+            for (int i = 0; i < card.duplicates; i++)
+            {
+                cards.Add(card);
+            }
+        }
+    }
 
     public void Select(TableTurnState state)
     {

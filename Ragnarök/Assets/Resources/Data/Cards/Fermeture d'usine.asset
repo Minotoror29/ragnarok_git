@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: "Guerre \xE9clair"
+  m_Name: Fermeture d'usine
   m_EditorClassIdentifier: 
-  cardName: "Guerre \xE9clair"
-  effect1: {fileID: 11400000, guid: e5bac23a6c957ac48a5f010341714b10, type: 2}
-  effect2: {fileID: 11400000, guid: c4753d9687a953443be4929d2737ecd7, type: 2}
+  cardName: Fermeture d'usine
+  effect1: {fileID: 11400000, guid: b5e7bdd1647ca7140ba3974cab12e17c, type: 2}
+  effect2: {fileID: 11400000, guid: d5d0a6e5d566fb7479c7c736028de28d, type: 2}
+  duplicates: 4
   vote: 0

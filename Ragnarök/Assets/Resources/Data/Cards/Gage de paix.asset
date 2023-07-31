@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: "Doctrine lib\xE9rale"
+  m_Name: Gage de paix
   m_EditorClassIdentifier: 
-  cardName: "Doctrine lib\xE9rale"
-  effect1: {fileID: 11400000, guid: 7511aed41afde7b4590e9ae9b03912ef, type: 2}
-  effect2: {fileID: 11400000, guid: d83050392d648974bbfa45ca727fb23c, type: 2}
+  cardName: Gage de paix
+  effect1: {fileID: 11400000, guid: b5e7bdd1647ca7140ba3974cab12e17c, type: 2}
+  effect2: {fileID: 11400000, guid: 67e86dfd34957ce42a45e602afde9941, type: 2}
+  duplicates: 4
   vote: 0

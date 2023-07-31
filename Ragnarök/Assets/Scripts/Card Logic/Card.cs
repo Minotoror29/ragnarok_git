@@ -8,5 +8,6 @@ public class Card : ScriptableObject
     public string cardName;
     public EffectData effect1;
     public EffectData effect2;
+    public int duplicates;
     public bool vote = false;
 }

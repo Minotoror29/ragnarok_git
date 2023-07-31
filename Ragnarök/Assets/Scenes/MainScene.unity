@@ -4207,26 +4207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tableTurnManager: {fileID: 179236478}
-  cards:
-  - {fileID: 11400000, guid: bb066f0058bbda04ca8d5668239d41ce, type: 2}
-  - {fileID: 11400000, guid: d98a55d5bf9bdb947928853e386f4629, type: 2}
-  - {fileID: 11400000, guid: f38c321a17a756f44b66dbdddcad7bac, type: 2}
-  - {fileID: 11400000, guid: 3fbe0f4979709e64c9d854d5b3c54234, type: 2}
-  - {fileID: 11400000, guid: 19c37f52370962f4b8139201d5253735, type: 2}
-  - {fileID: 11400000, guid: 3115dea206d471d4bb280f5113b9063d, type: 2}
-  - {fileID: 11400000, guid: da36eeb322ae2044fa9196bd1ddc4a36, type: 2}
-  - {fileID: 11400000, guid: 3df971213fcf162498bc40072500435e, type: 2}
-  - {fileID: 11400000, guid: 31f45e50a81c8f740bceadf1acb82ae6, type: 2}
-  - {fileID: 11400000, guid: df7caa2ce54f8204aa518363a3889db2, type: 2}
-  - {fileID: 11400000, guid: 5e3366214bdc3704c9921115624e3695, type: 2}
-  - {fileID: 11400000, guid: 8d78821bf0012314a8fbd484ec94761b, type: 2}
-  - {fileID: 11400000, guid: 3fa771db4572a83448f807a0c03edc56, type: 2}
-  - {fileID: 11400000, guid: 89997fe9a5e0d444faf178a3d21cf6ff, type: 2}
-  - {fileID: 11400000, guid: 124b96bbcde205945a543a485c9a1c52, type: 2}
-  - {fileID: 11400000, guid: d4ff2ce5c581cbd4aa74d1c045eef2fd, type: 2}
-  - {fileID: 11400000, guid: c9e2392707c8f054e8127a51309303e1, type: 2}
-  - {fileID: 11400000, guid: e93fe55e188cd7d4dbba0ddcc5ddec8d, type: 2}
-  - {fileID: 11400000, guid: efc326d337907d7439c9d39e3cdbacfb, type: 2}
+  cards: []
   _graveyard: []
 --- !u!1 &1451001602
 GameObject:

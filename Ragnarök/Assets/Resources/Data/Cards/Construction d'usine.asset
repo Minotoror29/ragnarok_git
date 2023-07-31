@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: Accord Mondial
+  m_Name: Construction d'usine
   m_EditorClassIdentifier: 
-  cardName: Accord Mondial
-  effect1: {fileID: 11400000, guid: 7fb889c14e5d1e84fb657ac690620a25, type: 2}
-  effect2: {fileID: 11400000, guid: 3ad9162ba1dcccc428e7a97c8a11a799, type: 2}
-  vote: 1
+  cardName: Construction d'usine
+  effect1: {fileID: 11400000, guid: 3b03f6bd47077104da34cbae84ad2907, type: 2}
+  effect2: {fileID: 11400000, guid: 571d504c714a49345897713f8f649c71, type: 2}
+  duplicates: 4
+  vote: 0

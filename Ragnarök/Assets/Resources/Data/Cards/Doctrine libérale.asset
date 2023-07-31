@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47795a65e58273848b2dc2c8e9e0789e, type: 3}
-  m_Name: Construction d'usine
+  m_Name: "Doctrine lib\xE9rale"
   m_EditorClassIdentifier: 
-  cardName: Construction d'usine
-  effect1: {fileID: 11400000, guid: 3b03f6bd47077104da34cbae84ad2907, type: 2}
-  effect2: {fileID: 11400000, guid: 571d504c714a49345897713f8f649c71, type: 2}
+  cardName: "Doctrine lib\xE9rale"
+  effect1: {fileID: 11400000, guid: 7511aed41afde7b4590e9ae9b03912ef, type: 2}
+  effect2: {fileID: 11400000, guid: d83050392d648974bbfa45ca727fb23c, type: 2}
+  duplicates: 1
   vote: 0

@@ -38,6 +38,7 @@ public class RoundManager : MonoBehaviour
 
         cardDisplay.Initialize(this);
         tableTurnManager.Initialize(players, clock, cardDisplay);
+        deck.Initialize();
     }
 
     public void Updatelogic()
