@@ -16,6 +16,7 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardEffect;
 
     private bool _voting = false;
+    private bool _opponentsVote = false;
     [SerializeField] private Transform playVotesParent;
     [SerializeField] private Image playVote;
     private int _playVotes = 0;
@@ -41,6 +42,7 @@ public class CardDisplay : MonoBehaviour
         cardName.text = card.name.ToUpper();
         cardEffect.text = card.effect1.description + " / " + card.effect2.description;
 
+        _opponentsVote = opponentsVote;
         totalVotes = new List<Image>();
         _playVotes = 0;
         _discardVotes = 0;
@@ -66,7 +68,7 @@ public class CardDisplay : MonoBehaviour
             Vote(true);
         } else
         {
-            _state.PlayCard(effectsManager, _card);
+            _state.PlayCard(effectsManager, _card, _opponentsVote);
         }
     }
 
@@ -101,13 +103,15 @@ public class CardDisplay : MonoBehaviour
         {
             if (_playVotes > _discardVotes)
             {
-                _state.PlayCard(effectsManager, _card);
+                _state.PlayCard(effectsManager, _card, _opponentsVote);
                 _voting = false;
+                _opponentsVote = false;
                 ResetVotes();
             } else if (_discardVotes > _playVotes)
             {
                 _state.DiscardCard();
                 _voting = false;
+                _opponentsVote = false;
                 ResetVotes();
             } else if (_playVotes == _discardVotes)
             {

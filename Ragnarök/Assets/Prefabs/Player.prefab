@@ -152,6 +152,8 @@ MonoBehaviour:
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
   playerName: 
+  targetVotesParent: {fileID: 0}
+  targetVote: {fileID: 0}
 --- !u!1 &1852274133704180559
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +249,69 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!1 &3277842528238536439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5837883273586246441}
+  - component: {fileID: 8276198221141431555}
+  m_Layer: 0
+  m_Name: Target Votes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5837883273586246441
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277842528238536439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4471891183479666110}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1.25}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8276198221141431555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277842528238536439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: -99.25
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &4679592699611386922
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +345,7 @@ RectTransform:
   m_Children:
   - {fileID: 1081778911}
   - {fileID: 554464367506602341}
+  - {fileID: 5837883273586246441}
   m_Father: {fileID: 8152492321957448888}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -572,6 +638,8 @@ MonoBehaviour:
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
   playerName: 
+  targetVotesParent: {fileID: 0}
+  targetVote: {fileID: 0}
 --- !u!1 &6599593704875325278
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +692,8 @@ MonoBehaviour:
   pointsText: {fileID: 6080182821959348599}
   nameText: {fileID: 1081778912}
   playerName: Player
+  targetVotesParent: {fileID: 5837883273586246441}
+  targetVote: {fileID: 7732284784694720694, guid: d5133a1c5970a254a825bb203e4c55b5, type: 3}
 --- !u!65 &4931088371418214431
 BoxCollider:
   m_ObjectHideFlags: 0

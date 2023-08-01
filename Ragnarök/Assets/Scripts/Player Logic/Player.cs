@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, ISelectable
 {
@@ -23,6 +24,10 @@ public class Player : MonoBehaviour, ISelectable
     private bool _mustSkipNextTurn = false;
     private bool _opponentsVoteForCard = false;
 
+    [SerializeField] private Transform targetVotesParent;
+    [SerializeField] private Image targetVote;
+    private List<Image> _targetVotes;
+
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public List<Player> Opponents { get { return _opponents; } }
@@ -39,6 +44,8 @@ public class Player : MonoBehaviour, ISelectable
         _tableTurnManager = tableTurnManager;
 
         nameText.text = playerName;
+
+        _targetVotes = new();
     }
 
     public void SetToInactive()
@@ -100,7 +107,7 @@ public class Player : MonoBehaviour, ISelectable
 
     public void EndPlayerTurn()
     {
-        ResetContinuousEffects();
+        _mustSkipNextTurn = false;
         _stateManager.EndPlayerTurn();
     }
 
@@ -120,5 +127,21 @@ public class Player : MonoBehaviour, ISelectable
         {
             _opponents.Remove(player);
         }
+    }
+
+    public void TargetVote()
+    {
+        Image newVote = Instantiate(targetVote, targetVotesParent);
+        _targetVotes.Add(newVote);
+    }
+
+    public void ClearTargetVotes()
+    {
+        foreach (Image vote in _targetVotes)
+        {
+            Destroy(vote);
+        }
+
+        _targetVotes.Clear();
     }
 }

@@ -15,7 +15,9 @@ public class TableTurnEffectState : TableTurnState
 
     private TableTurnState _subState;
 
-    public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, EffectData effect1, EffectData effect2, EffectsManager effectsManager) : base(stateManager, tableTurnManager)
+    private bool _opponentsVote = false;
+
+    public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote) : base(stateManager, tableTurnManager)
     {
         _player = player;
 
@@ -23,6 +25,8 @@ public class TableTurnEffectState : TableTurnState
         _effect2 = effect2.Effect(player, this);
 
         _effectsManager = effectsManager;
+
+        _opponentsVote = opponentsVote;
     }
 
     public override void Enter()
@@ -62,7 +66,13 @@ public class TableTurnEffectState : TableTurnState
 
     public void EnterTargetSubState(TargetPlayersApplication application, int playersToTarget)
     {
-        _subState = new TableTurnTargetState(_tableTurnManager, _player, application, this, playersToTarget);
+        if (!_opponentsVote)
+        {
+            _subState = new TableTurnTargetState(_tableTurnManager, _player, application, this, playersToTarget);
+        } else
+        {
+            _subState = new TableTurnOpponentsTargetState(_tableTurnManager, _player, application, this);
+        }
         _subState.Enter();
     }
 

@@ -30,9 +30,9 @@ public class TableTurnCardState : TableTurnState
     {
     }
 
-    public void PlayCard(EffectsManager effectsManager, Card card)
+    public void PlayCard(EffectsManager effectsManager, Card card, bool opponentsVote)
     {
-        _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player, card.effect1, card.effect2, effectsManager));
+        _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player, card.effect1, card.effect2, effectsManager, opponentsVote));
     }
 
     public void DiscardCard()

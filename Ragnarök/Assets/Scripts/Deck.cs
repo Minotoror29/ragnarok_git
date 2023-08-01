@@ -11,16 +11,16 @@ public class Deck : MonoBehaviour, ISelectable
 
     public void Initialize()
     {
-        cards = new();
+        //cards = new();
         _graveyard = new();
 
-        foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
-        {
-            for (int i = 0; i < card.duplicates; i++)
-            {
-                cards.Add(card);
-            }
-        }
+        //foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
+        //{
+        //    for (int i = 0; i < card.duplicates; i++)
+        //    {
+        //        cards.Add(card);
+        //    }
+        //}
     }
 
     public void Select(TableTurnState state)
@@ -62,7 +62,7 @@ public class Deck : MonoBehaviour, ISelectable
             }
         }
 
-        Shuffle();
+        //Shuffle();
 
         _graveyard = new();
     }
