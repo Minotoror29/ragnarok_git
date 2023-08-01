@@ -28,6 +28,8 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private Image targetVote;
     private List<Image> _targetVotes;
 
+    [SerializeField] private PlayerOverlay playerOverlay;
+
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public List<Player> Opponents { get { return _opponents; } }
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour, ISelectable
         nameText.text = playerName;
 
         _targetVotes = new();
+
+        playerOverlay.Initialize(this);
     }
 
     public void SetToInactive()
@@ -103,6 +107,7 @@ public class Player : MonoBehaviour, ISelectable
     public void SetPointsText()
     {
         pointsText.text = _points.ToString();
+        playerOverlay.SetPoints();
     }
 
     public void EndPlayerTurn()
