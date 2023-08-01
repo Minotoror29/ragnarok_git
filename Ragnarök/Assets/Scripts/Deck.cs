@@ -6,35 +6,35 @@ public class Deck : MonoBehaviour, ISelectable
 {
     [SerializeField] private TableTurnManager tableTurnManager;
 
-    [SerializeField] private List<Card> cards;
+    private List<Card> _cards;
     private List<Card> _graveyard;
 
     public void Initialize()
     {
-        //cards = new();
+        _cards = new();
         _graveyard = new();
 
-        //foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
-        //{
-        //    for (int i = 0; i < card.duplicates; i++)
-        //    {
-        //        cards.Add(card);
-        //    }
-        //}
+        foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
+        {
+            for (int i = 0; i < card.duplicates; i++)
+            {
+                _cards.Add(card);
+            }
+        }
     }
 
     public void Select(TableTurnState state)
     {
-        state.SelectDeck(this, cards[0]);
+        state.SelectDeck(this, _cards[0]);
     }
 
     public void DrawCard()
     {
-        Card card = cards[0];
-        cards.Remove(card);
+        Card card = _cards[0];
+        _cards.Remove(card);
         _graveyard.Add(card);
 
-        if (cards.Count == 0)
+        if (_cards.Count == 0)
         {
             PutCardsBack();
         }
@@ -42,13 +42,13 @@ public class Deck : MonoBehaviour, ISelectable
 
     private void Shuffle()
     {
-        for (int i = cards.Count - 1; i > 0; i--)
+        for (int i = _cards.Count - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
 
-            Card temp = cards[i];
-            cards[i] = cards[j];
-            cards[j] = temp;
+            Card temp = _cards[i];
+            _cards[i] = _cards[j];
+            _cards[j] = temp;
         }
     }
 
@@ -58,11 +58,11 @@ public class Deck : MonoBehaviour, ISelectable
         {
             foreach (Card card in _graveyard)
             {
-                cards.Add(card);
+                _cards.Add(card);
             }
         }
 
-        //Shuffle();
+        Shuffle();
 
         _graveyard = new();
     }

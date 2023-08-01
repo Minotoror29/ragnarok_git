@@ -78,7 +78,13 @@ public class TableTurnEffectState : TableTurnState
 
     public void EnterValueSubState(CustomValueApplication application, bool add)
     {
-        _subState = new TableTurnValueState(_tableTurnManager, _player, application, this, add);
+        if (!_opponentsVote)
+        {
+            _subState = new TableTurnValueState(_tableTurnManager, _player, application, this, add);
+        } else
+        {
+            _subState = new TableTurnOpponentsValueState(_tableTurnManager, _player, application, this, add);
+        }
         _subState.Enter();
     }
 
