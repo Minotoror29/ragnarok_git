@@ -35,4 +35,9 @@ public class PlayerPlayingState : PlayerState
 
         _stateManager.ChangeState(new PlayerInactiveState(_stateManager, _player));
     }
+
+    public override void Select(TableTurnState tableTurnState)
+    {
+        tableTurnState.SelectPlayer(_player);
+    }
 }

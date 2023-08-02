@@ -30,4 +30,9 @@ public class PlayerStateManager : MonoBehaviour
     {
         _currentState.CheckPoints(points);
     }
+
+    public void Select(TableTurnState tableTurnState)
+    {
+        _currentState.Select(tableTurnState);
+    }
 }

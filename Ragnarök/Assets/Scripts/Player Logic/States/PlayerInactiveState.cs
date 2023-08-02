@@ -33,4 +33,9 @@ public class PlayerInactiveState : PlayerState
             _stateManager.ChangeState(new PlayerDeadState(_stateManager, _player));
         }
     }
+
+    public override void Select(TableTurnState tableTurnState)
+    {
+        tableTurnState.SelectPlayer(_player);
+    }
 }

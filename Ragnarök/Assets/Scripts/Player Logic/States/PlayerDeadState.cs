@@ -16,4 +16,9 @@ public class PlayerDeadState : PlayerState
     public override void Exit()
     {
     }
+
+    public override void Select(TableTurnState tableTurnState)
+    {
+        return;
+    }
 }

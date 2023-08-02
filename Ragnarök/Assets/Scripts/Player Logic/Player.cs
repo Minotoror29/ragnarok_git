@@ -121,9 +121,9 @@ public class Player : MonoBehaviour, ISelectable
         _roundsWon++;
     }
 
-    public void Select(TableTurnState state)
+    public void Select(TableTurnState tableTurnState)
     {
-        state.SelectPlayer(this);
+        _stateManager.Select(tableTurnState);
     }
 
     public void RemoveOpponent(Player player)
