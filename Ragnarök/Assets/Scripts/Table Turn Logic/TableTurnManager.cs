@@ -11,6 +11,7 @@ public class TableTurnManager : MonoBehaviour
     private List<Player> _activePlayers;
 
     private Clock _clock;
+    private Deck _deck;
 
     private CardDisplay _cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
@@ -19,10 +20,11 @@ public class TableTurnManager : MonoBehaviour
     public SelectionManager SelectionManager { get { return selectionManager; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
     public Clock Clock { get { return _clock; } }
+    public Deck Deck { get { return _deck; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
 
-    public void Initialize(List<Player> players, Clock clock, CardDisplay cardDisplay)
+    public void Initialize(List<Player> players, Clock clock, Deck deck, CardDisplay cardDisplay)
     {
         _stateManager = GetComponent<StateManager>();
 
@@ -32,6 +34,7 @@ public class TableTurnManager : MonoBehaviour
         }
 
         _clock = clock;
+        _deck = deck;
 
         _cardDisplay = cardDisplay;
     }

@@ -11,7 +11,5 @@ public abstract class TableTurnState : State
         _tableTurnManager = tableTurnManager;
     }
 
-    public virtual void SelectDeck(Deck deck, Card card) { }
-
     public virtual void SelectPlayer(Player selectedPlayer) { }
 }

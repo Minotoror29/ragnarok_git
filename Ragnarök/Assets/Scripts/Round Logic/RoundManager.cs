@@ -37,7 +37,7 @@ public class RoundManager : MonoBehaviour
         _stateManager = GetComponent<StateManager>();
 
         cardDisplay.Initialize(this);
-        tableTurnManager.Initialize(players, clock, cardDisplay);
+        tableTurnManager.Initialize(players, clock, deck, cardDisplay);
         deck.Initialize();
     }
 

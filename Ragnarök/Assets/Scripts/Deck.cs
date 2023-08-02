@@ -2,33 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Deck : MonoBehaviour, ISelectable
+public class Deck : MonoBehaviour
 {
     [SerializeField] private TableTurnManager tableTurnManager;
 
-    public List<Card> _cards;
+    private List<Card> _cards;
     private List<Card> _graveyard;
 
     public void Initialize()
     {
-        //_cards = new();
+        _cards = new();
         _graveyard = new();
 
-        //foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
-        //{
-        //    for (int i = 0; i < card.duplicates; i++)
-        //    {
-        //        _cards.Add(card);
-        //    }
-        //}
+        foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
+        {
+            for (int i = 0; i < card.duplicates; i++)
+            {
+                _cards.Add(card);
+            }
+        }
     }
 
-    public void Select(TableTurnState state)
-    {
-        state.SelectDeck(this, _cards[0]);
-    }
-
-    public void DrawCard()
+    public Card DrawCard()
     {
         Card card = _cards[0];
         _cards.Remove(card);
@@ -38,6 +33,8 @@ public class Deck : MonoBehaviour, ISelectable
         {
             PutCardsBack();
         }
+
+        return card;
     }
 
     private void Shuffle()
