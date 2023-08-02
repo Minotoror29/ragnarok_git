@@ -47,11 +47,12 @@ public class EffectsManager : MonoBehaviour
 
     public void GivePoints(Player sourcePlayer, List<Player> targets, int value)
     {
-        sourcePlayer.AddPoints(-value);
+        int givenValue = Mathf.Clamp(value, 0, sourcePlayer.Points / targets.Count);
+        sourcePlayer.AddPoints((-givenValue) * targets.Count);
 
         foreach (Player target in targets)
         {
-            target.AddPoints(value);
+            target.AddPoints(givenValue);
         }
     }
 

@@ -4749,6 +4749,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tableTurnManager: {fileID: 179236478}
+  _cards:
+  - {fileID: 11400000, guid: 8d78821bf0012314a8fbd484ec94761b, type: 2}
 --- !u!1 &1451001602
 GameObject:
   m_ObjectHideFlags: 0
