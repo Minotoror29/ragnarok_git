@@ -34,12 +34,15 @@ public class EffectsManager : MonoBehaviour
 
     public void StealPoints(Player sourcePlayer, List<Player> targets, int value)
     {
+        int stolenValue = 0;
+
         foreach (Player target in targets)
         {
+            stolenValue += Mathf.Clamp(value, 0, target.Points);
             target.AddPoints(-value);
         }
 
-        sourcePlayer.AddPoints(value * targets.Count);
+        sourcePlayer.AddPoints(stolenValue);
     }
 
     public void GivePoints(Player sourcePlayer, List<Player> targets, int value)
