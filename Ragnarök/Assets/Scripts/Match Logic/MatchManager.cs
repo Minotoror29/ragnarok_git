@@ -4,33 +4,35 @@ using UnityEngine;
 
 public class MatchManager : MonoBehaviour
 {
+    private static MatchManager instance;
+    public static MatchManager Instance => instance;
+
     private StateManager _stateManager;
     [SerializeField] private RoundManager roundManager;
     [SerializeField] private EndMatchDisplay endMatchDisplay;
 
     [SerializeField] private int maxRounds = 3;
 
-    [SerializeField] private List<Player> players;
+    [SerializeField] private Player playerPrefab;
+    private List<Player> _players;
+    [SerializeField] private List<Transform> playerPositions;
+    [SerializeField] private Transform playerOverlaysParent;
 
     public RoundManager RoundManager { get { return roundManager; } }
     public EndMatchDisplay EndMatchDisplay { get { return endMatchDisplay; } }
     public int MaxRounds { get { return maxRounds; } }
-    public List<Player> Players { get { return players; } }
+    public List<Player> Players { get { return _players; } }
 
-    private void Start()
+    private void Awake()
     {
-        Initialize();
+        instance = this;
     }
 
-    private void Update()
-    {
-        UpdateLogic();
-    }
-
-    public void Initialize()
+    public void Initialize(List<string> playerNames)
     {
         _stateManager = GetComponent<StateManager>();
-        roundManager.Initialize(players);
+        SpawnPlayers(playerNames);
+        roundManager.Initialize();
 
         StartMatch(true);
     }
@@ -38,6 +40,22 @@ public class MatchManager : MonoBehaviour
     public void UpdateLogic()
     {
         _stateManager.UpdateLogic();
+    }
+
+    private void SpawnPlayers(List<string> playerNames)
+    {
+        _players = new();
+
+        for (int i = 0; i < playerNames.Count; i++)
+        {
+            Player newPlayer = Instantiate(playerPrefab, playerPositions[i]);
+            _players.Add(newPlayer);
+        }
+
+        for (int i = 0; i < _players.Count; i++)
+        {
+            _players[i].Initialize(playerNames[i], _players, playerOverlaysParent);
+        }
     }
 
     public void StartMatch(bool firstMatch)
@@ -53,7 +71,7 @@ public class MatchManager : MonoBehaviour
         {
             int highestPoints = 0;
 
-            foreach (Player player in players)
+            foreach (Player player in _players)
             {
                 if (player.RoundsWon > highestPoints)
                 {
@@ -61,7 +79,7 @@ public class MatchManager : MonoBehaviour
                 }
             }
 
-            foreach (Player player in players)
+            foreach (Player player in _players)
             {
                 if (player.RoundsWon == highestPoints)
                 {
@@ -77,9 +95,9 @@ public class MatchManager : MonoBehaviour
     {
         List<Player> order = new();
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < _players.Count; i++)
         {
-            order.Add(players[(players.IndexOf(startingPlayer) + i) % players.Count]);
+            order.Add(_players[(_players.IndexOf(startingPlayer) + i) % _players.Count]);
         }
 
         return order;
@@ -98,21 +116,21 @@ public class MatchManager : MonoBehaviour
 
         int minimumPoints = 0;
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < _players.Count; i++)
         {
             if (i == 0)
             {
-                minimumPoints = players[i].Points;
+                minimumPoints = _players[i].Points;
             } else
             {
-                if (players[i].Points < minimumPoints)
+                if (_players[i].Points < minimumPoints)
                 {
-                    minimumPoints = players[i].Points;
+                    minimumPoints = _players[i].Points;
                 }
             }
         }
 
-        foreach (Player player in players)
+        foreach (Player player in _players)
         {
             if (player.Points == minimumPoints)
             {
@@ -129,22 +147,22 @@ public class MatchManager : MonoBehaviour
 
         int minimumRoundsWon = 0;
 
-        for (int i = 0; i < players.Count; i++)
+        for (int i = 0; i < _players.Count; i++)
         {
             if (i == 0)
             {
-                minimumRoundsWon = players[i].RoundsWon;
+                minimumRoundsWon = _players[i].RoundsWon;
             }
             else
             {
-                if (players[i].RoundsWon < minimumRoundsWon)
+                if (_players[i].RoundsWon < minimumRoundsWon)
                 {
-                    minimumRoundsWon = players[i].RoundsWon;
+                    minimumRoundsWon = _players[i].RoundsWon;
                 }
             }
         }
 
-        foreach (Player player in players)
+        foreach (Player player in _players)
         {
             if (player.RoundsWon == minimumRoundsWon)
             {

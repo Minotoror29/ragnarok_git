@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour, ISelectable
 {
     private PlayerStateManager _stateManager;
-    private TableTurnManager _tableTurnManager;
 
     [SerializeField] private CinemachineVirtualCamera vCam;
 
@@ -19,7 +18,7 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private TextMeshProUGUI pointsText;
 
     [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private string playerName;
+    private string _playerName;
 
     private bool _mustSkipNextTurn = false;
     private bool _opponentsVoteForCard = false;
@@ -28,28 +27,31 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private Image targetVote;
     private List<Image> _targetVotes;
 
-    [SerializeField] private PlayerOverlay playerOverlay;
+    [SerializeField] private PlayerOverlay playerOverlayPrefab;
+    private PlayerOverlay _playerOverlay;
 
-    public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public List<Player> Opponents { get { return _opponents; } }
     public int RoundsWon { get { return _roundsWon; } set { _roundsWon = value; } }
     public int Points { get { return _points; } }
     public TextMeshProUGUI NameText { get { return nameText; } }
-    public string PlayerName { get { return playerName; } }
+    public string PlayerName { get { return _playerName; } }
     public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
     public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
 
-    public void Initialize(TableTurnManager tableTurnManager, List<Player> players)
+    public void Initialize(string playerName, List<Player> players, Transform playerOverlaysParent)
     {
         _stateManager = GetComponent<PlayerStateManager>();
-        _tableTurnManager = tableTurnManager;
 
+        _playerName = playerName;
         nameText.text = playerName;
 
         _targetVotes = new();
 
-        playerOverlay.Initialize(this);
+        PlayerOverlay newOverlay = Instantiate(playerOverlayPrefab, playerOverlaysParent);
+        _playerOverlay = newOverlay;
+        _playerOverlay.Initialize(this);
+        Canvas.ForceUpdateCanvases();
     }
 
     public void SetToInactive()
@@ -107,7 +109,7 @@ public class Player : MonoBehaviour, ISelectable
     public void SetPointsText()
     {
         pointsText.text = _points.ToString();
-        playerOverlay.SetPoints();
+        _playerOverlay.SetPoints();
     }
 
     public void EndPlayerTurn()

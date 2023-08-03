@@ -24,14 +24,9 @@ public class TableTurnManager : MonoBehaviour
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
 
-    public void Initialize(List<Player> players, Clock clock, Deck deck, CardDisplay cardDisplay)
+    public void Initialize(Clock clock, Deck deck, CardDisplay cardDisplay)
     {
         _stateManager = GetComponent<StateManager>();
-
-        foreach (Player player in players)
-        {
-            player.Initialize(this, players);
-        }
 
         _clock = clock;
         _deck = deck;

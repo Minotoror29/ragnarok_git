@@ -32,12 +32,12 @@ public class RoundManager : MonoBehaviour
     public EndRoundDisplay EndRoundDisplay { get { return endRoundDisplay; } }
     public TableTurnsDisplay TableTurnsDisplay { get { return tableTurnsDisplay; } }
 
-    public void Initialize(List<Player> players)
+    public void Initialize()
     {
         _stateManager = GetComponent<StateManager>();
 
         cardDisplay.Initialize(this);
-        tableTurnManager.Initialize(players, clock, deck, cardDisplay);
+        tableTurnManager.Initialize(clock, deck, cardDisplay);
         deck.Initialize();
     }
 

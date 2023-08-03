@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PLAYER 1
+  m_text: PLAYER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -151,9 +151,9 @@ MonoBehaviour:
   vCam: {fileID: 0}
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
-  playerName: 
   targetVotesParent: {fileID: 0}
   targetVote: {fileID: 0}
+  playerOverlayPrefab: {fileID: 0}
 --- !u!1 &1852274133704180559
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2886159625571407756
 Transform:
   m_ObjectHideFlags: 0
@@ -637,9 +637,9 @@ MonoBehaviour:
   vCam: {fileID: 0}
   pointsText: {fileID: 0}
   nameText: {fileID: 0}
-  playerName: 
   targetVotesParent: {fileID: 0}
   targetVote: {fileID: 0}
+  playerOverlayPrefab: {fileID: 0}
 --- !u!1 &6599593704875325278
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,9 +691,9 @@ MonoBehaviour:
   vCam: {fileID: 2882107257576469062}
   pointsText: {fileID: 6080182821959348599}
   nameText: {fileID: 1081778912}
-  playerName: Player
   targetVotesParent: {fileID: 5837883273586246441}
   targetVote: {fileID: 7732284784694720694, guid: d5133a1c5970a254a825bb203e4c55b5, type: 3}
+  playerOverlayPrefab: {fileID: 263823556558089761, guid: 0da7896f7abb2cc47bdfc187e722740f, type: 3}
 --- !u!65 &4931088371418214431
 BoxCollider:
   m_ObjectHideFlags: 0

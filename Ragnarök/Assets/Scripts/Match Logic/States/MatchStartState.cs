@@ -13,7 +13,7 @@ public class MatchStartState : MatchState
 
     public override void Enter()
     {
-        Player startingPlayer = null;
+        Player startingPlayer;
 
         if (_firstMatch)
         {
