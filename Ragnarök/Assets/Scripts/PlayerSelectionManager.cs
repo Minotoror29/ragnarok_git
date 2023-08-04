@@ -34,4 +34,14 @@ public class PlayerSelectionManager : MonoBehaviour
 
         SceneManager.LoadScene(1);
     }
+
+    public void AddPlayer(TMP_InputField inputField)
+    {
+        playerNameInputFields.Add(inputField);
+    }
+
+    public void RemovePlayer(TMP_InputField inputField)
+    {
+        playerNameInputFields.Remove(inputField);
+    }
 }
