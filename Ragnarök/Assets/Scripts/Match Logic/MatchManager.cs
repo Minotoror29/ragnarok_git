@@ -13,9 +13,8 @@ public class MatchManager : MonoBehaviour
 
     [SerializeField] private int maxRounds = 3;
 
-    [SerializeField] private Player playerPrefab;
+    [SerializeField] private Player[] kingdomsPrefabs;
     private List<Player> _players;
-    [SerializeField] private List<Transform> playerPositions;
     [SerializeField] private Transform playerOverlaysParent;
 
     public RoundManager RoundManager { get { return roundManager; } }
@@ -48,7 +47,7 @@ public class MatchManager : MonoBehaviour
 
         for (int i = 0; i < playerNames.Count; i++)
         {
-            Player newPlayer = Instantiate(playerPrefab, playerPositions[i]);
+            Player newPlayer = Instantiate(kingdomsPrefabs[i], new Vector3(0, 0, 0), Quaternion.Euler(0, i * (360 / playerNames.Count), 0));
             _players.Add(newPlayer);
         }
 
