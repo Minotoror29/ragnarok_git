@@ -61,7 +61,14 @@ public class TableTurnEffectState : TableTurnState
 
         _player.EndPlayerTurn();
         _tableTurnManager.ActivePlayers.Remove(_player);
-        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+        if (_tableTurnManager.Clock.HasHourChanged)
+        {
+            _stateManager.ChangeState(new TableTurnClockState(_stateManager, _tableTurnManager));
+        }
+        else
+        {
+            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+        }
     }
 
     public void EnterTargetSubState(TargetPlayersApplication application, int playersToTarget)

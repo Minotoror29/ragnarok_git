@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class TableTurnManager : MonoBehaviour
     private CardDisplay _cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
 
+    private CinemachineVirtualCamera _topCam;
+
     public RoundTableTurnState RoundState { get { return _roundState; } }
     public SelectionManager SelectionManager { get { return selectionManager; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
@@ -23,8 +26,9 @@ public class TableTurnManager : MonoBehaviour
     public Deck Deck { get { return _deck; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
+    public CinemachineVirtualCamera TopCam { get { return _topCam; } }
 
-    public void Initialize(Clock clock, Deck deck, CardDisplay cardDisplay)
+    public void Initialize(Clock clock, Deck deck, CardDisplay cardDisplay, CinemachineVirtualCamera topCam)
     {
         _stateManager = GetComponent<StateManager>();
 
@@ -32,6 +36,8 @@ public class TableTurnManager : MonoBehaviour
         _deck = deck;
 
         _cardDisplay = cardDisplay;
+
+        _topCam = topCam;
     }
 
     public void UpdateLogic()

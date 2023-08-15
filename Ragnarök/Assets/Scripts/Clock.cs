@@ -11,7 +11,10 @@ public class Clock : MonoBehaviour
     private int _hours;
     [SerializeField] private List<TextMeshProUGUI> hoursTexts;
 
+    private bool _hasHourChanged = false;
+
     public int Hours { get { return _hours; } }
+    public bool HasHourChanged { get { return _hasHourChanged; } }
 
     public void Initialize(RoundManager roundManager)
     {
@@ -23,22 +26,27 @@ public class Clock : MonoBehaviour
         _hours += value;
         _hours = Mathf.Clamp(_hours, 0, maxHours);
 
-        SetHoursText();
+        _hasHourChanged = true;
     }
 
     public void SetHour(int value)
     {
-        _hours = value;
+        if (_hours != value)
+        {
+            _hasHourChanged = true;
+        }
 
-        SetHoursText();
+        _hours = value;
     }
 
-    private void SetHoursText()
+    public void SetHoursText()
     {
         foreach (TextMeshProUGUI hoursText in hoursTexts)
         {
             hoursText.text = _hours.ToString();
         }
+
+        _hasHourChanged = false;
     }
 
     public bool IsAtMidnight()
