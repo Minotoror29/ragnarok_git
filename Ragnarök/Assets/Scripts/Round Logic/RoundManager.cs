@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,8 +20,11 @@ public class RoundManager : MonoBehaviour
 
     [SerializeField] private int maxTableTurns = 5;
 
+    [SerializeField] private StartRoundDisplay startRoundDisplay;
     [SerializeField] private EndRoundDisplay endRoundDisplay;
     [SerializeField] private TableTurnsDisplay tableTurnsDisplay;
+
+    [SerializeField] private CinemachineVirtualCamera topCam;
 
     public MatchRoundState MatchRoundState { get { return _matchState; } }
     public TableTurnManager TableTurnManager { get { return tableTurnManager; } }
@@ -29,8 +33,10 @@ public class RoundManager : MonoBehaviour
     public List<Player> ActivePlayers { get { return _activePlayers; } }
     public int PlayersStartPoints { get { return playersStartPoints; } }
     public int MaxTableTurns { get { return maxTableTurns; } }
+    public StartRoundDisplay StartRoundDisplay { get { return startRoundDisplay; } }
     public EndRoundDisplay EndRoundDisplay { get { return endRoundDisplay; } }
     public TableTurnsDisplay TableTurnsDisplay { get { return tableTurnsDisplay; } }
+    public CinemachineVirtualCamera TopCam { get { return topCam; } }
 
     public void Initialize()
     {
