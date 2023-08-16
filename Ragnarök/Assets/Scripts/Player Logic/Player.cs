@@ -138,17 +138,11 @@ public class Player : MonoBehaviour, ISelectable
 
     public void TargetVote()
     {
-        Image newVote = Instantiate(targetVote, targetVotesParent);
-        _targetVotes.Add(newVote);
+        _playerOverlay.TargetVote();
     }
 
     public void ClearTargetVotes()
     {
-        foreach (Image vote in _targetVotes)
-        {
-            Destroy(vote);
-        }
-
-        _targetVotes.Clear();
+        _playerOverlay.ClearTargetVotes();
     }
 }

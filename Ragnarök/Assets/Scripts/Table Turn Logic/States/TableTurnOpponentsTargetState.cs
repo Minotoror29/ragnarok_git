@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TableTurnOpponentsTargetState : TableTurnState
 {
@@ -12,6 +13,8 @@ public class TableTurnOpponentsTargetState : TableTurnState
     private List<Player> _opponents;
     private List<int> _votes;
     private int _playersVoted;
+
+    private UnityAction<Player> _selectAction;
 
     public TableTurnOpponentsTargetState(TableTurnManager tableTurnManager, Player player, TargetPlayersApplication playerApplication, TableTurnEffectState effectState, StateManager stateManager = null) : base(stateManager, tableTurnManager)
     {
@@ -34,11 +37,23 @@ public class TableTurnOpponentsTargetState : TableTurnState
         }
 
         _playersVoted = 0;
+
+        _selectAction += SelectPlayer;
+
+        for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
+        {
+            _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
+        }
     }
 
     public override void Exit()
     {
         _tableTurnManager.SelectionManager.Disable();
+
+        for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
+        {
+            _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
+        }
     }
 
     public override void SelectPlayer(Player selectedPlayer)

@@ -9,13 +9,14 @@ public class PlayerOverlay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI playerName;
     [SerializeField] private TextMeshProUGUI playerPoints;
-    [SerializeField] private Button flag;
+
+    [SerializeField] private Transform targetVotesParent;
+    [SerializeField] private Image targetVotePrefab;
+    private List<Image> _targetVotes;
 
     private Player _player;
 
     private UnityAction<Player> _selectAction;
-
-    public Button Flag { get { return flag; } }
 
     public void Initialize(Player player)
     {
@@ -23,6 +24,8 @@ public class PlayerOverlay : MonoBehaviour
         playerName.text = player.PlayerName;
 
         SetPoints();
+
+        _targetVotes = new();
     }
 
     public void EnableSelection(UnityAction<Player> action)
@@ -45,5 +48,21 @@ public class PlayerOverlay : MonoBehaviour
     public void SetPoints()
     {
         playerPoints.text = _player.Points.ToString();
+    }
+
+    public void TargetVote()
+    {
+        Image newVote = Instantiate(targetVotePrefab, targetVotesParent);
+        _targetVotes.Add(newVote);
+    }
+
+    public void ClearTargetVotes()
+    {
+        foreach (Image vote in _targetVotes)
+        {
+            Destroy(vote);
+        }
+
+        _targetVotes.Clear();
     }
 }
