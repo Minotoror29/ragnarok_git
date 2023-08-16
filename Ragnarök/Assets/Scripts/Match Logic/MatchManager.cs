@@ -31,7 +31,7 @@ public class MatchManager : MonoBehaviour
     {
         _stateManager = GetComponent<StateManager>();
         SpawnPlayers(playerNames);
-        roundManager.Initialize();
+        roundManager.Initialize(playerOverlaysParent);
 
         StartMatch(true);
     }

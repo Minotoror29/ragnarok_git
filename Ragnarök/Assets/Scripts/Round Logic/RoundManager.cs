@@ -38,12 +38,12 @@ public class RoundManager : MonoBehaviour
     public TableTurnsDisplay TableTurnsDisplay { get { return tableTurnsDisplay; } }
     public CinemachineVirtualCamera TopCam { get { return topCam; } }
 
-    public void Initialize()
+    public void Initialize(Transform playerOverlaysParent)
     {
         _stateManager = GetComponent<StateManager>();
 
         cardDisplay.Initialize(this);
-        tableTurnManager.Initialize(clock, deck, cardDisplay, topCam);
+        tableTurnManager.Initialize(playerOverlaysParent, clock, deck, cardDisplay, topCam);
         deck.Initialize();
     }
 

@@ -10,6 +10,7 @@ public class TableTurnManager : MonoBehaviour
     [SerializeField] private SelectionManager selectionManager;
 
     private List<Player> _activePlayers;
+    private Transform _playerOverlaysParent;
 
     private Clock _clock;
     private Deck _deck;
@@ -22,15 +23,18 @@ public class TableTurnManager : MonoBehaviour
     public RoundTableTurnState RoundState { get { return _roundState; } }
     public SelectionManager SelectionManager { get { return selectionManager; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
+    public Transform PlayerOverlaysParent { get { return _playerOverlaysParent; } }
     public Clock Clock { get { return _clock; } }
     public Deck Deck { get { return _deck; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
     public CinemachineVirtualCamera TopCam { get { return _topCam; } }
 
-    public void Initialize(Clock clock, Deck deck, CardDisplay cardDisplay, CinemachineVirtualCamera topCam)
+    public void Initialize(Transform playerOverlaysParent, Clock clock, Deck deck, CardDisplay cardDisplay, CinemachineVirtualCamera topCam)
     {
         _stateManager = GetComponent<StateManager>();
+
+        _playerOverlaysParent = playerOverlaysParent;
 
         _clock = clock;
         _deck = deck;

@@ -651,7 +651,8 @@ GameObject:
   - component: {fileID: 8821762313487946472}
   - component: {fileID: 1419856611465099647}
   - component: {fileID: 8425636937392906749}
-  m_Layer: 0
+  - component: {fileID: 7919871405806459788}
+  m_Layer: 6
   m_Name: Field Kingdom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,6 +708,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ac4cbdfd849754dbc9f543c6519842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7919871405806459788
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541143343865671105}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14, y: 14, z: 16}
+  m_Center: {x: 80.8, y: 27, z: -1}
 --- !u!1001 &2755626160948663052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -781,24 +795,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0308342859fe24346953640e37cee75b, type: 3}
   m_PrefabInstance: {fileID: 2755626160948663052}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3097520747465371229 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0308342859fe24346953640e37cee75b, type: 3}
-  m_PrefabInstance: {fileID: 2755626160948663052}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7130120989005110371
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3097520747465371229}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1211794, y: 0.14080968, z: 0.113063194}
-  m_Center: {x: 0.8071929, y: 0.013994316, z: 0.271545}
 --- !u!1001 &5832502280716874852
 PrefabInstance:
   m_ObjectHideFlags: 0

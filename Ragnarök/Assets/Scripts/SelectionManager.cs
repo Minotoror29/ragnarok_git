@@ -31,7 +31,7 @@ public class SelectionManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(_playerControls.InGame.MousePosition.ReadValue<Vector2>());
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 100f, selectableLayer))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, selectableLayer))
         {
             ISelectable selection = hit.transform.GetComponent<ISelectable>();
             if (selection != null)

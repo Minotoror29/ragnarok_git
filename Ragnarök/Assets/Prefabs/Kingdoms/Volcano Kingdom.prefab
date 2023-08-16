@@ -260,7 +260,8 @@ GameObject:
   - component: {fileID: 5219495779092617310}
   - component: {fileID: 6232841699374899465}
   - component: {fileID: 2688725141525555395}
-  m_Layer: 0
+  - component: {fileID: 3797642487487349886}
+  m_Layer: 6
   m_Name: Volcano Kingdom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,6 +317,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ac4cbdfd849754dbc9f543c6519842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &3797642487487349886
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2780554351894640261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16, y: 15.7, z: 19.3}
+  m_Center: {x: 85.1, y: 37.2, z: -0.4}
 --- !u!1 &4017379379311309705
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,24 +844,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7082122f253293948aa12e1c8c2cda7a, type: 3}
---- !u!1 &6935518394718798811 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7082122f253293948aa12e1c8c2cda7a, type: 3}
-  m_PrefabInstance: {fileID: 7853856542933384842}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &7321474389338070137
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6935518394718798811}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14111875, y: 0.14127247, z: 0.13543746}
-  m_Center: {x: 0.8513215, y: 0.016762896, z: 0.37126544}
 --- !u!4 &7742876981952682337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7082122f253293948aa12e1c8c2cda7a, type: 3}
