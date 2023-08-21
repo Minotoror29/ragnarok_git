@@ -12,7 +12,7 @@ public class TableTurnEffectState : TableTurnState
 
     private EffectsManager _effectsManager;
 
-    private int _resolvedEffects = 0;
+    private int _activatedEffects = 0;
 
     private TableTurnState _subState;
 
@@ -44,9 +44,9 @@ public class TableTurnEffectState : TableTurnState
     {
         ExitSubState();
 
-        _resolvedEffects++;
+        _activatedEffects++;
 
-        if (_resolvedEffects == 2)
+        if (_activatedEffects == 2)
         {
             ResolveEffects();
         } else
@@ -64,12 +64,12 @@ public class TableTurnEffectState : TableTurnState
         _tableTurnManager.ActivePlayers.Remove(_player);
         if (_tableTurnManager.Clock.HasHourChanged)
         {
-            _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _player.VCam, _tableTurnManager.TopCam,
+            _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.TopCam,
                 new TableTurnClockState(_stateManager, _tableTurnManager)));
         }
         else
         {
-            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player.VCam));
+            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
         }
     }
 
@@ -77,12 +77,12 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _subState = new TableTurnTargetState(_tableTurnManager, _player, _card, application, this, playersToTarget);
+            _stateManager.ChangeState(new TableTurnTargetState(_stateManager, _tableTurnManager, _player, _card, application, playersToTarget));
         } else
         {
             _subState = new TableTurnOpponentsTargetState(_tableTurnManager, _player, application, this);
+            _subState.Enter();
         }
-        _subState.Enter();
     }
 
     public void EnterValueSubState(CustomValueApplication application, bool add)

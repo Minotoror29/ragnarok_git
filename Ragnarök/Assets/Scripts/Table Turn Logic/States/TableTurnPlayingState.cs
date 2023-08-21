@@ -20,7 +20,7 @@ public class TableTurnPlayingState : TableTurnState
         {
             _player.EndPlayerTurn();
             _tableTurnManager.ActivePlayers.Remove(_player);
-            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player.VCam));
+            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
         } else
         {
             _stateManager.ChangeState(new TableTurnCardState(_stateManager, _tableTurnManager, _player, _tableTurnManager.Deck.DrawCard()));
