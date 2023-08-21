@@ -14,8 +14,6 @@ public class TableTurnEffectState : TableTurnState
 
     private int _activatedEffects = 0;
 
-    private TableTurnState _subState;
-
     private bool _opponentsVote = false;
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote) : base(stateManager, tableTurnManager)
@@ -42,8 +40,6 @@ public class TableTurnEffectState : TableTurnState
 
     public void NextEffect()
     {
-        ExitSubState();
-
         _activatedEffects++;
 
         if (_activatedEffects == 2)
@@ -80,8 +76,7 @@ public class TableTurnEffectState : TableTurnState
             _stateManager.ChangeState(new TableTurnTargetState(_stateManager, _tableTurnManager, _player, _card, application, playersToTarget));
         } else
         {
-            _subState = new TableTurnOpponentsTargetState(_tableTurnManager, _player, application, this);
-            _subState.Enter();
+            _stateManager.ChangeState(new TableTurnOpponentsTargetState(_stateManager, _tableTurnManager, _player, _card, application));
         }
     }
 
@@ -89,26 +84,14 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _subState = new TableTurnValueState(_tableTurnManager, _player, application, this, add);
+            _stateManager.ChangeState(new TableTurnValueState(_stateManager, _tableTurnManager, _player, application, add));
         } else
         {
-            _subState = new TableTurnOpponentsValueState(_tableTurnManager, _player, application, this, add);
+            _stateManager.ChangeState(new TableTurnOpponentsValueState(_stateManager, _tableTurnManager, _player, application, add));
         }
-        _subState.Enter();
-    }
-
-    public void ExitSubState()
-    {
-        if (_subState == null) return;
-
-        _subState.Exit();
-        _subState = null;
     }
 
     public override void UpdateLogic()
     {
-        if (_subState == null) return;
-
-        _subState.UpdateLogic();
     }
 }

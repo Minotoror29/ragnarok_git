@@ -47,17 +47,12 @@ public class TableTurnTargetState : TableTurnState
     {
         if (selectedPlayer == _player) return;
 
-        for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
-        {
-            _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
-        }
-
         _stateManager.ChangeState(new TableTurnTransitionState(
             _stateManager, _tableTurnManager, selectedPlayer.TargetCam,
             new TableTurnConfirmTargetState(_stateManager, _tableTurnManager, this, _player, _card.cardName, selectedPlayer, _confirmAction)));
     }
 
-    private void Confirm(Player selectedPlayer)
+    private void Confirm(Player targetedPlayer)
     {
         for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
@@ -66,13 +61,13 @@ public class TableTurnTargetState : TableTurnState
 
         _tableTurnManager.ConfirmTargetDisplay.gameObject.SetActive(false);
 
-        if (_targetedPlayers.Contains(selectedPlayer))
+        if (_targetedPlayers.Contains(targetedPlayer))
         {
-            _targetedPlayers.Remove(selectedPlayer);
+            _targetedPlayers.Remove(targetedPlayer);
         }
         else
         {
-            _targetedPlayers.Add(selectedPlayer);
+            _targetedPlayers.Add(targetedPlayer);
         }
 
         if (_targetedPlayers.Count == _playersToTarget)
@@ -83,6 +78,5 @@ public class TableTurnTargetState : TableTurnState
 
     public override void UpdateLogic()
     {
-        _tableTurnManager.SelectionManager.UpdateLogic();
     }
 }

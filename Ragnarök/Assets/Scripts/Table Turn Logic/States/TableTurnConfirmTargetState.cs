@@ -7,7 +7,7 @@ public class TableTurnConfirmTargetState : TableTurnState
 {
     private ConfirmTargetDisplay _confirmTargetDisplay;
 
-    private TableTurnTargetState _targetState;
+    private TableTurnState _targetState;
 
     private Player _player;
     private string _cardName;
@@ -15,7 +15,7 @@ public class TableTurnConfirmTargetState : TableTurnState
     private UnityAction<Player> _confirmAction;
     private UnityAction _declineAction;
 
-    public TableTurnConfirmTargetState(StateManager stateManager, TableTurnManager tableTurnManager, TableTurnTargetState targetState, Player player, string cardName, Player targetedPlayer,
+    public TableTurnConfirmTargetState(StateManager stateManager, TableTurnManager tableTurnManager, TableTurnState targetState, Player player, string cardName, Player targetedPlayer,
         UnityAction<Player> confirmAction) : base(stateManager, tableTurnManager)
     {
         _confirmTargetDisplay = _tableTurnManager.ConfirmTargetDisplay;

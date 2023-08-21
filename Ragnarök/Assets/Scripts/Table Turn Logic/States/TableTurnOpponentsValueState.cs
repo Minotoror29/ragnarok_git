@@ -7,7 +7,6 @@ public class TableTurnOpponentsValueState : TableTurnState
 {
     Player _player;
     private CustomValueApplication _valueApplication;
-    private TableTurnEffectState _effectState;
     private bool _add;
 
     private UnityAction<int> _confirmAction;
@@ -15,11 +14,10 @@ public class TableTurnOpponentsValueState : TableTurnState
     private int _opponentsChose;
     private List<int> _chosenValues;
 
-    public TableTurnOpponentsValueState(TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication, TableTurnEffectState effectState, bool add, StateManager stateManager = null) : base(stateManager, tableTurnManager)
+    public TableTurnOpponentsValueState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication , bool add) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _valueApplication = valueApplication;
-        _effectState = effectState;
         _add = add;
     }
 
@@ -62,7 +60,6 @@ public class TableTurnOpponentsValueState : TableTurnState
             }
 
             _valueApplication.SetValue(actualValue);
-            _effectState.ExitSubState();
         }
     }
 

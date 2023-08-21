@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class TableTurnOpponentsTargetState : TableTurnState
 {
     private Player _player;
+    private Card _card;
     private TargetPlayersApplication _playerApplication;
-    private TableTurnEffectState _effectState;
     private List<Player> _targetedPlayers;
 
     private List<Player> _opponents;
@@ -15,19 +15,18 @@ public class TableTurnOpponentsTargetState : TableTurnState
     private int _playersVoted;
 
     private UnityAction<Player> _selectAction;
+    private UnityAction<Player> _confirmAction;
 
-    public TableTurnOpponentsTargetState(TableTurnManager tableTurnManager, Player player, TargetPlayersApplication playerApplication, TableTurnEffectState effectState, StateManager stateManager = null) : base(stateManager, tableTurnManager)
+    public TableTurnOpponentsTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, TargetPlayersApplication playerApplication) : base(stateManager, tableTurnManager)
     {
         _player = player;
+        _card = card;
         _playerApplication = playerApplication;
-        _effectState = effectState;
-    }
 
-    public override void Enter()
-    {
-        _tableTurnManager.SelectionManager.Enable(this);
+        _selectAction += SelectPlayer;
+        _confirmAction += Confirm;
+
         _targetedPlayers = new();
-
         _opponents = new();
         _votes = new();
         foreach (Player opponent in _player.Opponents)
@@ -37,9 +36,10 @@ public class TableTurnOpponentsTargetState : TableTurnState
         }
 
         _playersVoted = 0;
+    }
 
-        _selectAction += SelectPlayer;
-
+    public override void Enter()
+    {
         for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
             _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
@@ -48,8 +48,6 @@ public class TableTurnOpponentsTargetState : TableTurnState
 
     public override void Exit()
     {
-        _tableTurnManager.SelectionManager.Disable();
-
         for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
             _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
@@ -60,8 +58,14 @@ public class TableTurnOpponentsTargetState : TableTurnState
     {
         if (selectedPlayer == _player) return;
 
-        _votes[_opponents.IndexOf(selectedPlayer)]++;
-        selectedPlayer.TargetVote();
+        _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, selectedPlayer.TargetCam,
+            new TableTurnConfirmTargetState(_stateManager, _tableTurnManager, this, _player, _card.name, selectedPlayer, _confirmAction)));
+    }
+
+    private void Confirm(Player targetedPlayer)
+    {
+        _votes[_opponents.IndexOf(targetedPlayer)]++;
+        targetedPlayer.TargetVote();
         _playersVoted++;
 
         if (_playersVoted == _opponents.Count)
@@ -91,12 +95,13 @@ public class TableTurnOpponentsTargetState : TableTurnState
                 opponent.ClearTargetVotes();
             }
             _playerApplication.SetTargets(_targetedPlayers);
-            _effectState.ExitSubState();
+        } else
+        {
+            _stateManager.ChangeState(this);
         }
     }
 
     public override void UpdateLogic()
     {
-        _tableTurnManager.SelectionManager.UpdateLogic();
     }
 }
