@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, ISelectable
     private PlayerStateManager _stateManager;
 
     [SerializeField] private CinemachineVirtualCamera vCam;
+    [SerializeField] private CinemachineVirtualCamera targetCam;
 
     private List<Player> _opponents;
 
@@ -23,14 +24,11 @@ public class Player : MonoBehaviour, ISelectable
     private bool _mustSkipNextTurn = false;
     private bool _opponentsVoteForCard = false;
 
-    [SerializeField] private Transform targetVotesParent;
-    [SerializeField] private Image targetVote;
-    private List<Image> _targetVotes;
-
     [SerializeField] private PlayerOverlay playerOverlayPrefab;
     private PlayerOverlay _playerOverlay;
 
     public CinemachineVirtualCamera VCam { get { return vCam; } }
+    public CinemachineVirtualCamera TargetCam { get { return targetCam; } }
     public List<Player> Opponents { get { return _opponents; } }
     public int RoundsWon { get { return _roundsWon; } set { _roundsWon = value; } }
     public int Points { get { return _points; } }
@@ -39,14 +37,12 @@ public class Player : MonoBehaviour, ISelectable
     public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
     public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
 
-    public void Initialize(string playerName, List<Player> players, Transform playerOverlaysParent)
+    public void Initialize(string playerName, Transform playerOverlaysParent)
     {
         _stateManager = GetComponent<PlayerStateManager>();
 
         _playerName = playerName;
         nameText.text = playerName;
-
-        _targetVotes = new();
 
         PlayerOverlay newOverlay = Instantiate(playerOverlayPrefab, playerOverlaysParent);
         _playerOverlay = newOverlay;

@@ -53,7 +53,7 @@ public class MatchManager : MonoBehaviour
 
         for (int i = 0; i < _players.Count; i++)
         {
-            _players[i].Initialize(playerNames[i], _players, playerOverlaysParent);
+            _players[i].Initialize(playerNames[i], playerOverlaysParent);
         }
     }
 

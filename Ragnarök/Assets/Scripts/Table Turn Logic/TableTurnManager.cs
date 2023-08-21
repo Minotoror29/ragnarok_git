@@ -17,6 +17,7 @@ public class TableTurnManager : MonoBehaviour
 
     private CardDisplay _cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
+    [SerializeField] private ConfirmTargetDisplay confirmTargetDisplay;
 
     private CinemachineVirtualCamera _topCam;
 
@@ -28,6 +29,7 @@ public class TableTurnManager : MonoBehaviour
     public Deck Deck { get { return _deck; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
+    public ConfirmTargetDisplay ConfirmTargetDisplay { get { return confirmTargetDisplay; } }
     public CinemachineVirtualCamera TopCam { get { return _topCam; } }
 
     public void Initialize(Transform playerOverlaysParent, Clock clock, Deck deck, CardDisplay cardDisplay, CinemachineVirtualCamera topCam)
@@ -53,7 +55,9 @@ public class TableTurnManager : MonoBehaviour
     {
         _roundState = roundState;
 
-        _stateManager.ChangeState(new TableTurnStartState(_stateManager, this));
+        //_stateManager.ChangeState(new TableTurnStartState(_stateManager, this));
+
+        _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, this, null, _topCam, new TableTurnStartState(_stateManager, this)));
     }
 
     public void SetActivePlayers(List<Player> players)

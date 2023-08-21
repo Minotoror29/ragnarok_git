@@ -32,13 +32,13 @@ public class TableTurnCardState : TableTurnState
 
     public void PlayCard(EffectsManager effectsManager, Card card, bool opponentsVote)
     {
-        _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player, card.effect1, card.effect2, effectsManager, opponentsVote));
+        _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player, card, card.effect1, card.effect2, effectsManager, opponentsVote));
     }
 
     public void DiscardCard()
     {
         _player.EndPlayerTurn();
         _tableTurnManager.ActivePlayers.Remove(_player);
-        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player.VCam));
     }
 }

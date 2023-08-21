@@ -6,6 +6,7 @@ public class TableTurnEffectState : TableTurnState
 {
     private Player _player;
 
+    private Card _card;
     private Effect _effect1;
     private Effect _effect2;
 
@@ -17,10 +18,11 @@ public class TableTurnEffectState : TableTurnState
 
     private bool _opponentsVote = false;
 
-    public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote) : base(stateManager, tableTurnManager)
+    public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote) : base(stateManager, tableTurnManager)
     {
         _player = player;
 
+        _card = card;
         _effect1 = effect1.Effect(player, this);
         _effect2 = effect2.Effect(player, this);
 
@@ -58,16 +60,16 @@ public class TableTurnEffectState : TableTurnState
         _effect1.Resolve(_effectsManager);
         _effect2.Resolve(_effectsManager);
 
-
         _player.EndPlayerTurn();
         _tableTurnManager.ActivePlayers.Remove(_player);
         if (_tableTurnManager.Clock.HasHourChanged)
         {
-            _stateManager.ChangeState(new TableTurnClockState(_stateManager, _tableTurnManager));
+            _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _player.VCam, _tableTurnManager.TopCam,
+                new TableTurnClockState(_stateManager, _tableTurnManager)));
         }
         else
         {
-            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager, _player.VCam));
         }
     }
 
@@ -75,7 +77,7 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _subState = new TableTurnTargetState(_tableTurnManager, _player, application, this, playersToTarget);
+            _subState = new TableTurnTargetState(_tableTurnManager, _player, _card, application, this, playersToTarget);
         } else
         {
             _subState = new TableTurnOpponentsTargetState(_tableTurnManager, _player, application, this);

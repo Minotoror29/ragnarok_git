@@ -1,11 +1,15 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TableTurnCheckState : TableTurnState
 {
-    public TableTurnCheckState(StateManager stateManager, TableTurnManager tableTurnManager) : base(stateManager, tableTurnManager)
+    private CinemachineVirtualCamera _currentCam;
+
+    public TableTurnCheckState(StateManager stateManager, TableTurnManager tableTurnManager, CinemachineVirtualCamera currentCam) : base(stateManager, tableTurnManager)
     {
+        _currentCam = currentCam;
     }
 
     public override void Enter()
@@ -14,11 +18,12 @@ public class TableTurnCheckState : TableTurnState
         {
             if (_tableTurnManager.ActivePlayers.Count == 0)
             {
-                _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager));
+                _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager, _currentCam));
             }
             else
             {
-                _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.ActivePlayers[0]));
+                _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _currentCam, _tableTurnManager.ActivePlayers[0].VCam,
+                    new TableTurnPlayingState(_stateManager, _tableTurnManager, _tableTurnManager.ActivePlayers[0])));
             }
         }
     }

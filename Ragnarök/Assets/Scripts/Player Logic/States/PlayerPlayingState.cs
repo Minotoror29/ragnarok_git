@@ -11,12 +11,10 @@ public class PlayerPlayingState : PlayerState
     public override void Enter()
     {
         _player.NameText.color = Color.blue;
-        _player.VCam.gameObject.SetActive(true);
     }
 
     public override void Exit()
     {
-        _player.VCam.gameObject.SetActive(false);
     }
 
     public override void CheckPoints(int points)

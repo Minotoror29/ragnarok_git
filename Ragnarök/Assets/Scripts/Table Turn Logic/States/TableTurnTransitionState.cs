@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class TableTurnTransitionState : TableTurnState
 {
-    private Player _player;
+    private CinemachineVirtualCamera _currentCam;
+    private CinemachineVirtualCamera _nextCam;
+
+    private TableTurnState _nextState;
 
     private float _transitionTime;
     private float _transitionTimer;
 
-    public TableTurnTransitionState(StateManager stateManager, TableTurnManager tableTurnManager, Player player) : base(stateManager, tableTurnManager)
+    public TableTurnTransitionState(StateManager stateManager, TableTurnManager tableTurnManager, CinemachineVirtualCamera currentCam, CinemachineVirtualCamera nextCam, TableTurnState nextState) : base(stateManager, tableTurnManager)
     {
-        _player = player;
+        _currentCam = currentCam;
+        _nextCam = nextCam;
+        _nextState = nextState;
     }
 
     public override void Enter()
     {
         _transitionTime = Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time;
-        _player.VCam.gameObject.SetActive(true);
+        _currentCam?.gameObject.SetActive(false);
+        _nextCam.gameObject.SetActive(true);
         _transitionTimer = _transitionTime;
     }
 
@@ -35,7 +41,7 @@ public class TableTurnTransitionState : TableTurnState
 
             if (_transitionTimer <= 0f)
             {
-                _stateManager.ChangeState(new TableTurnPlayingState(_stateManager, _tableTurnManager, _player));
+                _stateManager.ChangeState(_nextState);
             }
         }
     }
