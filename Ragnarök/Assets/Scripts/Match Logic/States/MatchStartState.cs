@@ -23,9 +23,10 @@ public class MatchStartState : MatchState
             startingPlayer = _matchManager.GetPlayerWhoWonLessRounds();
         }
 
-        foreach (var player in _matchManager.Players)
+        foreach (Player player in _matchManager.Players)
         {
             player.RoundsWon = 0;
+            player.ResetTitlePoints();
         }
 
         _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, startingPlayer, 0));

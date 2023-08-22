@@ -17,10 +17,13 @@ public class MatchManager : MonoBehaviour
     private List<Player> _players;
     [SerializeField] private Transform playerOverlaysParent;
 
+    [SerializeField] private TitlesDisplay titlesDisplay;
+
     public RoundManager RoundManager { get { return roundManager; } }
     public EndMatchDisplay EndMatchDisplay { get { return endMatchDisplay; } }
     public int MaxRounds { get { return maxRounds; } }
     public List<Player> Players { get { return _players; } }
+    public TitlesDisplay TitlesDisplay { get { return titlesDisplay; } }
 
     private void Awake()
     {

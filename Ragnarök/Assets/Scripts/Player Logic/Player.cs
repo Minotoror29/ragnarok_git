@@ -27,6 +27,9 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private PlayerOverlay playerOverlayPrefab;
     private PlayerOverlay _playerOverlay;
 
+    //public TitlePoints _titlePoints;
+    private Dictionary<TitlePointsId, int> _titlePoints;
+
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public CinemachineVirtualCamera TargetCam { get { return targetCam; } }
     public List<Player> Opponents { get { return _opponents; } }
@@ -36,6 +39,8 @@ public class Player : MonoBehaviour, ISelectable
     public string PlayerName { get { return _playerName; } }
     public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
     public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
+    //public TitlePoints TitlePoints { get { return _titlePoints; } set { _titlePoints = value; } }
+    public Dictionary<TitlePointsId, int> TitlePoints { get { return _titlePoints; } }
 
     public void Initialize(string playerName, Transform playerOverlaysParent)
     {
@@ -71,6 +76,20 @@ public class Player : MonoBehaviour, ISelectable
     {
         _mustSkipNextTurn = false;
         _opponentsVoteForCard = false;
+    }
+
+    public void ResetTitlePoints()
+    {
+        _titlePoints = new Dictionary<TitlePointsId, int>
+        {
+            {TitlePointsId.TotalPower, 0 },
+            {TitlePointsId.Productivism, 0 },
+            {TitlePointsId.Imperialism, 0 },
+            {TitlePointsId.Extinction, 0 },
+            {TitlePointsId.Ragnarok, 0 },
+            {TitlePointsId.Martyr, 0 },
+            {TitlePointsId.Assistance, 0 }
+        };
     }
 
     public void StartPlayerTurn()

@@ -14,8 +14,10 @@ public class MatchEndState : MatchState
 
     public override void Enter()
     {
-        _matchManager.EndMatchDisplay.gameObject.SetActive(true);
-        _matchManager.EndMatchDisplay.SetWinnersText(_matchManager.DetermineMatchWinners(_ragnarok));
+        //_matchManager.EndMatchDisplay.gameObject.SetActive(true);
+        //_matchManager.EndMatchDisplay.SetWinnersText(_matchManager.DetermineMatchWinners(_ragnarok));
+
+        _matchManager.TitlesDisplay.gameObject.SetActive(true);
     }
 
     public override void Exit()

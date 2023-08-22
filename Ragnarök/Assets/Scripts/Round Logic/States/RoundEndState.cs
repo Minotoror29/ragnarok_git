@@ -17,6 +17,11 @@ public class RoundEndState : RoundState
         _roundManager.EndRoundDisplay.SetState(this);
         _roundManager.EndRoundDisplay.SetTitle(_roundNumber);
         _roundManager.EndRoundDisplay.SetWinnerText(_roundManager.DetermineRoundWinners(_ragnarok));
+
+        foreach (Player player in _roundManager.ActivePlayers)
+        {
+            player.TitlePoints[TitlePointsId.TotalPower] += player.Points;
+        }
     }
 
     public override void Exit()
