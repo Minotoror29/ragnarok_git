@@ -68,6 +68,10 @@ public class CardDisplay : MonoBehaviour
             Vote(true);
         } else
         {
+            if (_card.titlePointsApplication != null)
+            {
+                _player.TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
+            }
             _state.PlayCard(effectsManager, _card, _opponentsVote);
         }
     }

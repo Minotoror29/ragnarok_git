@@ -10,4 +10,5 @@ public class Card : ScriptableObject
     public EffectData effect2;
     public int duplicates;
     public bool vote = false;
+    public TitlePointsApplication titlePointsApplication;
 }
