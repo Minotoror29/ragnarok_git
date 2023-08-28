@@ -61,6 +61,10 @@ public class TableTurnCardState : TableTurnState
         {
             _votingPlayers[0].TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
         }
+        if (_player.OpponentsVoteForCard)
+        {
+            _votingPlayers[0].TitlePoints[TitlePointsId.Imperialism]++;
+        }
         CheckIfVoteEnds();
     }
 
@@ -84,6 +88,10 @@ public class TableTurnCardState : TableTurnState
                 _player.EndPlayerTurn();
                 _tableTurnManager.ActivePlayers.Remove(_player);
                 _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+            } else if (_playVotes == _discardVotes)
+            {
+                _votingPlayers.Add(_player);
+                _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
             }
         }
         else
