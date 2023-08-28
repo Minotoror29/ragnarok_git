@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour
 {
-    private RoundManager _roundManager;
     [SerializeField] private EffectsManager effectsManager;
     private Player _player;
     private TableTurnCardState _state;
@@ -14,120 +13,54 @@ public class CardDisplay : MonoBehaviour
     private Card _card;
     [SerializeField] private TextMeshProUGUI cardName;
     [SerializeField] private TextMeshProUGUI cardEffect;
+    [SerializeField] private TextMeshProUGUI playerText;
 
-    private bool _voting = false;
-    private bool _opponentsVote = false;
     [SerializeField] private Transform playVotesParent;
     [SerializeField] private Image playVote;
-    private int _playVotes = 0;
     [SerializeField] private Transform discardVotesParent;
     [SerializeField] private Image discardVote;
-    private int _discardVotes = 0;
-    private List<Image> totalVotes;
-    private List<Player> _totalPlayers;
-    private int _votingPlayers;
-
-    public void Initialize(RoundManager roundManager)
-    {
-        _roundManager = roundManager;
-    }
+    private List<Image> _totalVotes;
 
     public void SetCard(Player player, Card card, bool opponentsVote, TableTurnCardState state)
     {
         _player = player;
         _state = state;
         _card = card;
-        _totalPlayers = _roundManager.ActivePlayers;
 
         cardName.text = card.name.ToUpper();
         cardEffect.text = card.effect1.description + " / " + card.effect2.description;
 
-        _opponentsVote = opponentsVote;
-        totalVotes = new List<Image>();
-        _playVotes = 0;
-        _discardVotes = 0;
+        _totalVotes = new List<Image>();
+    }
 
-        if (_card.vote || opponentsVote)
-        {
-            _voting = true;
-
-            if (opponentsVote)
-            {
-                _votingPlayers = _totalPlayers.Count - 1;
-            } else
-            {
-                _votingPlayers = _totalPlayers.Count;
-            }
-        }
+    public void SetPlayer(string playerName)
+    {
+        playerText.text = playerName + " is deciding to play :";
     }
 
     public void PlayCard()
     {
-        if (_voting)
+        if (_card.titlePointsApplication != null)
         {
-            Vote(true);
-        } else
-        {
-            if (_card.titlePointsApplication != null)
-            {
-                _player.TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
-            }
-            _state.PlayCard(effectsManager, _card, _opponentsVote);
+            _player.TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
         }
+        _state.VotePlay();
+
+        Image newVote = Instantiate(playVote, playVotesParent);
+        _totalVotes.Add(newVote);
     }
 
     public void DiscardCard()
     {
-        if (_voting)
-        {
-            Vote(false);
-        } else
-        {
-            _state.DiscardCard();
-        }
+        _state.VoteDiscard();
+
+        Image newVote = Instantiate(discardVote, discardVotesParent);
+        _totalVotes.Add(newVote);
     }
 
-    private void Vote(bool play)
+    public void ResetVotes()
     {
-        Image newVote;
-
-        if (play)
-        {
-            newVote = Instantiate(playVote, playVotesParent);
-            _playVotes++;
-        } else
-        {
-            newVote = Instantiate(discardVote, discardVotesParent);
-            _discardVotes++;
-        }
-
-        totalVotes.Add(newVote);
-
-        if (totalVotes.Count == _votingPlayers)
-        {
-            if (_playVotes > _discardVotes)
-            {
-                _state.PlayCard(effectsManager, _card, _opponentsVote);
-                _voting = false;
-                _opponentsVote = false;
-                ResetVotes();
-            } else if (_discardVotes > _playVotes)
-            {
-                _state.DiscardCard();
-                _voting = false;
-                _opponentsVote = false;
-                ResetVotes();
-            } else if (_playVotes == _discardVotes)
-            {
-                _voting = false;
-                ResetVotes();
-            }
-        }
-    }
-
-    private void ResetVotes()
-    {
-        foreach (Image vote in totalVotes)
+        foreach (Image vote in _totalVotes)
         {
             Destroy(vote.gameObject);
         }

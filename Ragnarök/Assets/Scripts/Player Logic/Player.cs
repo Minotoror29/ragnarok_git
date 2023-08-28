@@ -27,7 +27,6 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private PlayerOverlay playerOverlayPrefab;
     private PlayerOverlay _playerOverlay;
 
-    //public TitlePoints _titlePoints;
     private Dictionary<TitlePointsId, int> _titlePoints;
 
     public CinemachineVirtualCamera VCam { get { return vCam; } }
@@ -39,7 +38,6 @@ public class Player : MonoBehaviour, ISelectable
     public string PlayerName { get { return _playerName; } }
     public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
     public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
-    //public TitlePoints TitlePoints { get { return _titlePoints; } set { _titlePoints = value; } }
     public Dictionary<TitlePointsId, int> TitlePoints { get { return _titlePoints; } }
 
     public void Initialize(string playerName, Transform playerOverlaysParent)
