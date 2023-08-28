@@ -58,6 +58,14 @@ public class EffectsManager : MonoBehaviour
 
     public void EqualizePoints(Player sourcePlayer, Player targetPlayer)
     {
+        if (sourcePlayer.Points < targetPlayer.Points)
+        {
+            sourcePlayer.TitlePoints[TitlePointsId.Productivism] += 2;
+        } else if (sourcePlayer.Points > targetPlayer.Points)
+        {
+            sourcePlayer.TitlePoints[TitlePointsId.Productivism] -= 2;
+        }
+
         sourcePlayer.SetPoints(targetPlayer.Points);
     }
 
