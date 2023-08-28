@@ -33,6 +33,8 @@ public class DoctrineEffect : Effect
 
     public override void Resolve(EffectsManager effectsManager)
     {
+        _player.TitlePoints[TitlePointsId.Productivism] += _valueApplication.Value;
+
         effectsManager.AddPointsToPlayers(_playerApplication.Targets, _valueApplication.Value);
         effectsManager.AddHours(_valueApplication.Value);
     }
