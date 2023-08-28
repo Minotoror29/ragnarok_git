@@ -41,7 +41,7 @@ public class TableTurnCardState : TableTurnState
         _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
 
         _tableTurnManager.CardDisplay.gameObject.SetActive(true);
-        _tableTurnManager.CardDisplay.SetCard(_player, _card, _player.OpponentsVoteForCard, this);
+        _tableTurnManager.CardDisplay.SetCard(_card, this);
     }
 
     public override void Exit()
@@ -57,6 +57,10 @@ public class TableTurnCardState : TableTurnState
     public void VotePlay()
     {
         _playVotes++;
+        if (_card.titlePointsApplication != null)
+        {
+            _votingPlayers[0].TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
+        }
         CheckIfVoteEnds();
     }
 
