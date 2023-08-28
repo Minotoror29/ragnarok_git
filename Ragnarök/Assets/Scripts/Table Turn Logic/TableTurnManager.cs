@@ -78,9 +78,4 @@ public class TableTurnManager : MonoBehaviour
             _activePlayers.Remove(player);
         }
     }
-
-    public Player GetNextPlayer(Player currentPlayer)
-    {
-        return _activePlayers[_activePlayers.IndexOf(currentPlayer) + 1];
-    }
 }

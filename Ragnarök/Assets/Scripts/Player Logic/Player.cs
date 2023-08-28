@@ -28,6 +28,7 @@ public class Player : MonoBehaviour, ISelectable
     private PlayerOverlay _playerOverlay;
 
     private Dictionary<TitlePointsId, int> _titlePoints;
+    private Wealth _wealth;
 
     public CinemachineVirtualCamera VCam { get { return vCam; } }
     public CinemachineVirtualCamera TargetCam { get { return targetCam; } }
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour, ISelectable
     public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
     public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
     public Dictionary<TitlePointsId, int> TitlePoints { get { return _titlePoints; } }
+    public Wealth Wealth { get { return _wealth; } set { _wealth = value; } }
 
     public void Initialize(string playerName, Transform playerOverlaysParent)
     {

@@ -63,13 +63,39 @@ public class RoundTableTurnState : RoundState
         }
         else
         {
+            SetPlayersWealth();
             return false;
         }
     }
 
-    //public void EndRound()
-    //{
-    //    _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber));
-    //}
+    public void SetPlayersWealth()
+    {
+        int minimumPoints = _roundManager.ActivePlayers[0].Points;
+        int maximumPoints = _roundManager.ActivePlayers[0].Points;
 
+        for (int i = 1; i < _roundManager.ActivePlayers.Count; i++)
+        {
+            if (_roundManager.ActivePlayers[i].Points < minimumPoints)
+            {
+                minimumPoints = _roundManager.ActivePlayers[i].Points;
+            } else if (_roundManager.ActivePlayers[i].Points > maximumPoints)
+            {
+                maximumPoints = _roundManager.ActivePlayers[i].Points;
+            }
+        }
+
+        foreach (Player player in _roundManager.ActivePlayers)
+        {
+            if (player.Points == minimumPoints)
+            {
+                player.Wealth = Wealth.Poor;
+            } else if (player.Points == maximumPoints)
+            {
+                player.Wealth = Wealth.Rich;
+            } else
+            {
+                player.Wealth = Wealth.Neutral;
+            }
+        }
+    }
 }
