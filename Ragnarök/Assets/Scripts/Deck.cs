@@ -6,7 +6,7 @@ public class Deck : MonoBehaviour
 {
     [SerializeField] private TableTurnManager tableTurnManager;
 
-    public List<Card> _cards;
+    private List<Card> _cards;
     private List<Card> _graveyard;
 
     public void Initialize()

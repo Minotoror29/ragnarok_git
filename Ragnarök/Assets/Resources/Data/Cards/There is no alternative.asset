@@ -17,3 +17,4 @@ MonoBehaviour:
   effect2: {fileID: 11400000, guid: cc8492d670b0a94438d6d654fccd4f53, type: 2}
   duplicates: 1
   vote: 0
+  titlePointsApplication: {fileID: 11400000, guid: 28cd801ff039f4642a51b4d2119f95f8, type: 2}

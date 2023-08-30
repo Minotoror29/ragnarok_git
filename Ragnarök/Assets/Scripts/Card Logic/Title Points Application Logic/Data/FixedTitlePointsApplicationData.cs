@@ -8,7 +8,7 @@ public class FixedTitlePointsApplicationData : TitlePointsApplicationData
     public TitlePointsId titlePointsId;
     public int value;
 
-    public override TitlePointsApplication Application()
+    public override TitlePointsApplication Application(TableTurnManager tableTurnManager)
     {
         return new FixedTitlePointsApplication(titlePointsId, value);
     }

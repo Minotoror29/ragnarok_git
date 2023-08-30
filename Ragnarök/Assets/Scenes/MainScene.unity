@@ -5371,8 +5371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tableTurnManager: {fileID: 179236478}
-  _cards:
-  - {fileID: 11400000, guid: bb066f0058bbda04ca8d5668239d41ce, type: 2}
 --- !u!1 &1451001602
 GameObject:
   m_ObjectHideFlags: 0
@@ -6119,7 +6117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b352493aef796ce4cadab249c20843cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectsManager: {fileID: 2139410817}
   cardName: {fileID: 1037965865}
   cardEffect: {fileID: 498473590}
   playerText: {fileID: 2028196336}

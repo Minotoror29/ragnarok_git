@@ -42,7 +42,7 @@ public class TableTurnCardState : TableTurnState
 
         if (_card.titlePointsApplication != null)
         {
-            _titlePointsApplication = _card.titlePointsApplication.Application();
+            _titlePointsApplication = _card.titlePointsApplication.Application(_tableTurnManager);
         }
 
         _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
@@ -100,7 +100,7 @@ public class TableTurnCardState : TableTurnState
             {
                 if (_card.titlePointsApplication != null)
                 {
-                    _titlePointsApplication = _card.titlePointsApplication.Application();
+                    _titlePointsApplication = _card.titlePointsApplication.Application(_tableTurnManager);
                 }
                 _votingPlayers.Add(_player);
                 _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
