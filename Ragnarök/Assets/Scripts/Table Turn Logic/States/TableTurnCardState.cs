@@ -11,6 +11,8 @@ public class TableTurnCardState : TableTurnState
     private int _playVotes;
     private int _discardVotes;
 
+    private TitlePointsApplication _titlePointsApplication;
+
     public TableTurnCardState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card) : base(stateManager, tableTurnManager)
     {
         _player = player;
@@ -20,15 +22,15 @@ public class TableTurnCardState : TableTurnState
     public override void Enter()
     {
         _votingPlayers = new();
-        if (_card.vote)
+        if (_player.OpponentsVoteForCard)
         {
-            _votingPlayers.Add(_player);
             foreach (Player opponent in _player.Opponents)
             {
                 _votingPlayers.Add(opponent);
             }
-        } else if (_player.OpponentsVoteForCard)
+        } else if (_card.vote)
         {
+            _votingPlayers.Add(_player);
             foreach (Player opponent in _player.Opponents)
             {
                 _votingPlayers.Add(opponent);
@@ -36,6 +38,11 @@ public class TableTurnCardState : TableTurnState
         } else
         {
             _votingPlayers.Add(_player);
+        }
+
+        if (_card.titlePointsApplication != null)
+        {
+            _titlePointsApplication = new TitlePointsApplication(_card.titlePointsApplication.titlePointsId, _card.titlePointsApplication.value);
         }
 
         _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
@@ -57,10 +64,16 @@ public class TableTurnCardState : TableTurnState
     public void VotePlay()
     {
         _playVotes++;
-        if (_card.titlePointsApplication != null)
-        {
-            _votingPlayers[0].TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
-        }
+
+        //if (_card.titlePointsApplication != null)
+        //{
+        //    if (_votingPlayers[0] != _player)
+        //    {
+        //        _votingPlayers[0].TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
+        //    }
+        //}
+        _titlePointsApplication.AddPlayer(_votingPlayers[0]);
+
         if (_player.OpponentsVoteForCard)
         {
             _votingPlayers[0].TitlePoints[TitlePointsId.Imperialism]++;
@@ -82,14 +95,20 @@ public class TableTurnCardState : TableTurnState
         {
             if (_playVotes > _discardVotes)
             {
+                _titlePointsApplication.AssignPoints();
                 _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player, _card, _card.effect1, _card.effect2, _tableTurnManager.EffectsManager, _player.OpponentsVoteForCard));
             } else if (_discardVotes > _playVotes)
             {
+                _titlePointsApplication.AssignPoints();
                 _player.EndPlayerTurn();
                 _tableTurnManager.ActivePlayers.Remove(_player);
                 _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
             } else if (_playVotes == _discardVotes)
             {
+                if (_card.titlePointsApplication != null)
+                {
+                    _titlePointsApplication = new TitlePointsApplication(_card.titlePointsApplication.titlePointsId, _card.titlePointsApplication.value);
+                }
                 _votingPlayers.Add(_player);
                 _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
             }

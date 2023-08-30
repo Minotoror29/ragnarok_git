@@ -35,18 +35,18 @@ public class CardDisplay : MonoBehaviour
 
     public void PlayCard()
     {
-        _state.VotePlay();
-
         Image newVote = Instantiate(playVote, playVotesParent);
         _totalVotes.Add(newVote);
+
+        _state.VotePlay();
     }
 
     public void DiscardCard()
     {
-        _state.VoteDiscard();
-
         Image newVote = Instantiate(discardVote, discardVotesParent);
         _totalVotes.Add(newVote);
+
+        _state.VoteDiscard();
     }
 
     public void ResetVotes()
