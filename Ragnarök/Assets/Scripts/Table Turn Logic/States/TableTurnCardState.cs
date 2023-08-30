@@ -42,7 +42,7 @@ public class TableTurnCardState : TableTurnState
 
         if (_card.titlePointsApplication != null)
         {
-            _titlePointsApplication = new TitlePointsApplication(_card.titlePointsApplication.titlePointsId, _card.titlePointsApplication.value);
+            _titlePointsApplication = _card.titlePointsApplication.Application();
         }
 
         _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
@@ -65,13 +65,6 @@ public class TableTurnCardState : TableTurnState
     {
         _playVotes++;
 
-        //if (_card.titlePointsApplication != null)
-        //{
-        //    if (_votingPlayers[0] != _player)
-        //    {
-        //        _votingPlayers[0].TitlePoints[_card.titlePointsApplication.titlePointsId] += _card.titlePointsApplication.value;
-        //    }
-        //}
         _titlePointsApplication.AddPlayer(_votingPlayers[0]);
 
         if (_player.OpponentsVoteForCard)
@@ -95,8 +88,8 @@ public class TableTurnCardState : TableTurnState
         {
             if (_playVotes > _discardVotes)
             {
-                _titlePointsApplication.AssignPoints();
-                _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player, _card, _card.effect1, _card.effect2, _tableTurnManager.EffectsManager, _player.OpponentsVoteForCard));
+                _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player,
+                    _card, _card.effect1, _card.effect2, _tableTurnManager.EffectsManager, _player.OpponentsVoteForCard, _titlePointsApplication));
             } else if (_discardVotes > _playVotes)
             {
                 _titlePointsApplication.AssignPoints();
@@ -107,7 +100,7 @@ public class TableTurnCardState : TableTurnState
             {
                 if (_card.titlePointsApplication != null)
                 {
-                    _titlePointsApplication = new TitlePointsApplication(_card.titlePointsApplication.titlePointsId, _card.titlePointsApplication.value);
+                    _titlePointsApplication = _card.titlePointsApplication.Application();
                 }
                 _votingPlayers.Add(_player);
                 _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);

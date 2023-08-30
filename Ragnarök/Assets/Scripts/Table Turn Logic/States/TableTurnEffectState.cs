@@ -16,7 +16,10 @@ public class TableTurnEffectState : TableTurnState
 
     private bool _opponentsVote = false;
 
-    public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote) : base(stateManager, tableTurnManager)
+    private TitlePointsApplication _titlePointsApplication;
+
+    public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
+        Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote, TitlePointsApplication titlePointsApplication) : base(stateManager, tableTurnManager)
     {
         _player = player;
 
@@ -27,6 +30,8 @@ public class TableTurnEffectState : TableTurnState
         _effectsManager = effectsManager;
 
         _opponentsVote = opponentsVote;
+
+        _titlePointsApplication = titlePointsApplication;
     }
 
     public override void Enter()
@@ -55,6 +60,7 @@ public class TableTurnEffectState : TableTurnState
     {
         _effect1.Resolve(_effectsManager);
         _effect2.Resolve(_effectsManager);
+        _titlePointsApplication?.AssignPoints();
 
         _player.EndPlayerTurn();
         _tableTurnManager.ActivePlayers.Remove(_player);
