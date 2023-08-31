@@ -12,6 +12,6 @@ public class HourRelativeTitlePointsApplicationData : TitlePointsApplicationData
 
     public override TitlePointsApplication Application(TableTurnCardState cardState)
     {
-        return new HourRelativeTitlePointsApplication(cardState, eventApplication, titlePointsId, minValue, maxValue, hoursToGetMaxValue);
+        return new HourRelativeTitlePointsApplication(cardState, titlePointsId, minValue, maxValue, hoursToGetMaxValue);
     }
 }

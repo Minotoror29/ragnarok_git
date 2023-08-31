@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,10 @@ public class TableTurnTargetState : TableTurnState
     private UnityAction<Player> _selectAction;
     private UnityAction<Player> _confirmAction;
 
-    public TableTurnTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, TargetPlayersApplication playerApplication, int playersToTarget) : base(stateManager, tableTurnManager)
+    public event Action<Player, Player> OnTarget;
+
+    public TableTurnTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card,
+        TargetPlayersApplication playerApplication, int playersToTarget, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _card = card;
@@ -23,6 +27,8 @@ public class TableTurnTargetState : TableTurnState
 
         _selectAction += SelectPlayer;
         _confirmAction += Confirm;
+
+        OnTarget = OnTargetEvent;
     }
 
     public override void Enter()
@@ -54,6 +60,8 @@ public class TableTurnTargetState : TableTurnState
 
     private void Confirm(Player targetedPlayer)
     {
+        OnTarget?.Invoke(_player, targetedPlayer);
+
         for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
             TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);

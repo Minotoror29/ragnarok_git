@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cd0bfd3af2a74e499d2a6faa545ee74, type: 3}
-  m_Name: +1 Imperialism
+  m_Script: {fileID: 11500000, guid: 4edd887d1259f1e4682fd2239b7f2394, type: 3}
+  m_Name: On Target
   m_EditorClassIdentifier: 
-  eventApplication: {fileID: 11400000, guid: 6cc3d36dce9eb384eab66193f303fef7, type: 2}
-  titlePointsId: 2
-  value: 1

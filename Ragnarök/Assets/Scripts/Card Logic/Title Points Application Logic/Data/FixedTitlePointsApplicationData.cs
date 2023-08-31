@@ -10,6 +10,6 @@ public class FixedTitlePointsApplicationData : TitlePointsApplicationData
 
     public override TitlePointsApplication Application(TableTurnCardState cardState)
     {
-        return new FixedTitlePointsApplication(cardState, eventApplication, titlePointsId, value);
+        return new FixedTitlePointsApplication(cardState, titlePointsId, value);
     }
 }

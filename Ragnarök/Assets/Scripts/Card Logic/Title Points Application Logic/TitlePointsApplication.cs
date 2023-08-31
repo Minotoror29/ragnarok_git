@@ -6,17 +6,15 @@ using UnityEngine;
 public abstract class TitlePointsApplication
 {
     private TableTurnCardState _cardState;
-    private EventApplicationData _eventApplication;
 
     private List<Player> _players;
 
+    public TableTurnCardState CardState { get { return _cardState; } }
     public List<Player> Players { get { return _players; } }
 
-    public TitlePointsApplication(TableTurnCardState cardState, EventApplicationData eventApplicationData)
+    public TitlePointsApplication(TableTurnCardState cardState)
     {
         _cardState = cardState;
-        _eventApplication = eventApplicationData;
-        eventApplicationData.AssignEvent(cardState, AddPlayer);
 
         _players = new();
     }
@@ -26,8 +24,5 @@ public abstract class TitlePointsApplication
         _players.Add(player);
     }
 
-    public virtual void AssignPoints()
-    {
-        _eventApplication.UnassignEvent(_cardState, AddPlayer);
-    }
+    public abstract void AssignPoints();
 }

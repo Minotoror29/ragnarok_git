@@ -7,20 +7,22 @@ public class FixedTitlePointsApplication : TitlePointsApplication
     private TitlePointsId _titlePointsId;
     private int _value;
 
-    public FixedTitlePointsApplication(TableTurnCardState cardState, EventApplicationData eventApplicationData, TitlePointsId titlePointsId, int value) : base(cardState, eventApplicationData)
+    public FixedTitlePointsApplication(TableTurnCardState cardState, TitlePointsId titlePointsId, int value) : base(cardState)
     {
         _titlePointsId = titlePointsId;
         _value = value;
+
+        cardState.OnVote += AddPlayer;
     }
 
     public override void AssignPoints()
     {
-        base.AssignPoints();
-
         foreach (Player player in Players)
         {
             player.TitlePoints[_titlePointsId] += _value;
             Debug.Log(player.PlayerName + " earned " + _value + " " + _titlePointsId.ToString() + " points");
         }
+
+        CardState.OnVote -= AddPlayer;
     }
 }

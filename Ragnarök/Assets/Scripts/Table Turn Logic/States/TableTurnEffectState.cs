@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,9 +18,11 @@ public class TableTurnEffectState : TableTurnState
     private bool _opponentsVote = false;
 
     private TitlePointsApplication _titlePointsApplication;
+    public Action<Player, Player> OnTarget;
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
-        Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote, TitlePointsApplication titlePointsApplication) : base(stateManager, tableTurnManager)
+        Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote,
+        TitlePointsApplication titlePointsApplication, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
 
@@ -32,6 +35,7 @@ public class TableTurnEffectState : TableTurnState
         _opponentsVote = opponentsVote;
 
         _titlePointsApplication = titlePointsApplication;
+        OnTarget = OnTargetEvent;
     }
 
     public override void Enter()
@@ -79,7 +83,7 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _stateManager.ChangeState(new TableTurnTargetState(_stateManager, TableTurnManager, _player, _card, application, playersToTarget));
+            _stateManager.ChangeState(new TableTurnTargetState(_stateManager, TableTurnManager, _player, _card, application, playersToTarget, OnTarget));
         } else
         {
             _stateManager.ChangeState(new TableTurnOpponentsTargetState(_stateManager, TableTurnManager, _player, _card, application));

@@ -6,21 +6,21 @@ public class Deck : MonoBehaviour
 {
     [SerializeField] private TableTurnManager tableTurnManager;
 
-    private List<Card> _cards;
+    public List<Card> _cards;
     private List<Card> _graveyard;
 
     public void Initialize()
     {
-        _cards = new();
+        //_cards = new();
         _graveyard = new();
 
-        foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
-        {
-            for (int i = 0; i < card.duplicates; i++)
-            {
-                _cards.Add(card);
-            }
-        }
+        //foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
+        //{
+        //    for (int i = 0; i < card.duplicates; i++)
+        //    {
+        //        _cards.Add(card);
+        //    }
+        //}
     }
 
     public Card DrawCard()

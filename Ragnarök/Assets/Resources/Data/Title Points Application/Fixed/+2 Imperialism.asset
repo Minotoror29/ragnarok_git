@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd0bfd3af2a74e499d2a6faa545ee74, type: 3}
   m_Name: +2 Imperialism
   m_EditorClassIdentifier: 
+  eventApplication: {fileID: 11400000, guid: 6cc3d36dce9eb384eab66193f303fef7, type: 2}
   titlePointsId: 2
   value: 2
