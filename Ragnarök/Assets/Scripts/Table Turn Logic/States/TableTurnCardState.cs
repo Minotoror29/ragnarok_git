@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class TableTurnCardState : TableTurnState
     private int _discardVotes;
 
     private TitlePointsApplication _titlePointsApplication;
+    public event Action<Player> OnVote;
 
     public TableTurnCardState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card) : base(stateManager, tableTurnManager)
     {
@@ -42,19 +44,19 @@ public class TableTurnCardState : TableTurnState
 
         if (_card.titlePointsApplication != null)
         {
-            _titlePointsApplication = _card.titlePointsApplication.Application(_tableTurnManager);
+            _titlePointsApplication = _card.titlePointsApplication.Application(this);
         }
 
-        _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
+        TableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
 
-        _tableTurnManager.CardDisplay.gameObject.SetActive(true);
-        _tableTurnManager.CardDisplay.SetCard(_card, this);
+        TableTurnManager.CardDisplay.gameObject.SetActive(true);
+        TableTurnManager.CardDisplay.SetCard(_card, this);
     }
 
     public override void Exit()
     {
-        _tableTurnManager.CardDisplay.ResetVotes();
-        _tableTurnManager.CardDisplay.gameObject.SetActive(false);
+        TableTurnManager.CardDisplay.ResetVotes();
+        TableTurnManager.CardDisplay.gameObject.SetActive(false);
     }
 
     public override void UpdateLogic()
@@ -65,7 +67,8 @@ public class TableTurnCardState : TableTurnState
     {
         _playVotes++;
 
-        _titlePointsApplication.AddPlayer(_votingPlayers[0]);
+        //_titlePointsApplication.AddPlayer(_votingPlayers[0]);
+        OnVote.Invoke(_votingPlayers[0]);
 
         if (_player.OpponentsVoteForCard)
         {
@@ -88,27 +91,27 @@ public class TableTurnCardState : TableTurnState
         {
             if (_playVotes > _discardVotes)
             {
-                _stateManager.ChangeState(new TableTurnEffectState(_stateManager, _tableTurnManager, _player,
-                    _card, _card.effect1, _card.effect2, _tableTurnManager.EffectsManager, _player.OpponentsVoteForCard, _titlePointsApplication));
+                _stateManager.ChangeState(new TableTurnEffectState(_stateManager, TableTurnManager, _player,
+                    _card, _card.effect1, _card.effect2, TableTurnManager.EffectsManager, _player.OpponentsVoteForCard, _titlePointsApplication));
             } else if (_discardVotes > _playVotes)
             {
-                _titlePointsApplication.AssignPoints();
+                _titlePointsApplication?.AssignPoints();
                 _player.EndPlayerTurn();
-                _tableTurnManager.ActivePlayers.Remove(_player);
-                _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+                TableTurnManager.ActivePlayers.Remove(_player);
+                _stateManager.ChangeState(new TableTurnCheckState(_stateManager, TableTurnManager));
             } else if (_playVotes == _discardVotes)
             {
                 if (_card.titlePointsApplication != null)
                 {
-                    _titlePointsApplication = _card.titlePointsApplication.Application(_tableTurnManager);
+                    _titlePointsApplication = _card.titlePointsApplication.Application(this);
                 }
                 _votingPlayers.Add(_player);
-                _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
+                TableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
             }
         }
         else
         {
-            _tableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
+            TableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
         }
     }
 }

@@ -14,26 +14,26 @@ public class TableTurnPlayingState : TableTurnState
     public override void Enter()
     {
         _player.StartPlayerTurn();
-        _tableTurnManager.SelectionManager.Enable(this);
+        TableTurnManager.SelectionManager.Enable(this);
 
         if (_player.MustSkipNextTurn)
         {
             _player.EndPlayerTurn();
-            _tableTurnManager.ActivePlayers.Remove(_player);
-            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+            TableTurnManager.ActivePlayers.Remove(_player);
+            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, TableTurnManager));
         } else
         {
-            _stateManager.ChangeState(new TableTurnCardState(_stateManager, _tableTurnManager, _player, _tableTurnManager.Deck.DrawCard()));
+            _stateManager.ChangeState(new TableTurnCardState(_stateManager, TableTurnManager, _player, TableTurnManager.Deck.DrawCard()));
         }
     }
 
     public override void Exit()
     {
-        _tableTurnManager.SelectionManager.Disable();
+        TableTurnManager.SelectionManager.Disable();
     }
 
     public override void UpdateLogic()
     {
-        _tableTurnManager.SelectionManager.UpdateLogic();
+        TableTurnManager.SelectionManager.UpdateLogic();
     }
 }

@@ -13,19 +13,21 @@ public class HourRelativeTitlePointsApplication : TitlePointsApplication
     private Clock _clock;
     private int _startHours;
 
-    public HourRelativeTitlePointsApplication(TitlePointsId titlePointsId, int minValue, int maxValue, int hoursToGetMaxValue, Clock clock)
+    public HourRelativeTitlePointsApplication(TableTurnCardState cardState, EventApplicationData eventApplicationData, TitlePointsId titlePointsId, int minValue, int maxValue, int hoursToGetMaxValue) : base(cardState, eventApplicationData)
     {
         _titlePointsId = titlePointsId;
         _minValue = minValue;
         _maxValue = maxValue;
         _hoursToGetMaxValue = hoursToGetMaxValue;
 
-        _clock = clock;
+        _clock = cardState.TableTurnManager.Clock;
         _startHours = _clock.Hours;
     }
 
     public override void AssignPoints()
     {
+        base.AssignPoints();
+
         foreach (Player player in Players)
         {
             if (_clock.Hours < _startHours + _hoursToGetMaxValue)

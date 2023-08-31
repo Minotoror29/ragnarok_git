@@ -12,16 +12,16 @@ public class TableTurnCheckState : TableTurnState
 
     public override void Enter()
     {
-        if (!_tableTurnManager.RoundState.IsRoundOver())
+        if (!TableTurnManager.RoundState.IsRoundOver())
         {
-            if (_tableTurnManager.ActivePlayers.Count == 0)
+            if (TableTurnManager.ActivePlayers.Count == 0)
             {
-                _stateManager.ChangeState(new TableTurnEndState(_stateManager, _tableTurnManager));
+                _stateManager.ChangeState(new TableTurnEndState(_stateManager, TableTurnManager));
             }
             else
             {
-                _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.ActivePlayers[0].VCam,
-                    new TableTurnPlayingState(_stateManager, _tableTurnManager, _tableTurnManager.ActivePlayers[0])));
+                _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, TableTurnManager, TableTurnManager.ActivePlayers[0].VCam,
+                    new TableTurnPlayingState(_stateManager, TableTurnManager, TableTurnManager.ActivePlayers[0])));
             }
         }
     }

@@ -21,9 +21,9 @@ public class TableTurnTransitionState : TableTurnState
     public override void Enter()
     {
         _transitionTime = Camera.main.GetComponent<CinemachineBrain>().m_DefaultBlend.m_Time;
-        _tableTurnManager.CameraManager.CurrentCam?.gameObject.SetActive(false);
+        TableTurnManager.CameraManager.CurrentCam?.gameObject.SetActive(false);
         _nextCam.gameObject.SetActive(true);
-        _tableTurnManager.CameraManager.CurrentCam = _nextCam;
+        TableTurnManager.CameraManager.CurrentCam = _nextCam;
         _transitionTimer = _transitionTime;
     }
 

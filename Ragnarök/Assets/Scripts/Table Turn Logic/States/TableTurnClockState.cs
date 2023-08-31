@@ -11,8 +11,8 @@ public class TableTurnClockState : TableTurnState
 
     public override void Enter()
     {
-        _tableTurnManager.Clock.SetHoursText();
-        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+        TableTurnManager.Clock.SetHoursText();
+        _stateManager.ChangeState(new TableTurnCheckState(_stateManager, TableTurnManager));
     }
 
     public override void Exit()

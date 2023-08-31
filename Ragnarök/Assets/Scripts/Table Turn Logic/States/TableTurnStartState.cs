@@ -10,9 +10,9 @@ public class TableTurnStartState : TableTurnState
 
     public override void Enter()
     {
-        _tableTurnManager.Clock.AddHours(1);
+        TableTurnManager.Clock.AddHours(1);
 
-        _stateManager.ChangeState(new TableTurnClockState(_stateManager, _tableTurnManager));
+        _stateManager.ChangeState(new TableTurnClockState(_stateManager, TableTurnManager));
     }
 
     public override void Exit()

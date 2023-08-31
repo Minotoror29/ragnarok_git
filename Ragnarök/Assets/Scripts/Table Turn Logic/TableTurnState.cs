@@ -6,6 +6,8 @@ public abstract class TableTurnState : State
 {
     protected TableTurnManager _tableTurnManager;
 
+    public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
+
     public TableTurnState(StateManager stateManager, TableTurnManager tableTurnManager) : base(stateManager)
     {
         _tableTurnManager = tableTurnManager;

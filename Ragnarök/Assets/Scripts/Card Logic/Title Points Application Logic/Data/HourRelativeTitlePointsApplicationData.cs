@@ -10,8 +10,8 @@ public class HourRelativeTitlePointsApplicationData : TitlePointsApplicationData
     public int maxValue;
     public int hoursToGetMaxValue;
 
-    public override TitlePointsApplication Application(TableTurnManager tableTurnManager)
+    public override TitlePointsApplication Application(TableTurnCardState cardState)
     {
-        return new HourRelativeTitlePointsApplication(titlePointsId, minValue, maxValue, hoursToGetMaxValue, tableTurnManager.Clock);
+        return new HourRelativeTitlePointsApplication(cardState, eventApplication, titlePointsId, minValue, maxValue, hoursToGetMaxValue);
     }
 }

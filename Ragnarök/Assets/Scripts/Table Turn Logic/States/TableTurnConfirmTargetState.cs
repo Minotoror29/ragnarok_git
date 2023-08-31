@@ -18,7 +18,7 @@ public class TableTurnConfirmTargetState : TableTurnState
     public TableTurnConfirmTargetState(StateManager stateManager, TableTurnManager tableTurnManager, TableTurnState targetState, Player player, string cardName, Player targetedPlayer,
         UnityAction<Player> confirmAction) : base(stateManager, tableTurnManager)
     {
-        _confirmTargetDisplay = _tableTurnManager.ConfirmTargetDisplay;
+        _confirmTargetDisplay = TableTurnManager.ConfirmTargetDisplay;
 
         _targetState = targetState;
         _player = player;
@@ -43,7 +43,7 @@ public class TableTurnConfirmTargetState : TableTurnState
 
     private void Decline()
     {
-        _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _player.VCam, _targetState));
+        _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, TableTurnManager, _player.VCam, _targetState));
     }
 
     public override void UpdateLogic()

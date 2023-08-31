@@ -23,10 +23,10 @@ public class TableTurnOpponentsValueState : TableTurnState
 
     public override void Enter()
     {
-        _tableTurnManager.ValueDisplay.gameObject.SetActive(true);
+        TableTurnManager.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        _tableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
 
         _opponentsChose = 0;
         _chosenValues = new();
@@ -34,14 +34,14 @@ public class TableTurnOpponentsValueState : TableTurnState
 
     public override void Exit()
     {
-        _tableTurnManager.ValueDisplay.gameObject.SetActive(false);
+        TableTurnManager.ValueDisplay.gameObject.SetActive(false);
     }
 
     public void Confirm(int value)
     {
         _chosenValues.Add(value);
         _opponentsChose++;
-        _tableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
 
         if (_opponentsChose == _player.Opponents.Count)
         {

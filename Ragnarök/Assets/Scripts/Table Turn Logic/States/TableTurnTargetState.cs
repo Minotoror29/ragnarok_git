@@ -29,17 +29,17 @@ public class TableTurnTargetState : TableTurnState
     {
         _targetedPlayers = new List<Player>();
 
-        for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
+        for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
-            _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
+            TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
         }
     }
 
     public override void Exit()
     {
-        for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
+        for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
-            _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
+            TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
         }
     }
 
@@ -48,18 +48,18 @@ public class TableTurnTargetState : TableTurnState
         if (selectedPlayer == _player) return;
 
         _stateManager.ChangeState(new TableTurnTransitionState(
-            _stateManager, _tableTurnManager, selectedPlayer.TargetCam,
-            new TableTurnConfirmTargetState(_stateManager, _tableTurnManager, this, _player, _card.cardName, selectedPlayer, _confirmAction)));
+            _stateManager, TableTurnManager, selectedPlayer.TargetCam,
+            new TableTurnConfirmTargetState(_stateManager, TableTurnManager, this, _player, _card.cardName, selectedPlayer, _confirmAction)));
     }
 
     private void Confirm(Player targetedPlayer)
     {
-        for (int i = 0; i < _tableTurnManager.PlayerOverlaysParent.childCount; i++)
+        for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
         {
-            _tableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
+            TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
         }
 
-        _tableTurnManager.ConfirmTargetDisplay.gameObject.SetActive(false);
+        TableTurnManager.ConfirmTargetDisplay.gameObject.SetActive(false);
 
         if (_targetedPlayers.Contains(targetedPlayer))
         {

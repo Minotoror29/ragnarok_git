@@ -63,15 +63,15 @@ public class TableTurnEffectState : TableTurnState
         _titlePointsApplication?.AssignPoints();
 
         _player.EndPlayerTurn();
-        _tableTurnManager.ActivePlayers.Remove(_player);
-        if (_tableTurnManager.Clock.HasHourChanged)
+        TableTurnManager.ActivePlayers.Remove(_player);
+        if (TableTurnManager.Clock.HasHourChanged)
         {
-            _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, _tableTurnManager, _tableTurnManager.TopCam,
-                new TableTurnClockState(_stateManager, _tableTurnManager)));
+            _stateManager.ChangeState(new TableTurnTransitionState(_stateManager, TableTurnManager, TableTurnManager.TopCam,
+                new TableTurnClockState(_stateManager, TableTurnManager)));
         }
         else
         {
-            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, _tableTurnManager));
+            _stateManager.ChangeState(new TableTurnCheckState(_stateManager, TableTurnManager));
         }
     }
 
@@ -79,10 +79,10 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _stateManager.ChangeState(new TableTurnTargetState(_stateManager, _tableTurnManager, _player, _card, application, playersToTarget));
+            _stateManager.ChangeState(new TableTurnTargetState(_stateManager, TableTurnManager, _player, _card, application, playersToTarget));
         } else
         {
-            _stateManager.ChangeState(new TableTurnOpponentsTargetState(_stateManager, _tableTurnManager, _player, _card, application));
+            _stateManager.ChangeState(new TableTurnOpponentsTargetState(_stateManager, TableTurnManager, _player, _card, application));
         }
     }
 
@@ -90,10 +90,10 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _stateManager.ChangeState(new TableTurnValueState(_stateManager, _tableTurnManager, _player, application, add));
+            _stateManager.ChangeState(new TableTurnValueState(_stateManager, TableTurnManager, _player, application, add));
         } else
         {
-            _stateManager.ChangeState(new TableTurnOpponentsValueState(_stateManager, _tableTurnManager, _player, application, add));
+            _stateManager.ChangeState(new TableTurnOpponentsValueState(_stateManager, TableTurnManager, _player, application, add));
         }
     }
 

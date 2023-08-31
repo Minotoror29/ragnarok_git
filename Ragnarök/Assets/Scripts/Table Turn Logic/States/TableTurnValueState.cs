@@ -20,15 +20,15 @@ public class TableTurnValueState : TableTurnState
 
     public override void Enter()
     {
-        _tableTurnManager.ValueDisplay.gameObject.SetActive(true);
+        TableTurnManager.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        _tableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
     }
 
     public override void Exit()
     {
-        _tableTurnManager.ValueDisplay.gameObject.SetActive(false);
+        TableTurnManager.ValueDisplay.gameObject.SetActive(false);
     }
 
     public void Confirm(int value)
