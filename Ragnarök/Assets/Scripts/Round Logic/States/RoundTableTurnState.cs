@@ -84,17 +84,29 @@ public class RoundTableTurnState : RoundState
             }
         }
 
-        foreach (Player player in _roundManager.ActivePlayers)
+        if (minimumPoints == maximumPoints)
         {
-            if (player.Points == minimumPoints)
-            {
-                player.Wealth = Wealth.Poor;
-            } else if (player.Points == maximumPoints)
-            {
-                player.Wealth = Wealth.Rich;
-            } else
+            foreach (Player player in _roundManager.ActivePlayers)
             {
                 player.Wealth = Wealth.Neutral;
+            }
+        }
+        else
+        {
+            foreach (Player player in _roundManager.ActivePlayers)
+            {
+                if (player.Points == minimumPoints)
+                {
+                    player.Wealth = Wealth.Poor;
+                }
+                else if (player.Points == maximumPoints)
+                {
+                    player.Wealth = Wealth.Rich;
+                }
+                else
+                {
+                    player.Wealth = Wealth.Neutral;
+                }
             }
         }
     }
