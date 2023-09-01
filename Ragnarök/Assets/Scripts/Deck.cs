@@ -59,7 +59,7 @@ public class Deck : MonoBehaviour
             }
         }
 
-        Shuffle();
+        //Shuffle();
 
         _graveyard = new();
     }

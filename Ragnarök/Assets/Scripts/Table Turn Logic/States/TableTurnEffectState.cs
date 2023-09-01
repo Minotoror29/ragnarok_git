@@ -86,7 +86,8 @@ public class TableTurnEffectState : TableTurnState
             _stateManager.ChangeState(new TableTurnTargetState(_stateManager, TableTurnManager, _player, _card, application, playersToTarget, OnTarget));
         } else
         {
-            _stateManager.ChangeState(new TableTurnOpponentsTargetState(_stateManager, TableTurnManager, _player, _card, application));
+            _player.OpponentsVoteForCard = false;
+            _stateManager.ChangeState(new TableTurnOpponentsTargetState(_stateManager, TableTurnManager, _player, _card, application, OnTarget));
         }
     }
 
@@ -97,6 +98,7 @@ public class TableTurnEffectState : TableTurnState
             _stateManager.ChangeState(new TableTurnValueState(_stateManager, TableTurnManager, _player, application, add));
         } else
         {
+            _player.OpponentsVoteForCard = false;
             _stateManager.ChangeState(new TableTurnOpponentsValueState(_stateManager, TableTurnManager, _player, application, add));
         }
     }

@@ -21,6 +21,7 @@ public class TableTurnTargetState : TableTurnState
         TargetPlayersApplication playerApplication, int playersToTarget, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
+
         _card = card;
         _playerApplication = playerApplication;
         _playersToTarget = playersToTarget;
@@ -39,6 +40,9 @@ public class TableTurnTargetState : TableTurnState
         {
             TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
         }
+
+        TableTurnManager.TargetDisplay.gameObject.SetActive(true);
+        TableTurnManager.TargetDisplay.SetTargetText(_player.PlayerName);
     }
 
     public override void Exit()
@@ -47,6 +51,8 @@ public class TableTurnTargetState : TableTurnState
         {
             TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
         }
+
+        TableTurnManager.TargetDisplay.gameObject.SetActive(false);
     }
 
     public override void SelectPlayer(Player selectedPlayer)

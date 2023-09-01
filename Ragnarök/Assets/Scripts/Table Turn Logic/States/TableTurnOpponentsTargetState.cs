@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,9 @@ public class TableTurnOpponentsTargetState : TableTurnState
     private UnityAction<Player> _selectAction;
     private UnityAction<Player> _confirmAction;
 
-    public TableTurnOpponentsTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, TargetPlayersApplication playerApplication) : base(stateManager, tableTurnManager)
+    public event Action<Player, Player> OnTarget;
+
+    public TableTurnOpponentsTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, TargetPlayersApplication playerApplication, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _card = card;
@@ -36,6 +39,8 @@ public class TableTurnOpponentsTargetState : TableTurnState
         }
 
         _playersVoted = 0;
+
+        OnTarget = OnTargetEvent;
     }
 
     public override void Enter()
@@ -44,6 +49,9 @@ public class TableTurnOpponentsTargetState : TableTurnState
         {
             TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
         }
+
+        TableTurnManager.TargetDisplay.gameObject.SetActive(true);
+        TableTurnManager.TargetDisplay.SetTargetText(_opponents[_playersVoted].PlayerName);
     }
 
     public override void Exit()
@@ -52,6 +60,8 @@ public class TableTurnOpponentsTargetState : TableTurnState
         {
             TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
         }
+
+        TableTurnManager.TargetDisplay.gameObject.SetActive(false);
     }
 
     public override void SelectPlayer(Player selectedPlayer)
@@ -64,6 +74,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
 
     private void Confirm(Player targetedPlayer)
     {
+        OnTarget?.Invoke(_opponents[_playersVoted], targetedPlayer);
         _votes[_opponents.IndexOf(targetedPlayer)]++;
         targetedPlayer.TargetVote();
         _playersVoted++;
@@ -89,7 +100,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
                 }
             }
 
-            _targetedPlayers.Add(opponentsWithHighestVotes[Random.Range(0, opponentsWithHighestVotes.Count)]);
+            _targetedPlayers.Add(opponentsWithHighestVotes[UnityEngine.Random.Range(0, opponentsWithHighestVotes.Count)]);
             foreach (Player opponent in _opponents)
             {
                 opponent.ClearTargetVotes();

@@ -17,6 +17,7 @@ public class TableTurnManager : MonoBehaviour
 
     private CardDisplay _cardDisplay;
     [SerializeField] private ValueDisplay valueDisplay;
+    [SerializeField] private TargetDisplay targetDisplay;
     [SerializeField] private ConfirmTargetDisplay confirmTargetDisplay;
     [SerializeField] private EffectsManager effectsManager;
 
@@ -31,6 +32,7 @@ public class TableTurnManager : MonoBehaviour
     public Deck Deck { get { return _deck; } }
     public CardDisplay CardDisplay { get { return _cardDisplay; } }
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
+    public TargetDisplay TargetDisplay { get { return targetDisplay; } }
     public ConfirmTargetDisplay ConfirmTargetDisplay { get { return confirmTargetDisplay; } }
     public EffectsManager EffectsManager { get { return effectsManager; } }
     public CameraManager CameraManager { get { return cameraManager; } }

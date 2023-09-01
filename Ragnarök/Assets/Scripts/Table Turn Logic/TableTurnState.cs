@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class TableTurnState : State
 {
-    protected TableTurnManager _tableTurnManager;
+    private TableTurnManager _tableTurnManager;
 
     public TableTurnManager TableTurnManager { get { return _tableTurnManager; } }
 
