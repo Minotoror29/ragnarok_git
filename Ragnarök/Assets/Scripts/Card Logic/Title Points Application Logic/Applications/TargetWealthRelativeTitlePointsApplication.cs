@@ -28,11 +28,6 @@ public class TargetWealthRelativeTitlePointsApplication : TitlePointsApplication
     private void AddPlayerAndTarget(Player player, Player target)
     {
         AddPlayer(player);
-        AddTarget(target);
-    }
-
-    private void AddTarget(Player target)
-    {
         _targets.Add(target);
     }
 

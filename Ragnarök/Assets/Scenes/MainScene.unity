@@ -254,6 +254,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionManager: {fileID: 540364198}
   valueDisplay: {fileID: 2097747245}
+  targetDisplay: {fileID: 885495697}
   confirmTargetDisplay: {fileID: 1677935887}
   effectsManager: {fileID: 2139410817}
   cameraManager: {fileID: 1850229464}
@@ -5564,7 +5565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tableTurnManager: {fileID: 179236478}
   _cards:
-  - {fileID: 11400000, guid: 8d78821bf0012314a8fbd484ec94761b, type: 2}
+  - {fileID: 11400000, guid: f38c321a17a756f44b66dbdddcad7bac, type: 2}
+  - {fileID: 11400000, guid: df7caa2ce54f8204aa518363a3889db2, type: 2}
 --- !u!1 &1451001602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5912,8 +5914,6 @@ MonoBehaviour:
   - Matthieu
   - Simon
   - Goulven
-  - Jormungandr
-  - Emmanuel
 --- !u!4 &1524834609
 Transform:
   m_ObjectHideFlags: 0

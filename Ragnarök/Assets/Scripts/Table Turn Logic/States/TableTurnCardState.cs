@@ -16,6 +16,8 @@ public class TableTurnCardState : TableTurnState
     public event Action<Player> OnVote;
     public event Action<Player, Player> OnTarget;
 
+    public Player Player { get { return _player; } }
+
     public TableTurnCardState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card) : base(stateManager, tableTurnManager)
     {
         _player = player;
