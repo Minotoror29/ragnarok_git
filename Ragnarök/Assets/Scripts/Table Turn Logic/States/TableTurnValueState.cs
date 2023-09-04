@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,11 +12,14 @@ public class TableTurnValueState : TableTurnState
 
     private UnityAction<int> _confirmAction;
 
-    public TableTurnValueState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication, bool add) : base(stateManager, tableTurnManager)
+    public event Action<Player, int> OnValue;
+
+    public TableTurnValueState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication, bool add, Action<Player, int> OnValueEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _valueApplication = valueApplication;
         _add = add;
+        OnValue = OnValueEvent;
     }
 
     public override void Enter()
@@ -23,7 +27,7 @@ public class TableTurnValueState : TableTurnState
         TableTurnManager.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player, _player);
     }
 
     public override void Exit()
@@ -39,6 +43,8 @@ public class TableTurnValueState : TableTurnState
         {
             actualValue = -value;
         }
+
+        OnValue?.Invoke(_player, actualValue);
 
         _valueApplication.SetValue(actualValue);
     }

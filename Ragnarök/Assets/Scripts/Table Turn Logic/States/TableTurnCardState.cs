@@ -15,6 +15,7 @@ public class TableTurnCardState : TableTurnState
     private TitlePointsApplication _titlePointsApplication;
     public event Action<Player> OnVote;
     public event Action<Player, Player> OnTarget;
+    public event Action<Player, int> OnValue;
 
     public Player Player { get { return _player; } }
 
@@ -95,7 +96,7 @@ public class TableTurnCardState : TableTurnState
             {
                 _stateManager.ChangeState(new TableTurnEffectState(_stateManager, TableTurnManager, _player,
                     _card, _card.effect1, _card.effect2, TableTurnManager.EffectsManager, _player.OpponentsVoteForCard,
-                    _titlePointsApplication, OnTarget));
+                    _titlePointsApplication, OnTarget, OnValue));
             } else if (_discardVotes > _playVotes)
             {
                 _titlePointsApplication?.AssignPoints();

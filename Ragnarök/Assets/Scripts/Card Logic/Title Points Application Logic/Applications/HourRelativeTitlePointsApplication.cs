@@ -30,7 +30,7 @@ public class HourRelativeTitlePointsApplication : TitlePointsApplication
     {
         foreach (Player player in Players)
         {
-            if (_clock.Hours < _startHours + _hoursToGetMaxValue)
+            if (_clock.Hours <= _startHours + _hoursToGetMaxValue)
             {
                 player.TitlePoints[_titlePointsId] += _minValue;
                 Debug.Log(player.PlayerName + " earned " + _minValue + " " + _titlePointsId.ToString() + " points");

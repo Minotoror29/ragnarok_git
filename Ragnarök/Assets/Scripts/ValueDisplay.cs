@@ -17,15 +17,15 @@ public class ValueDisplay : MonoBehaviour
 
     [SerializeField] private Clock clock;
 
-    public void Initialize(bool add, UnityAction<int> action, Player player)
+    public void Initialize(bool add, UnityAction<int> action, Player player, Player chosingPlayer)
     {
         if (add)
         {
-            title.text = "L'horloge avance de :";
+            title.text = chosingPlayer.PlayerName + " fait avancer l'horloge de :";
             _maxValue = 8 - clock.Hours;
         } else
         {
-            title.text = "L'horloge recule de :";
+            title.text = chosingPlayer.PlayerName + " fait reculer l'horloge de :";
             _maxValue = player.Points;
             _maxValue = Mathf.Clamp(_maxValue, 0, clock.Hours);
         }

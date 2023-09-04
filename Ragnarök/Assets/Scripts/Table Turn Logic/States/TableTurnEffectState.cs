@@ -18,11 +18,12 @@ public class TableTurnEffectState : TableTurnState
     private bool _opponentsVote = false;
 
     private TitlePointsApplication _titlePointsApplication;
-    public Action<Player, Player> OnTarget;
+    public event Action<Player, Player> OnTarget;
+    public event Action<Player, int> OnValue;
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
         Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote,
-        TitlePointsApplication titlePointsApplication, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
+        TitlePointsApplication titlePointsApplication, Action<Player, Player> OnTargetEvent, Action<Player, int> OnValueEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
 
@@ -36,6 +37,7 @@ public class TableTurnEffectState : TableTurnState
 
         _titlePointsApplication = titlePointsApplication;
         OnTarget = OnTargetEvent;
+        OnValue = OnValueEvent;
     }
 
     public override void Enter()
@@ -95,11 +97,11 @@ public class TableTurnEffectState : TableTurnState
     {
         if (!_opponentsVote)
         {
-            _stateManager.ChangeState(new TableTurnValueState(_stateManager, TableTurnManager, _player, application, add));
+            _stateManager.ChangeState(new TableTurnValueState(_stateManager, TableTurnManager, _player, application, add, OnValue));
         } else
         {
             _player.OpponentsVoteForCard = false;
-            _stateManager.ChangeState(new TableTurnOpponentsValueState(_stateManager, TableTurnManager, _player, application, add));
+            _stateManager.ChangeState(new TableTurnOpponentsValueState(_stateManager, TableTurnManager, _player, application, add, OnValue));
         }
     }
 

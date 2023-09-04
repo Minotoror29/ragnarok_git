@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +12,17 @@ public class TableTurnOpponentsValueState : TableTurnState
 
     private UnityAction<int> _confirmAction;
 
-    private int _opponentsChose;
+    private int _playersVoted;
     private List<int> _chosenValues;
 
-    public TableTurnOpponentsValueState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication , bool add) : base(stateManager, tableTurnManager)
+    public event Action<Player, int> OnValue;
+
+    public TableTurnOpponentsValueState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CustomValueApplication valueApplication , bool add, Action<Player, int> OnValueEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _valueApplication = valueApplication;
         _add = add;
+        OnValue = OnValueEvent;
     }
 
     public override void Enter()
@@ -26,9 +30,9 @@ public class TableTurnOpponentsValueState : TableTurnState
         TableTurnManager.ValueDisplay.gameObject.SetActive(true);
 
         _confirmAction += Confirm;
-        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player, _player.Opponents[_playersVoted]);
 
-        _opponentsChose = 0;
+        _playersVoted = 0;
         _chosenValues = new();
     }
 
@@ -39,11 +43,17 @@ public class TableTurnOpponentsValueState : TableTurnState
 
     public void Confirm(int value)
     {
+        if (_add)
+        {
+            OnValue?.Invoke(_player.Opponents[_playersVoted], value);
+        } else
+        {
+            OnValue?.Invoke(_player.Opponents[_playersVoted], -value);
+        }
         _chosenValues.Add(value);
-        _opponentsChose++;
-        TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player);
+        _playersVoted++;
 
-        if (_opponentsChose == _player.Opponents.Count)
+        if (_playersVoted == _player.Opponents.Count)
         {
             int addedValue = 0;
 
@@ -60,6 +70,9 @@ public class TableTurnOpponentsValueState : TableTurnState
             }
 
             _valueApplication.SetValue(actualValue);
+        } else
+        {
+            TableTurnManager.ValueDisplay.Initialize(_add, _confirmAction, _player, _player.Opponents[_playersVoted]);
         }
     }
 
