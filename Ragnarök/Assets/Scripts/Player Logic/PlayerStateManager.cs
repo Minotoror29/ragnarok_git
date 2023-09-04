@@ -35,4 +35,9 @@ public class PlayerStateManager : MonoBehaviour
     {
         _currentState.Select(tableTurnState);
     }
+
+    public void TargetVote()
+    {
+        _currentState.TargetVote();
+    }
 }

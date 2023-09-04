@@ -11,6 +11,7 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         _player.NameText.color = Color.red;
+        _player.PlayerOverlay.SetColor(Color.red);
     }
 
     public override void Exit()
@@ -18,6 +19,11 @@ public class PlayerDeadState : PlayerState
     }
 
     public override void Select(TableTurnState tableTurnState)
+    {
+        return;
+    }
+
+    public override void TargetVote()
     {
         return;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,7 +17,8 @@ public class PlayerOverlay : MonoBehaviour
 
     private Player _player;
 
-    private UnityAction<Player> _selectAction;
+    private bool _actionEnabled = false;
+    private event Action<Player> SelectAction;
 
     public void Initialize(Player player)
     {
@@ -28,21 +30,23 @@ public class PlayerOverlay : MonoBehaviour
         _targetVotes = new();
     }
 
-    public void EnableSelection(UnityAction<Player> action)
+    public void EnableSelection(Action<Player> action)
     {
-        _selectAction = action;
+        SelectAction = action;
+        _actionEnabled = true;
     }
 
     public void DisableSelection()
     {
-        _selectAction = null;
+        SelectAction = null;
+        _actionEnabled = false;
     }
 
     public void Select()
     {
-        if (_selectAction == null) return;
+        if (SelectAction == null) return;
 
-        _selectAction.Invoke(_player);
+        SelectAction.Invoke(_player);
     }
 
     public void SetPoints()
@@ -64,5 +68,10 @@ public class PlayerOverlay : MonoBehaviour
         }
 
         _targetVotes.Clear();
+    }
+
+    public void SetColor(Color color)
+    {
+        playerName.color = color;
     }
 }

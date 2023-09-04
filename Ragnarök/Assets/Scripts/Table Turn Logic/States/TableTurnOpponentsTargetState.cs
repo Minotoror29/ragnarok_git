@@ -15,7 +15,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
     private List<int> _votes;
     private int _playersVoted;
 
-    private UnityAction<Player> _selectAction;
+    private event Action<Player> _selectAction;
     private UnityAction<Player> _confirmAction;
 
     public event Action<Player, Player> OnTarget;

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, ISelectable
     [SerializeField] private CinemachineVirtualCamera vCam;
     [SerializeField] private CinemachineVirtualCamera targetCam;
 
-    private List<Player> _opponents;
+    public List<Player> _opponents;
 
     private int _roundsWon = 0;
     private int _points;
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour, ISelectable
     public string PlayerName { get { return _playerName; } }
     public bool MustSkipNextTurn { get { return _mustSkipNextTurn; } set { _mustSkipNextTurn = value; } }
     public bool OpponentsVoteForCard { get { return _opponentsVoteForCard; } set { _opponentsVoteForCard = value; } }
+    public PlayerOverlay PlayerOverlay { get { return _playerOverlay; } }
     public Dictionary<TitlePointsId, int> TitlePoints { get { return _titlePoints; } }
     public Wealth Wealth { get { return _wealth; } set { _wealth = value; } }
 

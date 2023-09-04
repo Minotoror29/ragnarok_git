@@ -12,7 +12,7 @@ public class TableTurnTargetState : TableTurnState
     private int _playersToTarget;
     private List<Player> _targetedPlayers;
 
-    private UnityAction<Player> _selectAction;
+    private event Action<Player> _selectAction;
     private UnityAction<Player> _confirmAction;
 
     public event Action<Player, Player> OnTarget;
@@ -36,9 +36,9 @@ public class TableTurnTargetState : TableTurnState
     {
         _targetedPlayers = new List<Player>();
 
-        for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
+        foreach (Player player in _player.Opponents)
         {
-            TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
+            player.PlayerOverlay.EnableSelection(_selectAction);
         }
 
         TableTurnManager.TargetDisplay.gameObject.SetActive(true);
@@ -47,9 +47,9 @@ public class TableTurnTargetState : TableTurnState
 
     public override void Exit()
     {
-        for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
+        foreach (Player player in _player.Opponents)
         {
-            TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().DisableSelection();
+            player.PlayerOverlay.DisableSelection();
         }
 
         TableTurnManager.TargetDisplay.gameObject.SetActive(false);
@@ -57,8 +57,6 @@ public class TableTurnTargetState : TableTurnState
 
     public override void SelectPlayer(Player selectedPlayer)
     {
-        if (selectedPlayer == _player) return;
-
         _stateManager.ChangeState(new TableTurnTransitionState(
             _stateManager, TableTurnManager, selectedPlayer.TargetCam,
             new TableTurnConfirmTargetState(_stateManager, TableTurnManager, this, _player, _card.cardName, selectedPlayer, _confirmAction)));
@@ -67,11 +65,6 @@ public class TableTurnTargetState : TableTurnState
     private void Confirm(Player targetedPlayer)
     {
         OnTarget?.Invoke(_player, targetedPlayer);
-
-        for (int i = 0; i < TableTurnManager.PlayerOverlaysParent.childCount; i++)
-        {
-            TableTurnManager.PlayerOverlaysParent.GetChild(i).GetComponent<PlayerOverlay>().EnableSelection(_selectAction);
-        }
 
         TableTurnManager.ConfirmTargetDisplay.gameObject.SetActive(false);
 

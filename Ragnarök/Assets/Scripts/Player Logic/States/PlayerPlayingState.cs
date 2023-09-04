@@ -11,6 +11,7 @@ public class PlayerPlayingState : PlayerState
     public override void Enter()
     {
         _player.NameText.color = Color.blue;
+        _player.PlayerOverlay.SetColor(Color.blue);
     }
 
     public override void Exit()
@@ -37,5 +38,10 @@ public class PlayerPlayingState : PlayerState
     public override void Select(TableTurnState tableTurnState)
     {
         tableTurnState.SelectPlayer(_player);
+    }
+
+    public override void TargetVote()
+    {
+        return;
     }
 }

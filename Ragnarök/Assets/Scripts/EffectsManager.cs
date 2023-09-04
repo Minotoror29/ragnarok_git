@@ -52,28 +52,12 @@ public class EffectsManager : MonoBehaviour
 
         foreach (Player target in targets)
         {
-            //if (target.Wealth == Wealth.Rich)
-            //{
-            //    sourcePlayer.TitlePoints[TitlePointsId.Assistance]--;
-            //} else if (target.Wealth == Wealth.Poor)
-            //{
-            //    sourcePlayer.TitlePoints[TitlePointsId.Assistance]++;
-            //}
-
             target.AddPoints(givenValue);
         }
     }
 
     public void EqualizePoints(Player sourcePlayer, Player targetPlayer)
     {
-        //if (sourcePlayer.Points < targetPlayer.Points)
-        //{
-        //    sourcePlayer.TitlePoints[TitlePointsId.Productivism] += 2;
-        //} else if (sourcePlayer.Points > targetPlayer.Points)
-        //{
-        //    sourcePlayer.TitlePoints[TitlePointsId.Productivism] -= 2;
-        //}
-
         sourcePlayer.SetPoints(targetPlayer.Points);
     }
 
