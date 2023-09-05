@@ -39,9 +39,4 @@ public class PlayerInactiveState : PlayerState
     {
         tableTurnState.SelectPlayer(_player);
     }
-
-    public override void TargetVote()
-    {
-        _player.PlayerOverlay.TargetVote();
-    }
 }

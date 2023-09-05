@@ -16,7 +16,6 @@ public abstract class PlayerState
     public abstract void Enter();
     public abstract void Exit();
     public abstract void Select(TableTurnState tableTurnState);
-    public abstract void TargetVote();
 
     public virtual void CheckPoints(int points) { }
     public virtual void StartPlayerTurn() { }

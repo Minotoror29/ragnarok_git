@@ -23,8 +23,11 @@ public class SkipTurnEffect : Effect
         _state.NextEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.SkipTurn(_playerApplication.Targets);
+        foreach (Player target in _playerApplication.Targets)
+        {
+            target.MustSkipNextTurn = true;
+        }
     }
 }

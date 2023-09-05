@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class GiveEffect : Effect
 {
@@ -32,8 +33,16 @@ public class GiveEffect : Effect
         }
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.GivePoints(_player, _playerApplication.Targets, _valueApplication.Value);
+        //effectsManager.GivePoints(_player, _playerApplication.Targets, _valueApplication.Value);
+
+        int givenValue = Mathf.Clamp(_valueApplication.Value, 0, _player.Points / _playerApplication.Targets.Count);
+        _player.AddPoints((-givenValue) * _playerApplication.Targets.Count);
+
+        foreach (Player target in _playerApplication.Targets)
+        {
+            target.AddPoints(givenValue);
+        }
     }
 }

@@ -32,8 +32,11 @@ public class AddPointsEffect : Effect
         }
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.AddPointsToPlayers(_playerApplication.Targets, _valueApplication.Value);
+        foreach (Player player in _playerApplication.Targets)
+        {
+            player.AddPoints(_valueApplication.Value);
+        }
     }
 }

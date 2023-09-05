@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class StealEffect : Effect
 {
@@ -32,8 +33,16 @@ public class StealEffect : Effect
         }
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.StealPoints(_player, _playerApplication.Targets, _valueApplication.Value);
+        int stolenValue = 0;
+
+        foreach (Player target in _playerApplication.Targets)
+        {
+            stolenValue += Mathf.Clamp(_valueApplication.Value, 0, target.Points);
+            target.AddPoints(-_valueApplication.Value);
+        }
+
+        _player.AddPoints(stolenValue);
     }
 }

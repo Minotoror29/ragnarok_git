@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class SetHourEffect : Effect
 {
@@ -23,8 +24,8 @@ public class SetHourEffect : Effect
         _state.NextEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.SetHour(_valueApplication.Value);
+        _state.TableTurnManager.Clock.SetHour(_valueApplication.Value);
     }
 }

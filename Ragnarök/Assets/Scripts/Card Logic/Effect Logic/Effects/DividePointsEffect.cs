@@ -32,8 +32,11 @@ public class DividePointsEffect : Effect
         }
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.DividePlayerPoints(_playerApplication.Targets, _valueApplication.Value);
+        foreach (Player player in _playerApplication.Targets)
+        {
+            player.DividePoints(_valueApplication.Value);
+        }
     }
 }

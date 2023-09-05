@@ -22,5 +22,5 @@ public abstract class Effect
     {
         _resolvedApplications++;
     }
-    public abstract void Resolve(EffectsManager effectsManager);
+    public abstract void Resolve();
 }

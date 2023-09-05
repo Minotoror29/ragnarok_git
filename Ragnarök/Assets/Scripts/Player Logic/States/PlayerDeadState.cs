@@ -22,9 +22,4 @@ public class PlayerDeadState : PlayerState
     {
         return;
     }
-
-    public override void TargetVote()
-    {
-        return;
-    }
 }

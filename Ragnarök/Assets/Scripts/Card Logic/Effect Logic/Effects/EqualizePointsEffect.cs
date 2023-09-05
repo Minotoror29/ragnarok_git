@@ -23,8 +23,10 @@ public class EqualizePointsEffect : Effect
         _state.NextEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.EqualizePoints(_player, _playerApplication.Targets[0]);
+        //effectsManager.EqualizePoints(_player, _playerApplication.Targets[0]);
+
+        _player.SetPoints(_playerApplication.Targets[0].Points);
     }
 }

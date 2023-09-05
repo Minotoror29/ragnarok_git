@@ -13,8 +13,8 @@ public class OpponentsVoteForCardEffect : Effect
         _state.NextEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.OpponentsVoteForCard(_player);
+        _player.OpponentsVoteForCard = true;
     }
 }

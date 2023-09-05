@@ -13,7 +13,7 @@ public class EmptyEffect : Effect
         _state.NextEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
         
     }

@@ -39,9 +39,4 @@ public class PlayerPlayingState : PlayerState
     {
         tableTurnState.SelectPlayer(_player);
     }
-
-    public override void TargetVote()
-    {
-        return;
-    }
 }

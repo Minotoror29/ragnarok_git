@@ -31,11 +31,13 @@ public class DoctrineEffect : Effect
         }
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        _player.TitlePoints[TitlePointsId.Productivism] += _valueApplication.Value;
+        foreach (Player player in _playerApplication.Targets)
+        {
+            player.AddPoints(_valueApplication.Value);
+        }
 
-        effectsManager.AddPointsToPlayers(_playerApplication.Targets, _valueApplication.Value);
-        effectsManager.AddHours(_valueApplication.Value);
+        _state.TableTurnManager.Clock.AddHours(_valueApplication.Value);
     }
 }

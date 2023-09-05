@@ -19,7 +19,6 @@ public class TableTurnManager : MonoBehaviour
     [SerializeField] private ValueDisplay valueDisplay;
     [SerializeField] private TargetDisplay targetDisplay;
     [SerializeField] private ConfirmTargetDisplay confirmTargetDisplay;
-    [SerializeField] private EffectsManager effectsManager;
 
     [SerializeField] private CameraManager cameraManager;
     private CinemachineVirtualCamera _topCam;
@@ -34,7 +33,6 @@ public class TableTurnManager : MonoBehaviour
     public ValueDisplay ValueDisplay { get { return valueDisplay; } }
     public TargetDisplay TargetDisplay { get { return targetDisplay; } }
     public ConfirmTargetDisplay ConfirmTargetDisplay { get { return confirmTargetDisplay; } }
-    public EffectsManager EffectsManager { get { return effectsManager; } }
     public CameraManager CameraManager { get { return cameraManager; } }
     public CinemachineVirtualCamera TopCam { get { return _topCam; } }
 

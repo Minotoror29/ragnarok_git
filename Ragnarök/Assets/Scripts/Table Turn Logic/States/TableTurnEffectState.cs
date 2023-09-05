@@ -11,8 +11,6 @@ public class TableTurnEffectState : TableTurnState
     private Effect _effect1;
     private Effect _effect2;
 
-    private EffectsManager _effectsManager;
-
     private int _activatedEffects = 0;
 
     private bool _opponentsVote = false;
@@ -22,7 +20,7 @@ public class TableTurnEffectState : TableTurnState
     public event Action<Player, int> OnValue;
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
-        Card card, EffectData effect1, EffectData effect2, EffectsManager effectsManager, bool opponentsVote,
+        Card card, EffectData effect1, EffectData effect2, bool opponentsVote,
         TitlePointsApplication titlePointsApplication, Action<Player, Player> OnTargetEvent, Action<Player, int> OnValueEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
@@ -30,8 +28,6 @@ public class TableTurnEffectState : TableTurnState
         _card = card;
         _effect1 = effect1.Effect(player, this);
         _effect2 = effect2.Effect(player, this);
-
-        _effectsManager = effectsManager;
 
         _opponentsVote = opponentsVote;
 
@@ -64,9 +60,11 @@ public class TableTurnEffectState : TableTurnState
 
     private void ResolveEffects()
     {
-        _effect1.Resolve(_effectsManager);
-        _effect2.Resolve(_effectsManager);
+        _effect1.Resolve();
+        _effect2.Resolve();
         _titlePointsApplication?.AssignPoints();
+
+
 
         _player.EndPlayerTurn();
         TableTurnManager.ActivePlayers.Remove(_player);

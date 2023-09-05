@@ -23,8 +23,8 @@ public class AddHoursEffect : Effect
         _state.NextEffect();
     }
 
-    public override void Resolve(EffectsManager effectsManager)
+    public override void Resolve()
     {
-        effectsManager.AddHours(_valueApplication.Value);
+        _state.TableTurnManager.Clock.AddHours(_valueApplication.Value);
     }
 }
