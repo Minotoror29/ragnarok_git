@@ -17,7 +17,6 @@ public class PlayerOverlay : MonoBehaviour
 
     private Player _player;
 
-    private bool _actionEnabled = false;
     private event Action<Player> SelectAction;
 
     public void Initialize(Player player)
@@ -33,13 +32,11 @@ public class PlayerOverlay : MonoBehaviour
     public void EnableSelection(Action<Player> action)
     {
         SelectAction = action;
-        _actionEnabled = true;
     }
 
     public void DisableSelection()
     {
         SelectAction = null;
-        _actionEnabled = false;
     }
 
     public void Select()

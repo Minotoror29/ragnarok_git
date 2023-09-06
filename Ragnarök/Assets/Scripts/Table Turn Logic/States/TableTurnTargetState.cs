@@ -79,6 +79,7 @@ public class TableTurnTargetState : TableTurnState
 
         if (_targetedPlayers.Count == _playersToTarget)
         {
+            _playerApplication.SetResponsiblePlayers(new List<Player>() { _player });
             _playerApplication.SetTargets(_targetedPlayers);
         }
     }

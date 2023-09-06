@@ -14,8 +14,14 @@ public class AllOpponentsApplication : PlayerApplication
 
         foreach (Player player in _player.Opponents)
         {
-            _targets.Add(player);
+            Targets.Add(player);
         }
+
+        foreach (Player p in _effect.State.PlayersWhoVotedYes)
+        {
+            ResponsiblePlayers.Add(p);
+        }
+
         _effect.NextApplication();
     }
 }

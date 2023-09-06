@@ -12,7 +12,12 @@ public class YouApplication : PlayerApplication
     {
         base.DetermineTargets();
 
-        _targets.Add(_player);
+        Targets.Add(_player);
+
+        foreach (Player p in _effect.State.PlayersWhoVotedYes)
+        {
+            ResponsiblePlayers.Add(p);
+        }
 
         _effect.NextApplication();
     }

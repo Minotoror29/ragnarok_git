@@ -9,6 +9,8 @@ public abstract class Effect
 
     protected ValueApplication _previousValueApplication;
 
+    public TableTurnEffectState State { get { return _state; } }
+
     public Effect(Player sourcePlayer, TableTurnEffectState state)
     {
         _player = sourcePlayer;

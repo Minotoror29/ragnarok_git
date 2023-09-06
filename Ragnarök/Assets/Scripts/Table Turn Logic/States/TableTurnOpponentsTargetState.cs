@@ -14,6 +14,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
     private List<Player> _opponents;
     private List<int> _votes;
     private int _playersVoted;
+    private Dictionary<Player, Player> _playerVotes;
 
     private event Action<Player> _selectAction;
     private UnityAction<Player> _confirmAction;
@@ -39,6 +40,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
         }
 
         _playersVoted = 0;
+        _playerVotes = new();
 
         OnTarget = OnTargetEvent;
     }
@@ -77,6 +79,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
         OnTarget?.Invoke(_opponents[_playersVoted], targetedPlayer);
         _votes[_opponents.IndexOf(targetedPlayer)]++;
         targetedPlayer.TargetVote();
+        _playerVotes.Add(_opponents[_playersVoted], targetedPlayer);
         _playersVoted++;
 
         if (_playersVoted == _opponents.Count)
@@ -105,6 +108,16 @@ public class TableTurnOpponentsTargetState : TableTurnState
             {
                 opponent.ClearTargetVotes();
             }
+
+            List<Player> responsiblePlayers = new();
+            foreach (KeyValuePair<Player, Player> entry in _playerVotes)
+            {
+                if (entry.Value == _targetedPlayers[0])
+                {
+                    responsiblePlayers.Add(entry.Key);
+                }
+            }
+            _playerApplication.SetResponsiblePlayers(responsiblePlayers);
             _playerApplication.SetTargets(_targetedPlayers);
         } else
         {

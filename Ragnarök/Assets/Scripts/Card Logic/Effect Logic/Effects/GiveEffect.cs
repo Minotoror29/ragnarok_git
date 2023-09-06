@@ -35,14 +35,24 @@ public class GiveEffect : Effect
 
     public override void Resolve()
     {
-        //effectsManager.GivePoints(_player, _playerApplication.Targets, _valueApplication.Value);
-
         int givenValue = Mathf.Clamp(_valueApplication.Value, 0, _player.Points / _playerApplication.Targets.Count);
         _player.AddPoints((-givenValue) * _playerApplication.Targets.Count);
 
         foreach (Player target in _playerApplication.Targets)
         {
             target.AddPoints(givenValue);
+        }
+
+        if (_player.Points == 0)
+        {
+            foreach (Player responsiblePlayer in _playerApplication.ResponsiblePlayers)
+            {
+                if (responsiblePlayer != _player)
+                {
+                    responsiblePlayer.TitlePoints[TitlePointsId.Extinction]++;
+                    Debug.Log(responsiblePlayer.PlayerName + " was responsible for " + _player.PlayerName + "'s collapse and earned 1 Extinction point");
+                }
+            }
         }
     }
 }

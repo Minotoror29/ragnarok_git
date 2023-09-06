@@ -11,6 +11,7 @@ public class TableTurnCardState : TableTurnState
     private List<Player> _votingPlayers;
     private int _playVotes;
     private int _discardVotes;
+    private List<Player> _playersWhoVotedYes;
 
     private TitlePointsApplication _titlePointsApplication;
     public event Action<Player> OnVote;
@@ -23,6 +24,8 @@ public class TableTurnCardState : TableTurnState
     {
         _player = player;
         _card = card;
+
+        _playersWhoVotedYes = new();
     }
 
     public override void Enter()
@@ -70,6 +73,10 @@ public class TableTurnCardState : TableTurnState
     public void VotePlay()
     {
         _playVotes++;
+        if (!_playersWhoVotedYes.Contains(_votingPlayers[0]))
+        {
+            _playersWhoVotedYes.Add(_votingPlayers[0]);
+        }
 
         OnVote?.Invoke(_votingPlayers[0]);
 
@@ -98,7 +105,7 @@ public class TableTurnCardState : TableTurnState
             if (_playVotes > _discardVotes)
             {
                 _stateManager.ChangeState(new TableTurnEffectState(_stateManager, TableTurnManager, _player,
-                    _card, _card.effect1, _card.effect2, _player.OpponentsVoteForCard,
+                    _card, _card.effect1, _card.effect2, _player.OpponentsVoteForCard, _playersWhoVotedYes,
                     _titlePointsApplication, OnTarget, OnValue));
             } else if (_discardVotes > _playVotes)
             {

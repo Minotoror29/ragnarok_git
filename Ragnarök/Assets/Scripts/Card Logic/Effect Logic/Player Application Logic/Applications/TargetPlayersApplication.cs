@@ -22,11 +22,19 @@ public class TargetPlayersApplication : PlayerApplication
         _state.EnterTargetSubState(this, _playersToTarget);
     }
 
+    public void SetResponsiblePlayers(List<Player> responsiblePlayers)
+    {
+        foreach (Player player in responsiblePlayers)
+        {
+            ResponsiblePlayers.Add(player);
+        }
+    }
+
     public void SetTargets(List<Player> targets)
     {
         foreach (Player target in targets)
         {
-            _targets.Add(target);
+            Targets.Add(target);
         }
 
         _effect.NextApplication();

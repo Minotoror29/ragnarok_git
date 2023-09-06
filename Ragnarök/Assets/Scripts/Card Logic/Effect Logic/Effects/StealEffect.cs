@@ -41,6 +41,18 @@ public class StealEffect : Effect
         {
             stolenValue += Mathf.Clamp(_valueApplication.Value, 0, target.Points);
             target.AddPoints(-_valueApplication.Value);
+
+            if (target.Points == 0)
+            {
+                foreach (Player responsiblePlayer in _playerApplication.ResponsiblePlayers)
+                {
+                    if (responsiblePlayer != target)
+                    {
+                        responsiblePlayer.TitlePoints[TitlePointsId.Extinction]++;
+                        Debug.Log(responsiblePlayer.PlayerName + " was responsible for " + target.PlayerName + "'s collapse and earned 1 Extinction point");
+                    }
+                }
+            }
         }
 
         _player.AddPoints(stolenValue);

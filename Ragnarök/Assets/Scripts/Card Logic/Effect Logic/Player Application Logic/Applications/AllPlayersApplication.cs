@@ -6,17 +6,23 @@ public class AllPlayersApplication : PlayerApplication
 {
     public AllPlayersApplication(Player player, Effect effect) : base(player, effect)
     {
+        
     }
 
     public override void DetermineTargets()
     {
         base.DetermineTargets();
 
-        _targets.Add(_player);
+        Targets.Add(_player);
 
         foreach (Player player in _player.Opponents)
         {
-            _targets.Add(player);
+            Targets.Add(player);
+        }
+
+        foreach (Player p in _effect.State.PlayersWhoVotedYes)
+        {
+            ResponsiblePlayers.Add(p);
         }
 
         _effect.NextApplication();

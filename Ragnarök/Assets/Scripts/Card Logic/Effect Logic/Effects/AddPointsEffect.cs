@@ -37,6 +37,18 @@ public class AddPointsEffect : Effect
         foreach (Player player in _playerApplication.Targets)
         {
             player.AddPoints(_valueApplication.Value);
+
+            if (player.Points == 0)
+            {
+                foreach (Player responsiblePlayer in _playerApplication.ResponsiblePlayers)
+                {
+                    if (responsiblePlayer != player)
+                    {
+                        responsiblePlayer.TitlePoints[TitlePointsId.Extinction]++;
+                        Debug.Log(responsiblePlayer.PlayerName + " was responsible for " + player.PlayerName + "'s collapse and earned 1 Extinction point");
+                    }
+                }
+            }
         }
     }
 }

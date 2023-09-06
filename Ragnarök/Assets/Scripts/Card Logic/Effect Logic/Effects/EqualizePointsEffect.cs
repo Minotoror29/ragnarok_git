@@ -25,8 +25,6 @@ public class EqualizePointsEffect : Effect
 
     public override void Resolve()
     {
-        //effectsManager.EqualizePoints(_player, _playerApplication.Targets[0]);
-
         _player.SetPoints(_playerApplication.Targets[0].Points);
     }
 }
