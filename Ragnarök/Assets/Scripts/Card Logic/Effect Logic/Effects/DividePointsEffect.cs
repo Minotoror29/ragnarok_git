@@ -7,10 +7,18 @@ public class DividePointsEffect : Effect
     private ValueApplication _valueApplication;
     private PlayerApplication _playerApplication;
 
-    public DividePointsEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplication, PlayerApplicationData playerApplication) : base(sourcePlayer, state)
+    public DividePointsEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplication, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
-        _valueApplication = valueApplication.Application(sourcePlayer, this, state);
-        _playerApplication = playerApplication.Application(sourcePlayer, this, state);
+        _valueApplication = valueApplication.Application(sourcePlayer, this);
+        _playerApplication = playerApplication.Application(sourcePlayer, this);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _valueApplication.SetEffectState(state);
+        _playerApplication.SetEffectState(state);
     }
 
     public override void Activate()

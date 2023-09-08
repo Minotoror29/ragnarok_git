@@ -8,8 +8,8 @@ public class AddPointsEffectData : EffectData
     public ValueApplicationData valueApplication;
     public PlayerApplicationData playerApplication;
 
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new AddPointsEffect(sourcePlayer, state, valueApplication, playerApplication);
+        return new AddPointsEffect(card, sourcePlayer, valueApplication, playerApplication);
     }
 }

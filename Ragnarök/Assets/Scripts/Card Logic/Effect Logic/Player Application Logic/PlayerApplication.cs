@@ -6,6 +6,7 @@ public abstract class PlayerApplication
 {
     protected Player _player;
     protected Effect _effect;
+    protected TableTurnEffectState _state;
 
     private List<Player> _targets;
 
@@ -19,6 +20,11 @@ public abstract class PlayerApplication
         _player = player;
         _effect = effect;
         _responsiblePlayers = new();
+    }
+
+    public void SetEffectState(TableTurnEffectState state)
+    {
+        _state = state;
     }
 
     public virtual void DetermineTargets()

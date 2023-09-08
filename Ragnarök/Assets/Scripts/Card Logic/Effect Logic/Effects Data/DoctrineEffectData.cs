@@ -7,8 +7,8 @@ public class DoctrineEffectData : EffectData
 {
     public bool add;
 
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new DoctrineEffect(sourcePlayer, state, add);
+        return new DoctrineEffect(card, sourcePlayer, add);
     }
 }

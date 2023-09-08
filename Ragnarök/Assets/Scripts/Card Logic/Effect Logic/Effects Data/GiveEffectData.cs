@@ -8,8 +8,8 @@ public class GiveEffectData : EffectData
     public ValueApplicationData valueApplication;
     public PlayerApplicationData playerApplication;
 
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new GiveEffect(sourcePlayer, state, valueApplication, playerApplication);
+        return new GiveEffect(card, sourcePlayer, valueApplication, playerApplication);
     }
 }

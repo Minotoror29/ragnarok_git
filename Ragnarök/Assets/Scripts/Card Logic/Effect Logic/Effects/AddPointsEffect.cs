@@ -7,10 +7,18 @@ public class AddPointsEffect : Effect
     private ValueApplication _valueApplication;
     private PlayerApplication _playerApplication;
 
-    public AddPointsEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplicationData, PlayerApplicationData playerApplication) : base(sourcePlayer, state)
+    public AddPointsEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplicationData, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
-        _valueApplication = valueApplicationData.Application(sourcePlayer, this, state);
-        _playerApplication = playerApplication.Application(sourcePlayer, this, state);
+        _valueApplication = valueApplicationData.Application(sourcePlayer, this);
+        _playerApplication = playerApplication.Application(sourcePlayer, this);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _valueApplication.SetEffectState(state);
+        _playerApplication.SetEffectState(state);
     }
 
     public override void Activate()

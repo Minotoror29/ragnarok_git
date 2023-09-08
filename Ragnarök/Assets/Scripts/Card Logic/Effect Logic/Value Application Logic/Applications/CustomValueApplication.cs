@@ -6,7 +6,7 @@ public class CustomValueApplication : ValueApplication
 {
     private bool _add;
 
-    public CustomValueApplication(Player player, Effect effect, TableTurnEffectState state, bool add) : base(player, effect, state)
+    public CustomValueApplication(Player player, Effect effect, bool add) : base(player, effect)
     {
         _add = add;
     }

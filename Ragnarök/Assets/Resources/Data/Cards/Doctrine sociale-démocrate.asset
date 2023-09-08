@@ -18,3 +18,5 @@ MonoBehaviour:
   duplicates: 1
   vote: 0
   titlePointsApplication: {fileID: 11400000, guid: 3d2b7a0f5dea2d34c845d2b6194647aa, type: 2}
+  canTriggerRagnarok: 0
+  canAvoidRagnarok: 1

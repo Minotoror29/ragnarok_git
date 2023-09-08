@@ -24,19 +24,21 @@ public class TableTurnEffectState : TableTurnState
     public List<Player> PlayersWhoVotedPlay { get { return _playersWhoVotedPlay; } }
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
-        Card card, EffectData effect1, EffectData effect2, bool opponentsVote, List<Player> playersWhoVotedYes,
+        Card card, Effect effect1, Effect effect2, bool opponentsVote, List<Player> playersWhoVotedPlay,
         TitlePointsApplication titlePointsApplication, Action<Player, Player> OnTargetEvent, Action<Player, int> OnValueEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
 
         _card = card;
-        _effect1 = effect1.Effect(player, this);
-        _effect2 = effect2.Effect(player, this);
+        _effect1 = effect1;
+        _effect1.SetEffectState(this);
+        _effect2 = effect2;
+        _effect2.SetEffectState(this);
 
         _opponentsVote = opponentsVote;
 
         _playersWhoVotedPlay = new();
-        foreach (Player p in playersWhoVotedYes)
+        foreach (Player p in playersWhoVotedPlay)
         {
             _playersWhoVotedPlay.Add(p);
         }

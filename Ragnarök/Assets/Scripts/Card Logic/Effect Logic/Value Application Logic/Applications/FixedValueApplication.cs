@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FixedValueApplication : ValueApplication
 {
-    public FixedValueApplication(Player player, Effect effect, TableTurnEffectState state, int value) : base(player, effect, state)
+    public FixedValueApplication(Player player, Effect effect, int value) : base(player, effect)
     {
         _value = value;
     }

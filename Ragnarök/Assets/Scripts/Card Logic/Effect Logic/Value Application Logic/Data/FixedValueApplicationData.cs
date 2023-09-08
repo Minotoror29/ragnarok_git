@@ -7,8 +7,8 @@ public class FixedValueApplicationData : ValueApplicationData
 {
     public int value;
 
-    public override ValueApplication Application(Player player, Effect effect, TableTurnEffectState state)
+    public override ValueApplication Application(Player player, Effect effect)
     {
-        return new FixedValueApplication(player, effect, state, value);
+        return new FixedValueApplication(player, effect, value);
     }
 }

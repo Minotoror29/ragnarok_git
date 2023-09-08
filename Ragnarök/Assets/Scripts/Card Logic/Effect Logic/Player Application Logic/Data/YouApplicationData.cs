@@ -6,7 +6,7 @@ using static Unity.VisualScripting.Member;
 [CreateAssetMenu(menuName = "Player Application/You")]
 public class YouApplicationData : PlayerApplicationData
 {
-    public override PlayerApplication Application(Player player, Effect effect, TableTurnEffectState state)
+    public override PlayerApplication Application(Player player, Effect effect)
     {
         return new YouApplication(player, effect);
     }

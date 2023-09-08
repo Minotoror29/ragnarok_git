@@ -12,10 +12,14 @@ public abstract class ValueApplication
 
     public int Value { get { return _value; } }
 
-    public ValueApplication(Player player, Effect effect, TableTurnEffectState state)
+    public ValueApplication(Player player, Effect effect)
     {
         _player = player;
         _effect = effect;
+    }
+
+    public void SetEffectState(TableTurnEffectState state)
+    {
         _state = state;
     }
 

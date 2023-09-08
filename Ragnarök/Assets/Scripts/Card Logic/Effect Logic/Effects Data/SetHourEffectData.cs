@@ -7,8 +7,8 @@ public class SetHourEffectData : EffectData
 {
     public ValueApplicationData valueApplication;
 
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new SetHourEffect(sourcePlayer, state, valueApplication);
+        return new SetHourEffect(card, sourcePlayer, valueApplication);
     }
 }

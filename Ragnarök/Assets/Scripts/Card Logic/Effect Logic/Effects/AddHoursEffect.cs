@@ -6,9 +6,16 @@ public class AddHoursEffect : Effect
 {
     private ValueApplication _valueApplication;
 
-    public AddHoursEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplication) : base(sourcePlayer, state)
+    public AddHoursEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplication) : base(card, sourcePlayer)
     {
-        _valueApplication = valueApplication.Application(sourcePlayer, this, _state);
+        _valueApplication = valueApplication.Application(sourcePlayer, this);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _valueApplication.SetEffectState(state);
     }
 
     public override void Activate()

@@ -7,8 +7,8 @@ public class TargetPlayersApplicationData : PlayerApplicationData
 {
     public int playersToTarget;
 
-    public override PlayerApplication Application(Player player, Effect effect, TableTurnEffectState state)
+    public override PlayerApplication Application(Player player, Effect effect)
     {
-        return new TargetPlayersApplication(player, effect, state, playersToTarget);
+        return new TargetPlayersApplication(player, effect, playersToTarget);
     }
 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class PlayerApplicationData : ScriptableObject
 {
-    public abstract PlayerApplication Application(Player player, Effect effect, TableTurnEffectState state);
+    public abstract PlayerApplication Application(Player player, Effect effect);
 }

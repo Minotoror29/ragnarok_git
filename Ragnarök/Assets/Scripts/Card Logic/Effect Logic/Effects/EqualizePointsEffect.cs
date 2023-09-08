@@ -6,9 +6,16 @@ public class EqualizePointsEffect : Effect
 {
     private TargetPlayersApplication _playerApplication;
 
-    public EqualizePointsEffect(Player sourcePlayer, TableTurnEffectState state) : base(sourcePlayer, state)
+    public EqualizePointsEffect(Card card, Player sourcePlayer) : base(card, sourcePlayer)
     {
-        _playerApplication = new TargetPlayersApplication(sourcePlayer, this, state, 1);
+        _playerApplication = new TargetPlayersApplication(sourcePlayer, this, 1);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _playerApplication.SetEffectState(state);
     }
 
     public override void Activate()

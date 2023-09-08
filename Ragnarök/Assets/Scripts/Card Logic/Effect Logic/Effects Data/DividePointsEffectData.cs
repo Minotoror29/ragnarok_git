@@ -8,8 +8,8 @@ public class DividePointsEffectData : EffectData
     public ValueApplicationData valueApplication;
     public PlayerApplicationData playerApplication;
 
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new DividePointsEffect(sourcePlayer, state, valueApplication, playerApplication);
+        return new DividePointsEffect(card, sourcePlayer, valueApplication, playerApplication);
     }
 }

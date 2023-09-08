@@ -8,8 +8,8 @@ public class StealEffectData : EffectData
     public PlayerApplicationData playerApplication;
     public ValueApplicationData valueApplication;
 
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new StealEffect(sourcePlayer, state, playerApplication, valueApplication);
+        return new StealEffect(card, sourcePlayer, playerApplication, valueApplication);
     }
 }

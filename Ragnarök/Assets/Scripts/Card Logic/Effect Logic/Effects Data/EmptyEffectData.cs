@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effect/Empty", order = 0)]
 public class EmptyEffectData : EffectData
 {
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new EmptyEffect(sourcePlayer, state);
+        return new EmptyEffect(card, sourcePlayer);
     }
 }

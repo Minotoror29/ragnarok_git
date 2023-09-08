@@ -6,9 +6,16 @@ public class SkipTurnEffect : Effect
 {
     private PlayerApplication _playerApplication;
 
-    public SkipTurnEffect(Player sourcePlayer, TableTurnEffectState state, PlayerApplicationData playerApplication) : base(sourcePlayer, state)
+    public SkipTurnEffect(Card card, Player sourcePlayer, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
-        _playerApplication = playerApplication.Application(sourcePlayer, this, state);
+        _playerApplication = playerApplication.Application(sourcePlayer, this);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _playerApplication.SetEffectState(state);
     }
 
     public override void Activate()

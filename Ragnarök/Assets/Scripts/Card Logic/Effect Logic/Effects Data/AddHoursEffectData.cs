@@ -6,8 +6,8 @@ using UnityEngine;
 public class AddHoursEffectData : EffectData
 {
     public ValueApplicationData valueApplication;
-    public override Effect Effect(Player sourcePlayer, TableTurnEffectState state)
+    public override Effect Effect(Card card, Player sourcePlayer)
     {
-        return new AddHoursEffect(sourcePlayer, state, valueApplication);
+        return new AddHoursEffect(card, sourcePlayer, valueApplication);
     }
 }

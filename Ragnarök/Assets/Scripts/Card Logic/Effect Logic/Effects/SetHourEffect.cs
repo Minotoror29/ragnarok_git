@@ -7,9 +7,29 @@ public class SetHourEffect : Effect
 {
     private ValueApplication _valueApplication;
 
-    public SetHourEffect(Player sourcePlayer, TableTurnEffectState state, ValueApplicationData valueApplicationData) : base(sourcePlayer, state)
+    public SetHourEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplicationData) : base(card, sourcePlayer)
     {
-        _valueApplication = valueApplicationData.Application(sourcePlayer, this, state);
+        _valueApplication = valueApplicationData.Application(sourcePlayer, this);
+    }
+
+    public override void CheckGameState(TableTurnCardState state)
+    {
+        base.CheckGameState(state);
+
+        if (state.TableTurnManager.Clock.Hours > _valueApplication.Value)
+        {
+            state.CanAvoidRagnarok = true;
+        } else if (state.TableTurnManager.Clock.Hours < _valueApplication.Value)
+        {
+            state.CanTriggerRagnarok = true;
+        }
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _valueApplication.SetEffectState(state);
     }
 
     public override void Activate()

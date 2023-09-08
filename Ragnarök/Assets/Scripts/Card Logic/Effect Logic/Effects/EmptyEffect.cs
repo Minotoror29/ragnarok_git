@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmptyEffect : Effect
 {
-    public EmptyEffect(Player sourcePlayer, TableTurnEffectState state) : base(sourcePlayer, state)
+    public EmptyEffect(Card card, Player sourcePlayer) : base(card, sourcePlayer)
     {
     }
 

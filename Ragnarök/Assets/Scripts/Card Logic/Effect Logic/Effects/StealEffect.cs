@@ -8,10 +8,18 @@ public class StealEffect : Effect
     public PlayerApplication _playerApplication;
     public ValueApplication _valueApplication;
 
-    public StealEffect(Player sourcePlayer, TableTurnEffectState state, PlayerApplicationData playerApplication, ValueApplicationData valueApplication) : base(sourcePlayer, state)
+    public StealEffect(Card card, Player sourcePlayer, PlayerApplicationData playerApplication, ValueApplicationData valueApplication) : base(card, sourcePlayer)
     {
-        _playerApplication = playerApplication.Application(sourcePlayer, this, state);
-        _valueApplication = valueApplication.Application(sourcePlayer, this, state);
+        _playerApplication = playerApplication.Application(sourcePlayer, this);
+        _valueApplication = valueApplication.Application(sourcePlayer, this);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _valueApplication.SetEffectState(state);
+        _playerApplication.SetEffectState(state);
     }
 
     public override void Activate()

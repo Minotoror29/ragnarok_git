@@ -6,5 +6,5 @@ public abstract class EffectData : ScriptableObject
 {
     public string description;
 
-    public abstract Effect Effect(Player sourcePlayer, TableTurnEffectState state);
+    public abstract Effect Effect(Card card, Player sourcePlayer);
 }

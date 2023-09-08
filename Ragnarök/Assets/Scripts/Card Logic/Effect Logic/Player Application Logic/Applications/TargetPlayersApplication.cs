@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class TargetPlayersApplication : PlayerApplication
 {
-    private TableTurnEffectState _state;
-
     private int _playersToTarget;
 
-    public TargetPlayersApplication(Player player, Effect effect, TableTurnEffectState state, int playersToTarget) : base(player, effect)
+    public TargetPlayersApplication(Player player, Effect effect, int playersToTarget) : base(player, effect)
     {
-        _state = state;
-
         _playersToTarget = playersToTarget;
     }
 

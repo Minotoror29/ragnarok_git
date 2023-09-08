@@ -5565,6 +5565,10 @@ MonoBehaviour:
   tableTurnManager: {fileID: 179236478}
   _cards:
   - {fileID: 11400000, guid: d4ff2ce5c581cbd4aa74d1c045eef2fd, type: 2}
+  - {fileID: 11400000, guid: 5e3366214bdc3704c9921115624e3695, type: 2}
+  - {fileID: 11400000, guid: 8d78821bf0012314a8fbd484ec94761b, type: 2}
+  - {fileID: 11400000, guid: 3df971213fcf162498bc40072500435e, type: 2}
+  - {fileID: 11400000, guid: 19c37f52370962f4b8139201d5253735, type: 2}
 --- !u!1 &1451001602
 GameObject:
   m_ObjectHideFlags: 0

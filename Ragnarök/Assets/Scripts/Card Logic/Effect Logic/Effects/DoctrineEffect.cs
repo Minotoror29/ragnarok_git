@@ -7,10 +7,18 @@ public class DoctrineEffect : Effect
     private CustomValueApplication _valueApplication;
     private YouApplication _playerApplication;
 
-    public DoctrineEffect(Player sourcePlayer, TableTurnEffectState state, bool add) : base(sourcePlayer, state)
+    public DoctrineEffect(Card card, Player sourcePlayer, bool add) : base(card, sourcePlayer)
     {
-        _valueApplication = new CustomValueApplication(sourcePlayer, this, state, add);
+        _valueApplication = new CustomValueApplication(sourcePlayer, this, add);
         _playerApplication = new YouApplication(sourcePlayer, this);
+    }
+
+    public override void SetEffectState(TableTurnEffectState state)
+    {
+        base.SetEffectState(state);
+
+        _valueApplication.SetEffectState(state);
+        _playerApplication.SetEffectState(state);
     }
 
     public override void Activate()
