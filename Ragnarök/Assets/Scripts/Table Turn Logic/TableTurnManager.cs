@@ -23,6 +23,8 @@ public class TableTurnManager : MonoBehaviour
     [SerializeField] private CameraManager cameraManager;
     private CinemachineVirtualCamera _topCam;
 
+    private List<Player> _ragnarokResponsiblePlayers;
+
     public RoundTableTurnState RoundState { get { return _roundState; } }
     public SelectionManager SelectionManager { get { return selectionManager; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
@@ -35,6 +37,7 @@ public class TableTurnManager : MonoBehaviour
     public ConfirmTargetDisplay ConfirmTargetDisplay { get { return confirmTargetDisplay; } }
     public CameraManager CameraManager { get { return cameraManager; } }
     public CinemachineVirtualCamera TopCam { get { return _topCam; } }
+    public List<Player> RagnarokResponsiblePlayers { get { return _ragnarokResponsiblePlayers; } }
 
     public void Initialize(Transform playerOverlaysParent, Clock clock, Deck deck, CardDisplay cardDisplay, CinemachineVirtualCamera topCam)
     {
@@ -48,6 +51,8 @@ public class TableTurnManager : MonoBehaviour
         _cardDisplay = cardDisplay;
 
         _topCam = topCam;
+
+        _ragnarokResponsiblePlayers = new();
     }
 
     public void UpdateLogic()

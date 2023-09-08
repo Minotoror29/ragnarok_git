@@ -11,7 +11,8 @@ public class TableTurnCardState : TableTurnState
     private List<Player> _votingPlayers;
     private int _playVotes;
     private int _discardVotes;
-    private List<Player> _playersWhoVotedYes;
+    private List<Player> _playersWhoVotedPlay;
+    private List<Player> _playersWhoVotedDiscard;
 
     private TitlePointsApplication _titlePointsApplication;
     public event Action<Player> OnVote;
@@ -25,7 +26,8 @@ public class TableTurnCardState : TableTurnState
         _player = player;
         _card = card;
 
-        _playersWhoVotedYes = new();
+        _playersWhoVotedPlay = new();
+        _playersWhoVotedDiscard = new();
     }
 
     public override void Enter()
@@ -73,9 +75,9 @@ public class TableTurnCardState : TableTurnState
     public void VotePlay()
     {
         _playVotes++;
-        if (!_playersWhoVotedYes.Contains(_votingPlayers[0]))
+        if (!_playersWhoVotedPlay.Contains(_votingPlayers[0]))
         {
-            _playersWhoVotedYes.Add(_votingPlayers[0]);
+            _playersWhoVotedPlay.Add(_votingPlayers[0]);
         }
 
         OnVote?.Invoke(_votingPlayers[0]);
@@ -93,6 +95,10 @@ public class TableTurnCardState : TableTurnState
     public void VoteDiscard()
     {
         _discardVotes++;
+        if (!_playersWhoVotedDiscard.Contains(_votingPlayers[0]))
+        {
+            _playersWhoVotedDiscard.Add(_votingPlayers[0]);
+        }
         CheckIfVoteEnds();
     }
 
@@ -104,11 +110,29 @@ public class TableTurnCardState : TableTurnState
         {
             if (_playVotes > _discardVotes)
             {
+                if (_card.canTriggerRagnarok)
+                {
+                    TableTurnManager.RagnarokResponsiblePlayers.Clear();
+                    foreach (Player player in _playersWhoVotedPlay)
+                    {
+                        TableTurnManager.RagnarokResponsiblePlayers.Add(player);
+                    }
+                }
+
                 _stateManager.ChangeState(new TableTurnEffectState(_stateManager, TableTurnManager, _player,
-                    _card, _card.effect1, _card.effect2, _player.OpponentsVoteForCard, _playersWhoVotedYes,
+                    _card, _card.effect1, _card.effect2, _player.OpponentsVoteForCard, _playersWhoVotedPlay,
                     _titlePointsApplication, OnTarget, OnValue));
             } else if (_discardVotes > _playVotes)
             {
+                if (_card.canAvoidRagnarok)
+                {
+                    TableTurnManager.RagnarokResponsiblePlayers.Clear();
+                    foreach (Player player in _playersWhoVotedDiscard)
+                    {
+                        TableTurnManager.RagnarokResponsiblePlayers.Add(player);
+                    }
+                }
+
                 _titlePointsApplication?.AssignPoints();
                 _player.EndPlayerTurn();
                 TableTurnManager.ActivePlayers.Remove(_player);

@@ -14,7 +14,7 @@ public class YouApplication : PlayerApplication
 
         Targets.Add(_player);
 
-        foreach (Player p in _effect.State.PlayersWhoVotedYes)
+        foreach (Player p in _effect.State.PlayersWhoVotedPlay)
         {
             ResponsiblePlayers.Add(p);
         }

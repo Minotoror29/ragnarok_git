@@ -15,13 +15,13 @@ public class TableTurnEffectState : TableTurnState
 
     private bool _opponentsVote = false;
 
-    private List<Player> _playersWhoVotedYes;
+    private List<Player> _playersWhoVotedPlay;
 
     private TitlePointsApplication _titlePointsApplication;
     public event Action<Player, Player> OnTarget;
     public event Action<Player, int> OnValue;
 
-    public List<Player> PlayersWhoVotedYes { get { return _playersWhoVotedYes; } }
+    public List<Player> PlayersWhoVotedPlay { get { return _playersWhoVotedPlay; } }
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
         Card card, EffectData effect1, EffectData effect2, bool opponentsVote, List<Player> playersWhoVotedYes,
@@ -35,10 +35,10 @@ public class TableTurnEffectState : TableTurnState
 
         _opponentsVote = opponentsVote;
 
-        _playersWhoVotedYes = new();
+        _playersWhoVotedPlay = new();
         foreach (Player p in playersWhoVotedYes)
         {
-            _playersWhoVotedYes.Add(p);
+            _playersWhoVotedPlay.Add(p);
         }
 
         _titlePointsApplication = titlePointsApplication;

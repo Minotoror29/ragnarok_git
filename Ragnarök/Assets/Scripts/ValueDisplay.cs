@@ -10,7 +10,7 @@ public class ValueDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private TextMeshProUGUI valueDisplay;
     private int _value;
-    private int _minValue = 0;
+    private int _minValue = 1;
     private int _maxValue = 8;
 
     UnityAction<int> _confirmAction;
@@ -30,7 +30,7 @@ public class ValueDisplay : MonoBehaviour
             _maxValue = Mathf.Clamp(_maxValue, 0, clock.Hours);
         }
 
-        _value = 0;
+        _value = _minValue;
         UpdateValueDisplay();
 
         _confirmAction = action;

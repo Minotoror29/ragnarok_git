@@ -20,6 +20,8 @@ public class RoundStartState : RoundState
         _roundManager.Clock.SetHour(0);
         _roundManager.Deck.PutCardsBack();
 
+        _roundManager.TableTurnManager.RagnarokResponsiblePlayers.Clear();
+
         foreach (Player player in _roundManager.ActivePlayers)
         {
             player.SetToInactive();

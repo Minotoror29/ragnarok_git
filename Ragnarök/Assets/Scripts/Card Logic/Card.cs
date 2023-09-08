@@ -11,4 +11,6 @@ public class Card : ScriptableObject
     public int duplicates;
     public bool vote = false;
     public TitlePointsApplicationData titlePointsApplication;
+    public bool canTriggerRagnarok;
+    public bool canAvoidRagnarok;
 }

@@ -50,8 +50,17 @@ public class RoundTableTurnState : RoundState
         }
         _roundManager.EliminatePlayers(playersToEliminate);
 
-        if (_roundManager.Clock.IsAtMidnight() ||
-            _roundManager.ActivePlayers.Count == 0)
+        if (_roundManager.Clock.IsAtMidnight())
+        {
+            foreach (Player player in _roundManager.TableTurnManager.RagnarokResponsiblePlayers)
+            {
+                player.TitlePoints[TitlePointsId.Ragnarok]++;
+                Debug.Log(player.PlayerName + " earned 1 Ragnarok point");
+            }
+            _roundManager.TableTurnManager.RagnarokResponsiblePlayers.Clear();
+            _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber, true));
+            return true;
+        } else if (_roundManager.ActivePlayers.Count == 0)
         {
             _stateManager.ChangeState(new RoundEndState(_stateManager, _roundManager, _roundNumber, true));
             return true;
