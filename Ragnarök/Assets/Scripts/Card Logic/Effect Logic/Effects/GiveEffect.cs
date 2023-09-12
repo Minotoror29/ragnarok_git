@@ -53,12 +53,27 @@ public class GiveEffect : Effect
 
         if (_player.Points == 0)
         {
-            foreach (Player responsiblePlayer in _playerApplication.ResponsiblePlayers)
+            foreach (Player responsiblePlayer in _state.PlayersWhoVotedPlay)
             {
                 if (responsiblePlayer != _player)
                 {
                     responsiblePlayer.TitlePoints[TitlePointsId.Extinction]++;
                     Debug.Log(responsiblePlayer.PlayerName + " was responsible for " + _player.PlayerName + "'s collapse and earned 1 Extinction point");
+                }
+            }
+
+            if (_card.canAvoidRagnarok && _state.TableTurnManager.Clock.Hours == 7)
+            {
+                _player.TitlePoints[TitlePointsId.Martyr] += 3;
+                Debug.Log(_player.PlayerName + " collapsed and earned 3 Martyr points");
+            }
+
+            foreach (Player target in _playerApplication.Targets)
+            {
+                if (target.Wealth == Wealth.Poor)
+                {
+                    _player.TitlePoints[TitlePointsId.Martyr]++;
+                    Debug.Log(_player.PlayerName + " earned 1 Martyr point");
                 }
             }
         }

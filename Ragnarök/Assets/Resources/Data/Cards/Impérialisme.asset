@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: "Imp\xE9rialisme"
   m_EditorClassIdentifier: 
   cardName: "Imp\xE9rialisme"
-  effect1: {fileID: 11400000, guid: 841b20dbc1deed54c8e5be1ead3b51e8, type: 2}
-  effect2: {fileID: 11400000, guid: 7070a5128d1dce34e9ced4d395f542ce, type: 2}
+  effect1: {fileID: 11400000, guid: 7070a5128d1dce34e9ced4d395f542ce, type: 2}
+  effect2: {fileID: 11400000, guid: 841b20dbc1deed54c8e5be1ead3b51e8, type: 2}
   duplicates: 2
   vote: 0
   titlePointsApplication: {fileID: 11400000, guid: 6ef09ab802e90604190d4319c2900346, type: 2}

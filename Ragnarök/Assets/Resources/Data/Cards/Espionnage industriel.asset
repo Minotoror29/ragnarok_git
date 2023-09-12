@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Espionnage industriel
   m_EditorClassIdentifier: 
   cardName: Espionnage industriel
-  effect1: {fileID: 11400000, guid: 841b20dbc1deed54c8e5be1ead3b51e8, type: 2}
-  effect2: {fileID: 11400000, guid: f40e30f085bc01841a9f60a32cbe7c0c, type: 2}
+  effect1: {fileID: 11400000, guid: f40e30f085bc01841a9f60a32cbe7c0c, type: 2}
+  effect2: {fileID: 11400000, guid: 841b20dbc1deed54c8e5be1ead3b51e8, type: 2}
   duplicates: 2
   vote: 0
   titlePointsApplication: {fileID: 11400000, guid: b14f9a13a7a42574a92dbbfa49f9ff15, type: 2}

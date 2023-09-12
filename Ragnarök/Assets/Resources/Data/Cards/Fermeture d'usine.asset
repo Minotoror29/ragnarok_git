@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Fermeture d'usine
   m_EditorClassIdentifier: 
   cardName: Fermeture d'usine
-  effect1: {fileID: 11400000, guid: b5e7bdd1647ca7140ba3974cab12e17c, type: 2}
-  effect2: {fileID: 11400000, guid: d5d0a6e5d566fb7479c7c736028de28d, type: 2}
+  effect1: {fileID: 11400000, guid: d5d0a6e5d566fb7479c7c736028de28d, type: 2}
+  effect2: {fileID: 11400000, guid: b5e7bdd1647ca7140ba3974cab12e17c, type: 2}
   duplicates: 4
   vote: 0
   titlePointsApplication: {fileID: 11400000, guid: b7389891775d333409430ba125361f0b, type: 2}

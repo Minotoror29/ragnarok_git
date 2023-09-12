@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Accord Mondial
   m_EditorClassIdentifier: 
   cardName: Accord Mondial
-  effect1: {fileID: 11400000, guid: 7fb889c14e5d1e84fb657ac690620a25, type: 2}
-  effect2: {fileID: 11400000, guid: 3ad9162ba1dcccc428e7a97c8a11a799, type: 2}
+  effect1: {fileID: 11400000, guid: 3ad9162ba1dcccc428e7a97c8a11a799, type: 2}
+  effect2: {fileID: 11400000, guid: 7fb889c14e5d1e84fb657ac690620a25, type: 2}
   duplicates: 1
   vote: 1
   titlePointsApplication: {fileID: 11400000, guid: 4f98fa48a0fc3c14587e5a1b18c716e1, type: 2}
+  canTriggerRagnarok: 0
+  canAvoidRagnarok: 0

@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: "D\xE9croissance"
   m_EditorClassIdentifier: 
   cardName: "D\xE9croissance"
-  effect1: {fileID: 11400000, guid: 56e27b7f70959cf4cacefa1c47c9b7ab, type: 2}
-  effect2: {fileID: 11400000, guid: f61113c9e1a107a4ebab51f988a50661, type: 2}
+  effect1: {fileID: 11400000, guid: f61113c9e1a107a4ebab51f988a50661, type: 2}
+  effect2: {fileID: 11400000, guid: 56e27b7f70959cf4cacefa1c47c9b7ab, type: 2}
   duplicates: 2
   vote: 0
   titlePointsApplication: {fileID: 11400000, guid: 97802be7d4e8e894682384c84c24e43e, type: 2}
+  canTriggerRagnarok: 0
+  canAvoidRagnarok: 0

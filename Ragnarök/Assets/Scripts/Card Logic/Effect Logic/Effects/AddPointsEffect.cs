@@ -56,6 +56,12 @@ public class AddPointsEffect : Effect
                         Debug.Log(responsiblePlayer.PlayerName + " was responsible for " + player.PlayerName + "'s collapse and earned 1 Extinction point");
                     }
                 }
+
+                if (_card.canAvoidRagnarok && _state.TableTurnManager.Clock.Hours == 7)
+                {
+                    player.TitlePoints[TitlePointsId.Martyr] += 3;
+                    Debug.Log(player.PlayerName + " collapsed and earned 3 Martyr points");
+                }
             }
         }
     }
