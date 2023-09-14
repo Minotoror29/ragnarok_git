@@ -151,10 +151,6 @@ public class TableTurnCardState : TableTurnState
                 _stateManager.ChangeState(new TableTurnCheckState(_stateManager, TableTurnManager));
             } else if (_playVotes == _discardVotes)
             {
-                if (_card.titlePointsApplication != null)
-                {
-                    _titlePointsApplication = _card.titlePointsApplication.Application(this);
-                }
                 _votingPlayers.Add(_player);
                 TableTurnManager.CardDisplay.SetPlayer(_votingPlayers[0].PlayerName);
             }

@@ -49,5 +49,7 @@ public class TargetPointsRelativeTitlePointsApplication : TitlePointsApplication
                 Debug.Log(Players[i].PlayerName + " earned " + _inferiorValue + " " + _titlePointsId.ToString() + " points");
             }
         }
+
+        CardState.OnTarget -= AddPlayerAndTargetPoints;
     }
 }

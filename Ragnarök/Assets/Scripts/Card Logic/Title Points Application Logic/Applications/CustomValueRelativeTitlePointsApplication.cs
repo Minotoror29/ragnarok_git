@@ -28,5 +28,7 @@ public class CustomValueRelativeTitlePointsApplication : TitlePointsApplication
             Players[i].TitlePoints[_titlePointsId] += _values[i];
             Debug.Log(Players[i].PlayerName + " earned " + _values[i] + " " + _titlePointsId.ToString() + " points");
         }
+
+        CardState.OnValue -= AddPlayerAndValue;
     }
 }

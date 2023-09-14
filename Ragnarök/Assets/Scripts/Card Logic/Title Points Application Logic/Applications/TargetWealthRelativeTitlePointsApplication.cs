@@ -51,5 +51,7 @@ public class TargetWealthRelativeTitlePointsApplication : TitlePointsApplication
                     break;
             }
         }
+
+        CardState.OnTarget -= AddPlayerAndTarget;
     }
 }
