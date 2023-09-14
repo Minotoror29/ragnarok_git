@@ -17,6 +17,6 @@ MonoBehaviour:
   effect2: {fileID: 11400000, guid: c91c019adda222e4fa67ac554f800219, type: 2}
   duplicates: 2
   vote: 0
-  titlePointsApplication: {fileID: 11400000, guid: 4f98fa48a0fc3c14587e5a1b18c716e1, type: 2}
+  titlePointsApplication: {fileID: 0}
   canTriggerRagnarok: 0
   canAvoidRagnarok: 1

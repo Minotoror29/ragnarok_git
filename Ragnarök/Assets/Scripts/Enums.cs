@@ -6,3 +6,8 @@ public enum Wealth
 {
     Rich, Poor, Neutral
 }
+
+public enum TitlePointsId
+{
+    TotalPower, Productivism, Imperialism, Extinction, Ragnarok, Martyr, Assistance
+}

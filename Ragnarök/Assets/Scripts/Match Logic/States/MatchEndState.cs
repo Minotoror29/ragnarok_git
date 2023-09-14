@@ -14,14 +14,20 @@ public class MatchEndState : MatchState
 
     public override void Enter()
     {
-        //_matchManager.EndMatchDisplay.gameObject.SetActive(true);
-        //_matchManager.EndMatchDisplay.SetWinnersText(_matchManager.DetermineMatchWinners(_ragnarok));
-
-        _matchManager.TitlesDisplay.gameObject.SetActive(true);
+        if (_ragnarok)
+        {
+            _matchManager.EndMatchDisplay.gameObject.SetActive(true);
+        }
+        else
+        {
+            _matchManager.TitlesDisplay.gameObject.SetActive(true);
+            _matchManager.TitlesDisplay.DetermineTitles(_matchManager.Players, _matchManager.DetermineMatchWinners(_ragnarok));
+        }
     }
 
     public override void Exit()
     {
+        _matchManager.TitlesDisplay.gameObject.SetActive(false);
         _matchManager.EndMatchDisplay.gameObject.SetActive(false);
     }
 
