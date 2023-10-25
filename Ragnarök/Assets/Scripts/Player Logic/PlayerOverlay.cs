@@ -23,7 +23,7 @@ public class PlayerOverlay : MonoBehaviour
 
     private event Action<Player> SelectAction;
 
-    public void Initialize(Player player)
+    public void Initialize(Player player, int roundsWon)
     {
         _player = player;
         playerName.text = player.PlayerName;
@@ -32,6 +32,11 @@ public class PlayerOverlay : MonoBehaviour
 
         _targetVotes = new();
         _crowns = new();
+
+        for (int i = 0; i < roundsWon; i++)
+        {
+            AddCrown();
+        }
     }
 
     public void EnableSelection(Action<Player> action)
@@ -81,15 +86,5 @@ public class PlayerOverlay : MonoBehaviour
     {
         Image newCrown = Instantiate(crownPrefab, crownsParent);
         _crowns.Add(newCrown);
-    }
-
-    public void ClearCrowns()
-    {
-        foreach (Image crown in _crowns)
-        {
-            Destroy(crown.gameObject);
-        }
-
-        _crowns.Clear();
     }
 }

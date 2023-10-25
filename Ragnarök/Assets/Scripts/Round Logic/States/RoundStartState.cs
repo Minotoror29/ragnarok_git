@@ -24,6 +24,7 @@ public class RoundStartState : RoundState
 
         foreach (Player player in _roundManager.ActivePlayers)
         {
+            player.CreateOverlay(_roundManager.PlayerOverlaysParent);
             player.SetToInactive();
             player.SetOpponents(_roundManager.ActivePlayers);
             player.SetPoints(_roundManager.PlayersStartPoints);

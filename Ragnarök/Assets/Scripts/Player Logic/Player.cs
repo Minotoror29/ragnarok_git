@@ -43,16 +43,23 @@ public class Player : MonoBehaviour, ISelectable
     public Dictionary<TitlePointsId, int> TitlePoints { get { return _titlePoints; } }
     public Wealth Wealth { get { return _wealth; } set { _wealth = value; } }
 
-    public void Initialize(string playerName, Transform playerOverlaysParent)
+    public void Initialize(string playerName)
     {
         _stateManager = GetComponent<PlayerStateManager>();
 
         _playerName = playerName;
         nameText.text = playerName;
+    }
 
-        PlayerOverlay newOverlay = Instantiate(playerOverlayPrefab, playerOverlaysParent);
-        _playerOverlay = newOverlay;
-        _playerOverlay.Initialize(this);
+    public void CreateOverlay(Transform playerOverlaysParent)
+    {
+        if (_playerOverlay != null)
+        {
+            Destroy(_playerOverlay.gameObject);
+        }
+
+        _playerOverlay = Instantiate(playerOverlayPrefab, playerOverlaysParent);
+        _playerOverlay.Initialize(this, _roundsWon);
         Canvas.ForceUpdateCanvases();
     }
 
@@ -165,10 +172,5 @@ public class Player : MonoBehaviour, ISelectable
     public void AddCrown()
     {
         _playerOverlay.AddCrown();
-    }
-
-    public void ClearCrowns()
-    {
-        _playerOverlay.ClearCrowns();
     }
 }

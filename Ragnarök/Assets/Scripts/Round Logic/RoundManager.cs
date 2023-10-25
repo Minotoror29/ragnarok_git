@@ -17,6 +17,7 @@ public class RoundManager : MonoBehaviour
 
     private List<Player> _activePlayers;
     [SerializeField] private int playersStartPoints = 4;
+    [SerializeField] private Transform playerOverlaysParent;
 
     [SerializeField] private int maxTableTurns = 5;
 
@@ -32,13 +33,14 @@ public class RoundManager : MonoBehaviour
     public Deck Deck { get { return deck; } }
     public List<Player> ActivePlayers { get { return _activePlayers; } }
     public int PlayersStartPoints { get { return playersStartPoints; } }
+    public Transform PlayerOverlaysParent { get { return playerOverlaysParent; } }
     public int MaxTableTurns { get { return maxTableTurns; } }
     public StartRoundDisplay StartRoundDisplay { get { return startRoundDisplay; } }
     public EndRoundDisplay EndRoundDisplay { get { return endRoundDisplay; } }
     public TableTurnsDisplay TableTurnsDisplay { get { return tableTurnsDisplay; } }
     public CinemachineVirtualCamera TopCam { get { return topCam; } }
 
-    public void Initialize(Transform playerOverlaysParent)
+    public void Initialize()
     {
         _stateManager = GetComponent<StateManager>();
 

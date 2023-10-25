@@ -15,7 +15,6 @@ public class MatchManager : MonoBehaviour
 
     [SerializeField] private Player[] kingdomsPrefabs;
     private List<Player> _players;
-    [SerializeField] private Transform playerOverlaysParent;
 
     [SerializeField] private TitlesDisplay titlesDisplay;
 
@@ -34,7 +33,7 @@ public class MatchManager : MonoBehaviour
     {
         _stateManager = GetComponent<StateManager>();
         SpawnPlayers(playerNames);
-        roundManager.Initialize(playerOverlaysParent);
+        roundManager.Initialize();
 
         StartMatch(true);
     }
@@ -56,7 +55,7 @@ public class MatchManager : MonoBehaviour
 
         for (int i = 0; i < _players.Count; i++)
         {
-            _players[i].Initialize(playerNames[i], playerOverlaysParent);
+            _players[i].Initialize(playerNames[i]);
         }
     }
 

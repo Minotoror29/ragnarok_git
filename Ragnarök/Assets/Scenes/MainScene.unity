@@ -1115,6 +1115,7 @@ MonoBehaviour:
   deck: {fileID: 1430095038}
   cardDisplay: {fileID: 1653901915}
   playersStartPoints: 4
+  playerOverlaysParent: {fileID: 408671940}
   maxTableTurns: 1
   startRoundDisplay: {fileID: 896992900}
   endRoundDisplay: {fileID: 1654069833}

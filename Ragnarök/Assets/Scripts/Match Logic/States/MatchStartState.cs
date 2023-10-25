@@ -27,7 +27,6 @@ public class MatchStartState : MatchState
         {
             player.RoundsWon = 0;
             player.ResetTitlePoints();
-            player.ClearCrowns();
         }
 
         _stateManager.ChangeState(new MatchRoundState(_stateManager, _matchManager, startingPlayer, 0));
