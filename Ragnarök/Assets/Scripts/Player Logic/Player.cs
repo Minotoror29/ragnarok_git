@@ -161,4 +161,14 @@ public class Player : MonoBehaviour, ISelectable
     {
         _playerOverlay.ClearTargetVotes();
     }
+
+    public void AddCrown()
+    {
+        _playerOverlay.AddCrown();
+    }
+
+    public void ClearCrowns()
+    {
+        _playerOverlay.ClearCrowns();
+    }
 }

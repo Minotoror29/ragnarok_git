@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roundManager: {fileID: 441064389}
   endMatchDisplay: {fileID: 1075070363}
-  maxRounds: 1
+  maxRounds: 3
   kingdomsPrefabs:
   - {fileID: 7105883630803776322, guid: 44f034400442f3f479cd7ceca75d2569, type: 3}
   - {fileID: 1419856611465099647, guid: 0273721b26ee52849842a0359d985a53, type: 3}

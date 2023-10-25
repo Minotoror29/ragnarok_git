@@ -16,7 +16,12 @@ public class RoundEndState : RoundState
         _roundManager.EndRoundDisplay.gameObject.SetActive(true);
         _roundManager.EndRoundDisplay.SetState(this);
         _roundManager.EndRoundDisplay.SetTitle(_roundNumber);
-        _roundManager.EndRoundDisplay.SetWinnerText(_roundManager.DetermineRoundWinners(_ragnarok));
+        List<Player> winners = _roundManager.DetermineRoundWinners(_ragnarok);
+        _roundManager.EndRoundDisplay.SetWinnerText(winners);
+        foreach (Player winner in winners)
+        {
+            winner.AddCrown();
+        }
 
         foreach (Player player in _roundManager.ActivePlayers)
         {

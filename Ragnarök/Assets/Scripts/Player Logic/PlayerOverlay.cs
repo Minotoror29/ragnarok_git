@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class PlayerOverlay : MonoBehaviour
 {
+    private Player _player;
+
     [SerializeField] private TextMeshProUGUI playerName;
     [SerializeField] private TextMeshProUGUI playerPoints;
 
@@ -15,7 +17,9 @@ public class PlayerOverlay : MonoBehaviour
     [SerializeField] private Image targetVotePrefab;
     private List<Image> _targetVotes;
 
-    private Player _player;
+    [SerializeField] private Image crownPrefab;
+    [SerializeField] private Transform crownsParent;
+    private List<Image> _crowns;
 
     private event Action<Player> SelectAction;
 
@@ -27,6 +31,7 @@ public class PlayerOverlay : MonoBehaviour
         SetPoints();
 
         _targetVotes = new();
+        _crowns = new();
     }
 
     public void EnableSelection(Action<Player> action)
@@ -61,7 +66,7 @@ public class PlayerOverlay : MonoBehaviour
     {
         foreach (Image vote in _targetVotes)
         {
-            Destroy(vote);
+            Destroy(vote.gameObject);
         }
 
         _targetVotes.Clear();
@@ -70,5 +75,21 @@ public class PlayerOverlay : MonoBehaviour
     public void SetColor(Color color)
     {
         playerName.color = color;
+    }
+
+    public void AddCrown()
+    {
+        Image newCrown = Instantiate(crownPrefab, crownsParent);
+        _crowns.Add(newCrown);
+    }
+
+    public void ClearCrowns()
+    {
+        foreach (Image crown in _crowns)
+        {
+            Destroy(crown.gameObject);
+        }
+
+        _crowns.Clear();
     }
 }
