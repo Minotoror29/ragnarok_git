@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class TitlesDisplay : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private PlayerTitleDisplay playerTitlePrefab;
     [SerializeField] private Transform playerTitlesParent;
 
     private List<Player> _playersToAttributeTitle;
     private Dictionary<Player, List<TitleData>> _playersTitles;
+
+    private int _winners = 0;
 
     [SerializeField] private TitleData winnerTitle;
     [SerializeField] private TitleData developingCountryTitle;
@@ -35,7 +39,11 @@ public class TitlesDisplay : MonoBehaviour
         }
 
         AssignWinnerTitle(winners);
-        if (_playersToAttributeTitle.Count == 0) { return; }
+        if (_playersToAttributeTitle.Count == 0)
+        {
+            SetTitle();
+            return;
+        }
         AssignDevelopingCountryTitle();
         AssignMartyrTitle();
         AssignClimateSkepticTitle();
@@ -49,6 +57,24 @@ public class TitlesDisplay : MonoBehaviour
         AssignInsignificantTitle();
 
         AssignFinalTitles();
+
+        SetTitle();
+    }
+
+    private void SetTitle()
+    {
+        if (_winners == 1)
+        {
+            title.text = "Système unipolaire";
+        }
+        else if (_winners == 2)
+        {
+            title.text = "Système bipolaire";
+        }
+        else if (_winners > 2)
+        {
+            title.text = "Système multipolaire";
+        }
     }
 
     private void AssignWinnerTitle(List<Player> winners)
@@ -78,6 +104,7 @@ public class TitlesDisplay : MonoBehaviour
                     CreateNewTitle(player, winnerTitle);
                     _playersToAttributeTitle.Remove(player);
                     _playersTitles.Remove(player);
+                    _winners++;
                 }
             }
         }

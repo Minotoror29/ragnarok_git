@@ -148,6 +148,7 @@ public class TableTurnCardState : TableTurnState
                 _titlePointsApplication?.AssignPoints();
                 _player.EndPlayerTurn();
                 TableTurnManager.ActivePlayers.Remove(_player);
+                _player.OpponentsVoteForCard = false;
                 _stateManager.ChangeState(new TableTurnCheckState(_stateManager, TableTurnManager));
             } else if (_playVotes == _discardVotes)
             {
