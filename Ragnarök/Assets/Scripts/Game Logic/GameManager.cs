@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,17 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => instance;
 
     private StateManager _stateManager;
+
+    [SerializeField] private PlayerSelectionManager _playerSelectionManager;
+    [SerializeField] private CinemachineVirtualCamera _playerSelectionCamera;
+
+    [SerializeField] private MatchManager matchManager;
+    [SerializeField] private Canvas gameCanvas;
+
+    public PlayerSelectionManager PlayerSelectionManager { get { return _playerSelectionManager; } }
+    public CinemachineVirtualCamera PlayerSelectionCamera { get { return _playerSelectionCamera; } }
+    public MatchManager MatchManager { get { return matchManager; } }
+    public Canvas GameCanvas { get { return gameCanvas; } }
 
     [Header("TESTS ONLY")]
     [SerializeField] private List<string> playerNames;
@@ -40,13 +52,15 @@ public class GameManager : MonoBehaviour
     {
         _stateManager = GetComponent<StateManager>();
 
-        if (SceneManager.GetActiveScene().name == "PlayerSelection")
-        {
-            _stateManager.ChangeState(new GamePlayerSelectionState(_stateManager, this));
-        } else if (SceneManager.GetActiveScene().name == "MainScene")
-        {
-            _stateManager.ChangeState(new GameMatchState(_stateManager, this, playerNames));
-        }
+        //if (SceneManager.GetActiveScene().name == "PlayerSelection")
+        //{
+        //    _stateManager.ChangeState(new GamePlayerSelectionState(_stateManager, this));
+        //} else if (SceneManager.GetActiveScene().name == "MainScene")
+        //{
+        //    _stateManager.ChangeState(new GameMatchState(_stateManager, this, playerNames));
+        //}
+
+        _stateManager.ChangeState(new GamePlayerSelectionState(_stateManager, this));
     }
 
     public void UpdateLogic()

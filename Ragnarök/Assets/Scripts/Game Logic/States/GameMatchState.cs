@@ -16,21 +16,23 @@ public class GameMatchState : GameState
             _playerNames.Add(name);
         }
 
-        _matchManager = MatchManager.Instance;
+        _matchManager = _gameManager.MatchManager;
     }
 
     public override void Enter()
     {
+        _gameManager.GameCanvas.gameObject.SetActive(true);
         _matchManager.Initialize(_playerNames);
     }
 
     public override void Exit()
     {
+        _gameManager.GameCanvas.gameObject.SetActive(false);
     }
 
-    public override void OnSceneChanged(Scene currentScene, Scene nextScene)
-    {
-    }
+    //public override void OnSceneChanged(Scene currentScene, Scene nextScene)
+    //{
+    //}
 
     public override void UpdateLogic()
     {

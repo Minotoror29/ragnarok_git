@@ -11,8 +11,8 @@ public abstract class GameState : State
     {
         _gameManager = gameManager;
 
-        SceneManager.activeSceneChanged += OnSceneChanged;
+        //SceneManager.activeSceneChanged += OnSceneChanged;
     }
 
-    public abstract void OnSceneChanged(Scene currentScene, Scene nextScene);
+    //public abstract void OnSceneChanged(Scene currentScene, Scene nextScene);
 }

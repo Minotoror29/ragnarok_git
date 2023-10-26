@@ -6,17 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelectionManager : MonoBehaviour
 {
-    private static PlayerSelectionManager instance;
-    public static PlayerSelectionManager Instance => instance;
-
     private GamePlayerSelectionState _state;
 
     [SerializeField] private List<TMP_InputField> playerNameInputFields;
 
-    private void Awake()
-    {
-        instance = this;
-    }
+    [SerializeField] private float camRotationSpeed = 1f;
+
+    public float CamRotationSpeed { get { return camRotationSpeed; } }
 
     public void Initialize(GamePlayerSelectionState state)
     {
@@ -30,9 +26,9 @@ public class PlayerSelectionManager : MonoBehaviour
         {
             playerNames.Add(field.text);
         }
-        _state.SetPlayerNames(playerNames);
+        _state.StartMatch(playerNames);
 
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
     }
 
     public void AddPlayer(TMP_InputField inputField)
