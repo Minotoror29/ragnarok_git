@@ -7,7 +7,7 @@ public class SkipTurnEffectData : EffectData
 {
     public PlayerApplicationData playerApplication;
 
-    public override Effect Effect(Card card, Player sourcePlayer)
+    public override Effect Effect(CardData card, Player sourcePlayer)
     {
         return new SkipTurnEffect(card, sourcePlayer, playerApplication);
     }

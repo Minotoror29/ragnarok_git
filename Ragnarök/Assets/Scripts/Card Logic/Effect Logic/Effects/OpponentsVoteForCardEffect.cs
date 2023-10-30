@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpponentsVoteForCardEffect : Effect
 {
-    public OpponentsVoteForCardEffect(Card card, Player player) : base(card, player)
+    public OpponentsVoteForCardEffect(CardData card, Player player) : base(card, player)
     {
     }
 

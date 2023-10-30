@@ -7,7 +7,7 @@ public class DoctrineEffectData : EffectData
 {
     public bool add;
 
-    public override Effect Effect(Card card, Player sourcePlayer)
+    public override Effect Effect(CardData card, Player sourcePlayer)
     {
         return new DoctrineEffect(card, sourcePlayer, add);
     }

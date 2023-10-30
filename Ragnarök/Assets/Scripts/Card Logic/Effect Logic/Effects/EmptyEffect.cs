@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EmptyEffect : Effect
 {
-    public EmptyEffect(Card card, Player sourcePlayer) : base(card, sourcePlayer)
+    public EmptyEffect(CardData card, Player sourcePlayer) : base(card, sourcePlayer)
     {
     }
 

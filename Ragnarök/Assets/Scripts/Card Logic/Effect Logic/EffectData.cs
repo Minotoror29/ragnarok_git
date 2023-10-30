@@ -6,5 +6,5 @@ public abstract class EffectData : ScriptableObject
 {
     public string description;
 
-    public abstract Effect Effect(Card card, Player sourcePlayer);
+    public abstract Effect Effect(CardData card, Player sourcePlayer);
 }

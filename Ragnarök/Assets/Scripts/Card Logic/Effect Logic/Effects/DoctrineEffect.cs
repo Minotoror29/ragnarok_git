@@ -7,7 +7,7 @@ public class DoctrineEffect : Effect
     private CustomValueApplication _valueApplication;
     private YouApplication _playerApplication;
 
-    public DoctrineEffect(Card card, Player sourcePlayer, bool add) : base(card, sourcePlayer)
+    public DoctrineEffect(CardData card, Player sourcePlayer, bool add) : base(card, sourcePlayer)
     {
         _valueApplication = new CustomValueApplication(sourcePlayer, this, add);
         _playerApplication = new YouApplication(sourcePlayer, this);

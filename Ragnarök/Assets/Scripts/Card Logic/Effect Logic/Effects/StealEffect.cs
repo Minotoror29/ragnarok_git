@@ -8,7 +8,7 @@ public class StealEffect : Effect
     public PlayerApplication _playerApplication;
     public ValueApplication _valueApplication;
 
-    public StealEffect(Card card, Player sourcePlayer, PlayerApplicationData playerApplication, ValueApplicationData valueApplication) : base(card, sourcePlayer)
+    public StealEffect(CardData card, Player sourcePlayer, PlayerApplicationData playerApplication, ValueApplicationData valueApplication) : base(card, sourcePlayer)
     {
         _playerApplication = playerApplication.Application(sourcePlayer, this);
         _valueApplication = valueApplication.Application(sourcePlayer, this);

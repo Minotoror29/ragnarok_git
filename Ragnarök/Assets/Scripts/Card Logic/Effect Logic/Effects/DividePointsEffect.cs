@@ -7,7 +7,7 @@ public class DividePointsEffect : Effect
     private ValueApplication _valueApplication;
     private PlayerApplication _playerApplication;
 
-    public DividePointsEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplication, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
+    public DividePointsEffect(CardData card, Player sourcePlayer, ValueApplicationData valueApplication, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
         _valueApplication = valueApplication.Application(sourcePlayer, this);
         _playerApplication = playerApplication.Application(sourcePlayer, this);

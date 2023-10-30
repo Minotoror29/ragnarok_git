@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effect/Equalize Points")]
 public class EqualizePointsEffectData : EffectData
 {
-    public override Effect Effect(Card card, Player sourcePlayer)
+    public override Effect Effect(CardData card, Player sourcePlayer)
     {
         return new EqualizePointsEffect(card, sourcePlayer);
     }

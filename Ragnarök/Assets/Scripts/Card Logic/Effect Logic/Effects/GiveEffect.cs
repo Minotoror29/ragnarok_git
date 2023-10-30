@@ -8,7 +8,7 @@ public class GiveEffect : Effect
     private ValueApplication _valueApplication;
     private PlayerApplication _playerApplication;
 
-    public GiveEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplication, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
+    public GiveEffect(CardData card, Player sourcePlayer, ValueApplicationData valueApplication, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
         _valueApplication = valueApplication.Application(sourcePlayer, this);
         _playerApplication = playerApplication.Application(sourcePlayer, this);

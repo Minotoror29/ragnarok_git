@@ -6,7 +6,7 @@ using UnityEngine;
 public class AddHoursEffectData : EffectData
 {
     public ValueApplicationData valueApplication;
-    public override Effect Effect(Card card, Player sourcePlayer)
+    public override Effect Effect(CardData card, Player sourcePlayer)
     {
         return new AddHoursEffect(card, sourcePlayer, valueApplication);
     }

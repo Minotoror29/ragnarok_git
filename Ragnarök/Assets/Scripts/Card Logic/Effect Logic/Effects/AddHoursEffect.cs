@@ -6,7 +6,7 @@ public class AddHoursEffect : Effect
 {
     private ValueApplication _valueApplication;
 
-    public AddHoursEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplication) : base(card, sourcePlayer)
+    public AddHoursEffect(CardData card, Player sourcePlayer, ValueApplicationData valueApplication) : base(card, sourcePlayer)
     {
         _valueApplication = valueApplication.Application(sourcePlayer, this);
     }

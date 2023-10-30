@@ -6,7 +6,7 @@ public class EqualizePointsEffect : Effect
 {
     private TargetPlayersApplication _playerApplication;
 
-    public EqualizePointsEffect(Card card, Player sourcePlayer) : base(card, sourcePlayer)
+    public EqualizePointsEffect(CardData card, Player sourcePlayer) : base(card, sourcePlayer)
     {
         _playerApplication = new TargetPlayersApplication(sourcePlayer, this, 1);
     }

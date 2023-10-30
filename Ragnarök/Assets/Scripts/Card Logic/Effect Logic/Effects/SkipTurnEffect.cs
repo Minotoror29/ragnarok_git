@@ -6,7 +6,7 @@ public class SkipTurnEffect : Effect
 {
     private PlayerApplication _playerApplication;
 
-    public SkipTurnEffect(Card card, Player sourcePlayer, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
+    public SkipTurnEffect(CardData card, Player sourcePlayer, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
         _playerApplication = playerApplication.Application(sourcePlayer, this);
     }

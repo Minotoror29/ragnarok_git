@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 public abstract class Effect
 {
-    protected Card _card;
+    protected CardData _card;
     protected Player _player;
     protected TableTurnEffectState _state;
 
@@ -12,7 +12,7 @@ public abstract class Effect
 
     public TableTurnEffectState State { get { return _state; } }
 
-    public Effect(Card card, Player sourcePlayer)
+    public Effect(CardData card, Player sourcePlayer)
     {
         _card = card;
         _player = sourcePlayer;

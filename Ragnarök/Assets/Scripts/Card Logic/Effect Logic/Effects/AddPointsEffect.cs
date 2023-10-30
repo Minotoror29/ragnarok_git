@@ -7,7 +7,7 @@ public class AddPointsEffect : Effect
     private ValueApplication _valueApplication;
     private PlayerApplication _playerApplication;
 
-    public AddPointsEffect(Card card, Player sourcePlayer, ValueApplicationData valueApplicationData, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
+    public AddPointsEffect(CardData card, Player sourcePlayer, ValueApplicationData valueApplicationData, PlayerApplicationData playerApplication) : base(card, sourcePlayer)
     {
         _valueApplication = valueApplicationData.Application(sourcePlayer, this);
         _playerApplication = playerApplication.Application(sourcePlayer, this);

@@ -6,15 +6,15 @@ public class Deck : MonoBehaviour
 {
     [SerializeField] private TableTurnManager tableTurnManager;
 
-    private List<Card> _cards;
-    private List<Card> _graveyard;
+    private List<CardData> _cards;
+    private List<CardData> _graveyard;
 
     public void Initialize()
     {
         _cards = new();
         _graveyard = new();
 
-        foreach (Card card in Resources.LoadAll<Card>("Data/Cards"))
+        foreach (CardData card in Resources.LoadAll<CardData>("Data/Cards"))
         {
             for (int i = 0; i < card.duplicates; i++)
             {
@@ -23,9 +23,9 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public Card DrawCard()
+    public CardData DrawCard()
     {
-        Card card = _cards[0];
+        CardData card = _cards[0];
         _cards.Remove(card);
         _graveyard.Add(card);
 
@@ -43,7 +43,7 @@ public class Deck : MonoBehaviour
         {
             int j = Random.Range(0, i + 1);
 
-            Card temp = _cards[i];
+            CardData temp = _cards[i];
             _cards[i] = _cards[j];
             _cards[j] = temp;
         }
@@ -53,7 +53,7 @@ public class Deck : MonoBehaviour
     {
         if (_graveyard.Count > 0)
         {
-            foreach (Card card in _graveyard)
+            foreach (CardData card in _graveyard)
             {
                 _cards.Add(card);
             }

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class TableTurnOpponentsTargetState : TableTurnState
 {
     private Player _player;
-    private Card _card;
+    private CardData _card;
     private TargetPlayersApplication _playerApplication;
     private List<Player> _targetedPlayers;
 
@@ -21,7 +21,7 @@ public class TableTurnOpponentsTargetState : TableTurnState
 
     public event Action<Player, Player> OnTarget;
 
-    public TableTurnOpponentsTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card, TargetPlayersApplication playerApplication, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
+    public TableTurnOpponentsTargetState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CardData card, TargetPlayersApplication playerApplication, Action<Player, Player> OnTargetEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _card = card;

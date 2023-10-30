@@ -6,7 +6,7 @@ using UnityEngine;
 public class TableTurnCardState : TableTurnState
 {
     private Player _player;
-    private Card _card;
+    private CardData _card;
     private Effect _effect1;
     private Effect _effect2;
     private bool _canTriggerRagnarok;
@@ -27,7 +27,7 @@ public class TableTurnCardState : TableTurnState
     public bool CanTriggerRagnarok { set { _canTriggerRagnarok = value; } }
     public bool CanAvoidRagnarok { set { _canAvoidRagnarok = value; } }
 
-    public TableTurnCardState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, Card card) : base(stateManager, tableTurnManager)
+    public TableTurnCardState(StateManager stateManager, TableTurnManager tableTurnManager, Player player, CardData card) : base(stateManager, tableTurnManager)
     {
         _player = player;
         _card = card;

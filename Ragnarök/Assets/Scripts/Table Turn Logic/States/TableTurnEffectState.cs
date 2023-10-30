@@ -7,7 +7,7 @@ public class TableTurnEffectState : TableTurnState
 {
     private Player _player;
 
-    private Card _card;
+    private CardData _card;
     private Effect _effect1;
     private Effect _effect2;
 
@@ -24,7 +24,7 @@ public class TableTurnEffectState : TableTurnState
     public List<Player> PlayersWhoVotedPlay { get { return _playersWhoVotedPlay; } }
 
     public TableTurnEffectState(StateManager stateManager, TableTurnManager tableTurnManager, Player player,
-        Card card, Effect effect1, Effect effect2, bool opponentsVote, List<Player> playersWhoVotedPlay,
+        CardData card, Effect effect1, Effect effect2, bool opponentsVote, List<Player> playersWhoVotedPlay,
         TitlePointsApplication titlePointsApplication, Action<Player, Player> OnTargetEvent, Action<Player, int> OnValueEvent) : base(stateManager, tableTurnManager)
     {
         _player = player;

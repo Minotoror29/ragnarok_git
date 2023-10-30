@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Effect/Empty", order = 0)]
 public class EmptyEffectData : EffectData
 {
-    public override Effect Effect(Card card, Player sourcePlayer)
+    public override Effect Effect(CardData card, Player sourcePlayer)
     {
         return new EmptyEffect(card, sourcePlayer);
     }

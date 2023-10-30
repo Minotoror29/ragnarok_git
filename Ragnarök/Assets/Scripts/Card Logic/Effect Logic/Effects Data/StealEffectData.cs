@@ -8,7 +8,7 @@ public class StealEffectData : EffectData
     public PlayerApplicationData playerApplication;
     public ValueApplicationData valueApplication;
 
-    public override Effect Effect(Card card, Player sourcePlayer)
+    public override Effect Effect(CardData card, Player sourcePlayer)
     {
         return new StealEffect(card, sourcePlayer, playerApplication, valueApplication);
     }
